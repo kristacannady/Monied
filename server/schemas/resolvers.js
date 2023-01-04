@@ -17,8 +17,8 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     //getProjectById
-    //getDonationByUserId
-    //getDonationByProjectId
+    //getDonation byUserId $or byProjectId
+
   },
   Mutation: {
     createUser: async (parent, args) => {

@@ -24,8 +24,8 @@ const typeDefs = gql`
   type Donation {
     amount: Int
     comment: String
-    users: [Donation]
-    projects: [Project]
+    user: User
+    project: Project
   }
 
   type Auth {
@@ -36,8 +36,8 @@ const typeDefs = gql`
   type Query {
     getCurrentUser: User
     getProjectById(_id: ID): Project
-    getDonationsByUserId(_id: ID): [Donation]
-    getDonationsByProjectId(_id: ID): [Donation]
+    getDonationsByUserId(userId: ID): [Donation]
+    getDonationsByProjectId(projectId: ID): [Donation]
   }
 
   type Mutation {
