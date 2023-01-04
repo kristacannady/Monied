@@ -14,13 +14,12 @@ import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
-import Navigation from './components/Navigation';
+import Navigation from './components/MainNav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
-
 import './App.css';
 
 const httpLink = createHttpLink({
