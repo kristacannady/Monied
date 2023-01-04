@@ -3,10 +3,10 @@ import React from 'react';
 // import ThoughtForm from '../components/ThoughtForm';
 // import FriendList from '../components/FriendList';
 
-import Auth from '../utils/auth';
+import Auth from 'server/utils/auth';
 import { useQuery } from '@apollo/client';
 // QUERY_THOUGHTS, QUERY_ME_BASIC
-import {  } from '../utils/queries';
+//import {  } from '../utils/queries';
 
 const Home = () => {
   // const { loading, data } = useQuery(QUERY_THOUGHTS);
