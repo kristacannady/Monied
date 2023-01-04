@@ -9,6 +9,15 @@ type User {
   isAuthenticated: Boolean
 }
 
+type Project {
+  _id: ID
+  projectTitle: String!
+  organizationName: String!
+  projectCategory: String!
+  projectDescription: String!
+  projectGoal: Int!
+}
+
 type Auth {
   token: ID
   user: User
