@@ -7,6 +7,9 @@ type User {
   lastName: String
   email: String
   isAuthenticated: Boolean
+  projects: [Project]
+  donations: [Donation]
+  favorites: [Project]
 }
 
 type Project {
@@ -25,6 +28,7 @@ type Auth {
 
 type Query {
   getCurrentUser: User
+  getProject(_id: ID): Project
 }
 
 type Mutation {

@@ -24,6 +24,24 @@ const userSchema = new Schema({
     required: true,
     minlength: 7
   },
+  projects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }
+  ],
+  donations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Donation'
+    }
+  ],
+  favorites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }
+  ],
 });
 
 // set up pre-save middleware to create password
