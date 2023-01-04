@@ -14,7 +14,7 @@ import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
-import Navigation from './components/Navigation';
+import MainNav from './components/MainNav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -48,7 +48,7 @@ function App() {
       <CookiesProvider>
         <Router>
           <CurrentUserContextProvider>
-            <Navigation />
+            <MainNav />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
