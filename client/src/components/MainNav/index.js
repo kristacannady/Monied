@@ -1,22 +1,38 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCurrentUserContext } from '../../context/currentUser';
 
-export default function Navigation() {
-  const { isLoggedIn, logoutUser } = useCurrentUserContext();
+import { CurrentUserContextProvider } from '../../context';
+
+function MainNav() {
+  const logout = event => {
+    event.preventDefault();
+    CurrentUserContextProvider.logoutUser();
+  };
 
   return (
-    <nav>
-      {isLoggedIn() ? (
-        <>
-          <Link to="/landing">Dashboard</Link>
-          <button type="button" onClick={logoutUser}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Sign Up</Link>
-        </>
-      )}
-    </nav>
+    <header>
+      <div>
+        <Link to="/">
+          <h1>Monied</h1>
+        </Link>
+        <nav>
+          {CurrentUserContextProvider.isLoggedIn() ? (
+            <>
+              <Link to="/dashboard">Profile</Link>
+              <a href="/" onClick={logout}>
+                Logout
+              </a>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Signup</Link>
+            </>
+          )}
+        </nav>
+      </div>
+    </header>
   );
 }
+
+export default MainNav;
