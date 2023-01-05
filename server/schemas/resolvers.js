@@ -11,14 +11,33 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).select(
           "-__v -password"
+            .populate("projects")
+            .populate("donations")
+            .populate("favorites")
         );
         return user;
       }
       throw new AuthenticationError("Not logged in");
     },
     //getProjectById
-    //getDonation byUserId $or byProjectId
+    getProjectById: async (parent, { _id }) => {
+      const project = await Project.findOne({ _id })
 
+      if(!project) {
+        throw new AuthenticationError ("Project not found.");
+      }
+      return project;
+    },
+    //getDonations byUserId $or byProjectId
+    getDonationsById: async (parent, args) => {
+      const donation = await Donation.findOne ({
+        $or: [{ userId: args._id}, {projectId: args._id}]
+      })
+      if (!donation) {
+        throw new AuthenticationError("Donation not found");
+      }
+      return donation;
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -61,7 +80,7 @@ const resolvers = {
     //updateProject
     //deleteProject
     //favoriteProject
-    
+
     //createDonation
   },
 };
