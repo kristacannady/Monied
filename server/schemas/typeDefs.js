@@ -1,29 +1,56 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-type User {
-  _id: ID
-  firstName: String
-  lastName: String
-  email: String
-  isAuthenticated: Boolean
-}
+  type User {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    isAuthenticated: Boolean
+    projects: [Project]
+    donations: [Donation]
+    favorites: [Project]
+  }
 
-type Auth {
-  token: ID
-  user: User
-}
+  type Project {
+    _id: ID
+    projectTitle: String
+    organizationName: String
+    projectCategory: String
+    projectDescription: String
+    projectGoal: Int
+  }
 
-type Query {
-  getCurrentUser: User
-}
+  type Donation {
+    donationAmount: Int
+    isAnonymous: Boolean
+    comment: String
+    createdBy: User
+    project: Project
+  }
 
-type Mutation {
-  createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-  updateUser(firstName: String!, lastName: String!, email: String!): User
-  deleteUser: User
-  login(email: String!, password: String!): Auth
-}
+  type Auth {
+    token: ID
+    user: User
+  }
+
+  type Query {
+    getCurrentUser: User
+    getProjectById(_id: ID): Project
+    getDonationsByUserId(userId: ID, projectId: ID): [Donation]
+  }
+
+  type Mutation {
+    createUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
+    updateUser(firstName: String!, lastName: String!, email: String!): User
+    deleteUser: User
+    login(email: String!, password: String!): Auth
+  }
 `;
 
 module.exports = typeDefs;
