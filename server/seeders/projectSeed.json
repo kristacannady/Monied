@@ -1,0 +1,18 @@
+[
+    {
+    "projectTitle" : "Help the SPCA",
+    "organizationName" : "SPCA",
+    "projectCategory" : "Other",
+    "projectDescription" : "Help the poor lonely cats and dogs at the local shelter!",
+    "projectGoal" : "1000",
+    "createdAt" : "12/1/22",
+    "createdBy" : [
+        {
+            "firstName" : "Molly",
+            "lastName" : "Waters",
+            "email" : "Molly48_Waters59@hotmail.com"
+        }
+    ],
+    "donations" : []
+    }
+]
