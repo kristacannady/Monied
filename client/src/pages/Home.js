@@ -1,5 +1,5 @@
 import React from "react";
-import Projects from "../components/Projects";
+import Projects from "../components/ProjectList";
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 
@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <main>
       <h1>Home</h1>
-      <Projects />
+      <ProjectList />
     </main>
   );
 };
