@@ -33,8 +33,8 @@ const projectSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
   },
   createdBy: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
 });
 
