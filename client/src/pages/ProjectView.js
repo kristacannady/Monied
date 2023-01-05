@@ -1,28 +1,47 @@
-// Project model schema-
-// projectTitle
-// Type: string
-// Required: ‘You need to give this project a name!”
-// Minlength: 1
-// Maxlength: to be determined
-// OrganizationName
-// Type: string
-// Required: ‘You need to give the organization’s name!”
-// Minlength: 1
-// Maxlength: to be determined
-// projectCategory
-// Type: string
-// Required: true
-// projectDescription
-// Type: string
-// Required: ‘You need to give a description!”
-// Minlength: 1
-// Maxlength: to be determined
-// projectGoal
-// Type: Int
-// Required: true
-// createdAt (may need to copy dateFormat.js util from Deep Thought module project)
-// Type: Date
-// Default: Date.now
-// Get: timestamp => dateFormat(timestamp)
-// firstName/lastName (or create a username option?)
-// Donations: [donationSchema]?
+//Project Title
+//UserName
+//Project Description
+//Project Goal
+//Goal Met
+//Donate button
+
+//Comments of Support
+
+import React from "react";
+import { useParams } from "react-router-dom";
+
+import { useQuery } from "@apollo/client";
+import { QUERY_PROJECT } from "../graphql/queries";
+import { CurrentUserContextProvider } from "../context";
+
+const SingleProject = (props) => {
+  const { id: projectId } = useParams();
+
+  const { loading, data } = useQuery(QUERY_PROJECT, {
+    variables: { id: projectId },
+  });
+
+  const project = data?.project || {};
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <div>
+        <h1>{project.title}</h1>
+        <p>
+          <span>{project.username}</span>
+        </p>
+        <div>
+          <p>{project.description}</p>
+        </div>
+        <div>
+          <p>{project.goal}</p>
+        </div>
+        {/* {CurrentUserContextProvider.isLoggedIn && } */}
+      </div>
+    </div>
+  );
+};
