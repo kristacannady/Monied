@@ -20,6 +20,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
+import ProjectView from './pages/ProjectView';
 
 import './App.css';
 
@@ -54,6 +55,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/project/:id" element={<ProjectView />}/>
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </CurrentUserContextProvider>

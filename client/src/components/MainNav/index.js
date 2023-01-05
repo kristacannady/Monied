@@ -6,7 +6,7 @@ import {CurrentUserContextProvider} from "../../context";
 const MainNav = () =>{
     const logout = (event) =>{
         event.preventDefault();
-        CurrentUserContextProvider.logoutUser();
+        CurrentUserContextProvider.logoutUser;
     };
 
     return(
@@ -16,7 +16,7 @@ const MainNav = () =>{
                     <h1>Monied</h1>
                 </Link>
                 <nav>
-                    {CurrentUserContextProvider.isLoggedIn() ? (
+                    {CurrentUserContextProvider.isAuthenticated ? (
                         <>
                         <Link to="/dashboard">Profile</Link>
                         <a href='/' onClick={logout}>

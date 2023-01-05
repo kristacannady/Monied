@@ -1,15 +1,16 @@
 import React from "react";
-import Projects from "../components/ProjectList";
-import Auth from "../utils/auth";
+import ProjectList from "../components/ProjectList";
+import {CurrentUserContextProvider} from "../context";
 import { useQuery } from "@apollo/client";
 
 const Home = () => {
-  const loggedIn = Auth.loggedIn();
+  const loggedIn = CurrentUserContextProvider.isAuthenticated;
+  const projects = data?.projects || [];
 
   return (
     <main>
       <h1>Home</h1>
-      <ProjectList />
+      <ProjectList projects={projects}/>
     </main>
   );
 };

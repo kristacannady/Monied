@@ -13,14 +13,14 @@ const ProjectList = ({projects,title}) =>{
             projects.map((project)=>{
                 <div key={project._id}>
                     <p>
-                        <Link to={`/profile/${project.username}`}>{project.username}</Link>
+                        <Link to={`/dashboard/${project.username}`}>{project.username}</Link>
                     </p>
                     <div>
                         <Link to={`/project/${project._id}`}>
                             <p>{project.description}</p>
                             <p>
                                 Comments: {project.comments} || Click to{" "}
-                                {project.commentCount ? "see" : "start"} support!
+                                {project.commentCount ? "see" : "start"} the support!
                             </p>
                         </Link>
                     </div>
