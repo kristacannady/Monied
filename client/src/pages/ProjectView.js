@@ -12,7 +12,7 @@
 // projectCategory
 // Type: string
 // Required: true
-// projectDescription 
+// projectDescription
 // Type: string
 // Required: ‘You need to give a description!”
 // Minlength: 1
@@ -25,4 +25,4 @@
 // Default: Date.now
 // Get: timestamp => dateFormat(timestamp)
 // firstName/lastName (or create a username option?)
-// Donations: [donationSchema]? 
+// Donations: [donationSchema]?
