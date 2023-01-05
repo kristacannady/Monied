@@ -12,15 +12,13 @@ import { useMutation } from "@apollo/client";
 //import {ADD_PROJECT} from '../graphql/mutations';
 import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
 
-const NewProject = () => {
-  const [projectTitle, setProjectTitle] = useState("");
+const Donation = () => {
+  const [donationAmount, setDonationAmount] = useState("");
   const [characterCount, setCharacterCount] = useState("");
-  const [projectCategory, setProjectCategory] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
-  const [projectGoal, setProjectGoal] = useState("");
+  const [donationComment, setDonationComment] = useState("");
 
-  const [addProject, { error }] = useMutation(ADD_PROJECT, {
-    update(cache, { data: { addProject } }) {
+  const [addDonation, { error }] = useMutation(ADD_DONATION, {
+    update(cache, { data: { addDonation } }) {
       try {
         const { getCurrentUser } = cache.readQuery({
           query: QUERY_CURRENT_USER,
@@ -30,7 +28,7 @@ const NewProject = () => {
           data: {
             getCurrentUser: {
               ...getCurrentUser,
-              projects: [...getCurrentUser.projects, addProject],
+              projects: [...getCurrentUser.projects, addDonation],
             },
           },
         });
@@ -41,7 +39,7 @@ const NewProject = () => {
       const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
       cache.writeQuery({
         query: QUERY_PROJECTS,
-        data: { projects: [addProject, ...projects] },
+        data: { projects: [addDonation, ...projects] },
       });
     },
   });
@@ -57,19 +55,15 @@ const NewProject = () => {
     event.preventDefault();
 
     try {
-      await addProject({
+      await addDonation({
         variables: {
-          projectTitle,
-          projectDescription,
-          projectCategory,
-          projectGoal,
+         donationAmount,
+        donationComment,
         },
       });
 
-      setProjectTitle("");
-      setProjectDescription("");
-      setProjectCategory("");
-      setProjectGoal("");
+      setDonationAmount("");
+      setDonationComment("");
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -77,27 +71,29 @@ const NewProject = () => {
   };
 
   return (
-    <div>
+    <Card>
+        <h2>Project Name</h2>
+        <div>
+            <label>
+                <input type="checkbox" />
+                Anonymous Donation
+            </label>
+        </div>
       <form onSubmit={handleFormSubmit}>
         <input
-          placeholder="Title"
-          value={projectTitle}
+          placeholder="Donation Amount"
+          value={donationAmount}
           onChange={handleChange}
         ></input>
         <textarea
-          placeholder="Description"
-          value={projectDescription}
+          placeholder="Comment"
+          value={donationComment}
           onChange={handleChange}
         ></textarea>
-        <input
-          placeholder="Project Goal"
-          value={projectGoal}
-          onChange={handleChange}
-        ></input>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </Card>
   );
 };
 
-export default NewProject;
+export default Donation;
