@@ -36,6 +36,13 @@ const projectSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  donations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Donation'
+    }
+  ], 
+
 });
 
 const Project = model('Project', projectSchema);

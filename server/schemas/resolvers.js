@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const omit = require("lodash.omit");
 
-const { User } = require("../models");
+const { User, Project, Donation } = require("../models");
 
 const { signToken } = require("../utils/auth");
 
@@ -9,19 +9,19 @@ const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).select(
-          "-__v -password"
-            .populate("projects")
-            .populate("donations")
-            .populate("favorites")
-        );
+        const user = await User.findById(context.user._id)
+        .select("-__v -password")
+        .populate("projects")
+        .populate("donations")
+        .populate("favorites");
+        
         return user;
       }
       throw new AuthenticationError("Not logged in");
     },
     //getProjectById
     getProjectById: async (parent, { _id }) => {
-      const project = await Project.findOne({ _id })
+      const project = await Project.findOne({ _id });
 
       if(!project) {
         throw new AuthenticationError ("Project not found.");

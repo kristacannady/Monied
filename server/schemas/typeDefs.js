@@ -37,7 +37,7 @@ const typeDefs = gql`
   type Query {
     getCurrentUser: User
     getProjectById(_id: ID): Project
-    getDonationsByUserId(userId: ID, projectId: ID): [Donation]
+    getDonationsById(userId: ID, projectId: ID): [Donation]
   }
 
   type Mutation {
