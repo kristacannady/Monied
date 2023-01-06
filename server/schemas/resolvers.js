@@ -28,7 +28,7 @@ const resolvers = {
       }
       return project;
     },
-    //getDonations byUserId $or byProjectId
+    //getDonations byUserId OR byProjectId
     getDonationById: async (parent, args) => {
       let donations = [];
       if (args.userId) {

@@ -50,9 +50,13 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
+
     updateUser(firstName: String!, lastName: String!, email: String!): User
+
     deleteUser: User
+
     login(email: String!, password: String!): Auth
+
     createProject(
       projectTitle: String
       organizationName: String
@@ -67,12 +71,14 @@ const typeDefs = gql`
       commentBody: String
       projectId: ID
     ): Donation
+
     updateProject(
       _id: ID
       projectTitle: String
       projectCategory: String
       projectDescription: String
     ): Project
+
     favoriteProject(projectId: ID): User
   }
 `;
