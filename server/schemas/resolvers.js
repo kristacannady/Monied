@@ -10,11 +10,11 @@ const resolvers = {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
-        .select("-__v -password")
-        .populate("projects")
-        .populate("donations")
-        .populate("favorites");
-        
+          .select("-__v -password")
+          .populate("projects")
+          .populate("donations")
+          .populate("favorites");
+
         return user;
       }
       throw new AuthenticationError("Not logged in");
@@ -23,16 +23,16 @@ const resolvers = {
     getProjectById: async (parent, { _id }) => {
       const project = await Project.findOne({ _id });
 
-      if(!project) {
-        throw new AuthenticationError ("Project not found.");
+      if (!project) {
+        throw new AuthenticationError("Project not found.");
       }
       return project;
     },
     //getDonations byUserId $or byProjectId
     getDonationsById: async (parent, args) => {
-      const donation = await Donation.findOne ({
-        $or: [{ userId: args._id}, {projectId: args._id}]
-      })
+      const donation = await Donation.findOne({
+        $or: [{ userId: args._id }, { projectId: args._id }],
+      });
       if (!donation) {
         throw new AuthenticationError("Donation not found");
       }
@@ -77,11 +77,67 @@ const resolvers = {
       return { token, user };
     },
     //createProject
+    createProject: async (parent, args, context) => {
+      if (context.user) {
+        const project = await Project.create(args);
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { projects: project._id } },
+          { new: true }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError("You need to be logged in!")
+    },
     //updateProject
+    updateProject: async (parent, args, context) => {
+      if (context.user) {
+        const updatedProject = await Project.findOneAndUpdate(args);
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { projects: project._id } },
+          { new: true }
+        );
+        return updatedProject;
+      }
+      throw new AuthenticationError("You need to be logged in!")
+    },
+
     //deleteProject
+
     //favoriteProject
 
     //createDonation
+    createDonation: async (parent, args, context) => {
+      if (context.user) {
+        const donationToCreate = {
+          donationAmount: args.donationAmount,
+          isAnonymous: args.isAnonymous,
+          commentBody: args.commentBody,
+          project: args.projectId,
+          createdBy: context.user.firstName + " " + context.user.lastName
+        };
+        const donation = await Donation.create(donationToCreate);
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { donations: donation._id } },
+          { new: true }
+        );
+
+        await Project.findByIdAndUpdate(
+          { _id: args.projectId },
+          { $addToSet: { donations: donation._id } },
+          { new: true }
+        );
+var p = JSON.stringify(donation);
+        return donation;
+      }
+      throw new AuthenticationError("You need to be logged in!")
+    },
   },
 };
 

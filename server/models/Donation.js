@@ -1,11 +1,11 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const donationSchema = new Schema({
   donationAmount: {
     type: Number,
     required: true,
   },
-  anonymousCheck: {
+  isAnonymous: {
     type: Boolean,
   },
   stripePaymentInfo: {
@@ -27,8 +27,12 @@ const donationSchema = new Schema({
     required: true,
     //only show this on front end if anonymousCheck is false
   },
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: "Project",
+  },
 });
 
-const Donation = model('Donation', donationSchema);
+const Donation = model("Donation", donationSchema);
 
 module.exports = Donation;

@@ -6,6 +6,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    password: String
     isAuthenticated: Boolean
     projects: [Project]
     donations: [Donation]
@@ -19,14 +20,16 @@ const typeDefs = gql`
     projectCategory: String
     projectDescription: String
     projectGoal: Int
+    donations: [Donation]
   }
 
   type Donation {
+    _id: ID
     donationAmount: Int
     isAnonymous: Boolean
-    comment: String
-    createdBy: User
-    project: Project
+    commentBody: String
+    createdBy: String
+    project: ID
   }
 
   type Auth {
@@ -50,6 +53,21 @@ const typeDefs = gql`
     updateUser(firstName: String!, lastName: String!, email: String!): User
     deleteUser: User
     login(email: String!, password: String!): Auth
+    createProject(
+      projectTitle: String
+      organizationName: String
+      projectCategory: String
+      projectDescription: String
+      projectGoal: Int
+    ): Project
+
+    createDonation(
+      donationAmount: Int
+      isAnonymous: Boolean
+      commentBody: String
+      projectId: ID
+    ): Donation
+    updateProject(_id: ID): User
   }
 `;
 
