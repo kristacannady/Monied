@@ -1,0 +1,20 @@
+[
+    {
+    "projectTitle" : "Help the SPCA",
+    "organizationName" : "SPCA",
+    "projectCategory" : "Other",
+    "projectDescription" : "Help the poor lonely cats and dogs at the local shelter!",
+    "projectGoal" : "1000",
+    "createdAt" : "12/1/22",
+    "donations" : []
+    },
+    {
+        "projectTitle" : "Donate to the YMCA",
+        "organizationName" : "YMCA",
+        "projectCategory" : "Community Outreach",
+        "projectDescription" : "Help the YMCA buy new basketballs",
+        "projectGoal" : "200",
+        "createdAt" : "12/3/22",
+        "donations" : []
+        }
+]
