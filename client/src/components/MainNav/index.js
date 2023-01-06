@@ -12,22 +12,24 @@ function MainNav() {
   return (
     <header>
       <div>
-        <Link to="/">
-          <h1>Monied</h1>
-        </Link>
         <nav>
-          {CurrentUserContextProvider.isLoggedIn() ? (
-            <>
-              <Link to="/dashboard">Profile</Link>
+          <Link to="/">
+            <h1 className="title">Monied</h1>
+          </Link>
+          {CurrentUserContextProvider.isLoggedIn ? (
+            <div>
+              <Link to="/my-projects">My Projects</Link>
+              <Link to="/my-donations">My Donations</Link>
+              <Link to="/favorites">Favorite</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>
-            </>
+            </div>
           ) : (
-            <>
+            <div>
               <Link to="/login">Login</Link>
               <Link to="/register">Signup</Link>
-            </>
+            </div>
           )}
         </nav>
       </div>
