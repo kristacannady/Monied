@@ -14,13 +14,14 @@ import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
-import Navigation from './components/Navigation';
+import MainNav from './components/MainNav';
+import CategoryNav from './components/CategoryNav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
-
+import Footer from './components/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -48,7 +49,8 @@ function App() {
       <CookiesProvider>
         <Router>
           <CurrentUserContextProvider>
-            <Navigation />
+            <MainNav />
+            <CategoryNav />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -57,6 +59,7 @@ function App() {
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </CurrentUserContextProvider>
+          <Footer />
         </Router>
       </CookiesProvider>
     </ApolloProvider>
