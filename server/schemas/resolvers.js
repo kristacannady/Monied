@@ -29,7 +29,7 @@ const resolvers = {
       return project;
     },
     //getDonations byUserId $or byProjectId
-    getDonationsById: async (parent, args) => {
+    getDonationById: async (parent, args) => {
       const donation = await Donation.findOne({
         $or: [{ userId: args._id }, { projectId: args._id }],
       });
@@ -89,26 +89,39 @@ const resolvers = {
 
         return project;
       }
-      throw new AuthenticationError("You need to be logged in!")
+      throw new AuthenticationError("You need to be logged in!");
     },
     //updateProject
     updateProject: async (parent, args, context) => {
       if (context.user) {
-        const updatedProject = await Project.findOneAndUpdate(args);
+        const updatedProject = await Project.findOneAndUpdate(
+          { _id: args._id },
+          args
+        );
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { projects: project._id } },
+          { $addToSet: { projects: args._id } },
           { new: true }
         );
+
         return updatedProject;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    //favoriteProject
+    favoriteProject: async (parent, args, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favorites: args.projectId } },
+          { new: true }
+        );
+        return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!")
     },
-
-    //deleteProject
-
-    //favoriteProject
 
     //createDonation
     createDonation: async (parent, args, context) => {
@@ -118,7 +131,7 @@ const resolvers = {
           isAnonymous: args.isAnonymous,
           commentBody: args.commentBody,
           project: args.projectId,
-          createdBy: context.user.firstName + " " + context.user.lastName
+          createdBy: context.user.firstName + " " + context.user.lastName,
         };
         const donation = await Donation.create(donationToCreate);
 
@@ -133,10 +146,9 @@ const resolvers = {
           { $addToSet: { donations: donation._id } },
           { new: true }
         );
-var p = JSON.stringify(donation);
         return donation;
       }
-      throw new AuthenticationError("You need to be logged in!")
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

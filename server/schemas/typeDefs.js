@@ -40,7 +40,7 @@ const typeDefs = gql`
   type Query {
     getCurrentUser: User
     getProjectById(_id: ID): Project
-    getDonationsById(userId: ID, projectId: ID): [Donation]
+    getDonationById(userId: ID, projectId: ID): [Donation]
   }
 
   type Mutation {
@@ -67,7 +67,13 @@ const typeDefs = gql`
       commentBody: String
       projectId: ID
     ): Donation
-    updateProject(_id: ID): User
+    updateProject(
+      _id: ID
+      projectTitle: String
+      projectCategory: String
+      projectDescription: String
+    ): Project
+    favoriteProject(projectId: ID): User
   }
 `;
 
