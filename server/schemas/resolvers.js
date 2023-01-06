@@ -30,13 +30,31 @@ const resolvers = {
     },
     //getDonations byUserId $or byProjectId
     getDonationById: async (parent, args) => {
-      const donation = await Donation.findOne({
-        $or: [{ userId: args._id }, { projectId: args._id }],
-      });
-      if (!donation) {
-        throw new AuthenticationError("Donation not found");
+      let donations = [];
+      if (args.userId) {
+        const user = await User.findById({ _id: args.userId }).populate(
+          "donations"
+        );
+
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        donations = user.donations;
+
+      } else {
+        const project = await Project.findById({
+          _id: args.projectId,
+        }).populate("donations");
+
+        if (!project) {
+          throw new AuthenticationError("Project not found");
+        }
+
+        donations = project.donations;
       }
-      return donation;
+
+      return donations;
     },
   },
   Mutation: {
@@ -120,7 +138,7 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError("You need to be logged in!")
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     //createDonation
