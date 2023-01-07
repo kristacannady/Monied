@@ -1,7 +1,11 @@
-export default function NotFound() {
+import React from 'react';
+
+const NotFound = () => {
   return (
     <div>
-      <h2>Not Found</h2>
+      Oops, we couldn't find that page.
     </div>
   );
-}
+};
+
+export default NotFound;

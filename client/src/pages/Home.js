@@ -1,7 +1,17 @@
-export default function Home() {
+import React from "react";
+import Projects from "../components/Projects";
+import Auth from "../utils/auth";
+import { useQuery } from "@apollo/client";
+
+const Home = () => {
+  const loggedIn = Auth.loggedIn();
+
   return (
-    <div>
-      <h2>Home</h2>
-    </div>
+    <main>
+      <h1>Home</h1>
+      <Projects />
+    </main>
   );
-}
+};
+
+export default Home;
