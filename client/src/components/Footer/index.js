@@ -6,6 +6,6 @@ function Footer() {
       <h2>Monied Ⓒ 2022</h2>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -12,22 +12,27 @@ body h2 {
   text-align: center;
 }
 
-nav {
+header nav {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 20px;
-  background-color: #006db0;
+  background-color: #32c04a;
   color: #fff;
 }
 
-nav a {
-  color: #fff;
+header nav h1 {
+  padding: 0;
+  margin: 5px;
+}
+
+header nav a {
+  color: rgb(0, 0, 0);
   text-decoration: none;
   margin-left: 1rem;
 }
 
-nav button {
+header nav button {
   background: none;
   color: inherit;
   border: none;
@@ -36,6 +41,32 @@ nav button {
   font: inherit;
   cursor: pointer;
   outline: inherit
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+.title {
+  display: flex;
+  font-size: 30px;
+  justify-content: space-between;
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  background-color: #d8d8d8;
+  gap: 1rem;
+}
+
+.user-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  background-color: #32c04a;
+  color: #fff;
 }
 
 form {
@@ -71,4 +102,14 @@ form button {
 form p {
   margin: 0.5rem;
   text-align: center;
+}
+
+footer h2 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  font-size: medium;
+  padding-left: 15px;
 }

@@ -2,38 +2,34 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import { CurrentUserContextProvider } from './context';
+import { CurrentUserContextProvider } from "./context";
 
-import MainNav from './components/MainNav';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Registration from './pages/Registration';
-import Dashboard from './pages/Dashboard';
-import NotFound from './pages/NotFound';
-import ProjectView from './pages/ProjectView';
-
-import './App.css';
+import MainNav from "./components/MainNav";
+import CategoryNav from "./components/CategoryNav";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
+import "./App.css";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -50,15 +46,16 @@ function App() {
         <Router>
           <CurrentUserContextProvider>
             <MainNav />
+            <CategoryNav />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/project/:id" element={<ProjectView />}/>
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </CurrentUserContextProvider>
+          <Footer />
         </Router>
       </CookiesProvider>
     </ApolloProvider>
