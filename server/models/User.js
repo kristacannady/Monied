@@ -26,14 +26,20 @@ const userSchema = new Schema({
   projects: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Project',
-    },
+      ref: 'Project'
+    }
   ],
   donations: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Donation',
-    },
+      ref: 'Donation'
+    }
+  ],
+  favorites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }
   ],
 });
 
