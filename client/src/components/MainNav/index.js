@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { CurrentUserContextProvider } from "../../context";
+import Auth from "../../context/auth";
 
 function MainNav() {
   const logout = (event) => {
     event.preventDefault();
-    CurrentUserContextProvider.logoutUser();
+    Auth.logout();
   };
 
   return (
@@ -16,7 +16,7 @@ function MainNav() {
           <Link to="/">
             <h1 className="title">Monied</h1>
           </Link>
-          {CurrentUserContextProvider.isLoggedIn ? (
+          {Auth.loggedIn() ? (
             <div>
               <Link to="/my-projects">My Projects</Link>
               <Link to="/my-donations">My Donations</Link>

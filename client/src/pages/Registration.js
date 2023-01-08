@@ -1,25 +1,24 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link, useNavigate } from "react-router-dom";
 
-import { REGISTER_USER } from '../graphql/mutations';
+import { REGISTER_USER } from "../graphql/mutations";
 
-import { useCurrentUserContext } from '../context/currentUser';
+import Auth from "../context/auth";
 
 export default function Registration() {
-  const { loginUser } = useCurrentUserContext();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const [registerUser, { error }] = useMutation(REGISTER_USER);
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await registerUser({
+      const { data } = await registerUser({
         variables: {
           email: formState.email,
           password: formState.password,
@@ -27,16 +26,15 @@ export default function Registration() {
           lastName: formState.lastName,
         },
       });
-      const { token, user } = mutationResponse.data.createUser;
-      loginUser(user, token);
-      navigate('/dashboard');
+      Auth.login(data.createUser.token);
+      navigate("/dashboard");
     } catch (e) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
@@ -90,13 +88,9 @@ export default function Registration() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
         <p>
-          Already have an account? Login
-          {' '}
-          <Link to="/register">here</Link>
+          Already have an account? Login <Link to="/register">here</Link>
         </p>
       </form>
     </div>

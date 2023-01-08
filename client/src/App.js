@@ -8,8 +8,6 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 
-import { CurrentUserContextProvider } from "./context";
-
 import MainNav from "./components/MainNav";
 import CategoryNav from "./components/CategoryNav";
 import NewProject from "./pages/NewProject";
@@ -46,39 +44,37 @@ function App() {
     <ApolloProvider client={client}>
       <CookiesProvider>
         <Router>
-          <CurrentUserContextProvider>
-            <MainNav />
-            <CategoryNav />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Registration />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/*" element={<NotFound />} />
-              <Route
-                path="/education"
-                element={<ProjectList category="Education" />}
-              />
-              <Route
-                path="/community-outreach"
-                element={<ProjectList category="Community Outreach" />}
-              />
-              <Route
-                path="/health-care"
-                element={<ProjectList category="Health Care" />}
-              />
-              <Route
-                path="/religious"
-                element={<ProjectList category="Religious" />}
-              />
-              <Route
-                path="/family-services"
-                element={<ProjectList category="Family Services" />}
-              />
-              <Route path="/other" element={<ProjectList category="Other" />} />
-              <Route path="NewProject" element={<NewProject />} />
-            </Routes>
-          </CurrentUserContextProvider>
+          <MainNav />
+          <CategoryNav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route
+              path="education"
+              element={<ProjectList category="Education" />}
+            />
+            <Route
+              path="community-outreach"
+              element={<ProjectList category="Community Outreach" />}
+            />
+            <Route
+              path="health-care"
+              element={<ProjectList category="Health Care" />}
+            />
+            <Route
+              path="religious"
+              element={<ProjectList category="Religious" />}
+            />
+            <Route
+              path="family-services"
+              element={<ProjectList category="Family Services" />}
+            />
+            <Route path="other" element={<ProjectList category="Other" />} />
+            <Route path="NewProject" element={<NewProject />} />
+          </Routes>
           <Footer />
         </Router>
       </CookiesProvider>

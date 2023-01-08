@@ -1,32 +1,28 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
+import Auth from "../context/auth";
 
 import { LOGIN } from "../graphql/mutations";
 
-import { useCurrentUserContext } from "../context/currentUser";
-
 export default function Login() {
-  const { loginUser } = useCurrentUserContext();
+  const [login, { error }] = useMutation(LOGIN);
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: "",
     password: "",
   });
 
-  const [login, { error }] = useMutation(LOGIN);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await login({
+      const { data } = await login({
         variables: {
           email: formState.email,
           password: formState.password,
         },
       });
-      const { token, user } = mutationResponse.data.login;
-      loginUser(user, token);
+      Auth.login(data.login.token);
       navigate("/dashboard");
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -73,6 +69,7 @@ export default function Login() {
           Need an account? Sign up <Link to="/register">here</Link>
         </p>
       </form>
+      {error && <div>Login Failed</div>}
     </div>
   );
 }

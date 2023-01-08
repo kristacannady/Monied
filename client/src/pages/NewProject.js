@@ -15,7 +15,7 @@ import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
 const NewProject = () => {
   const [projectTitle, setProjectTitle] = useState("");
   const [characterCount, setCharacterCount] = useState("");
-  const [projectCategory, setProjectCategory] = useState("");
+  const [projectCategory, setProjectCategory] = useState("Education");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectGoal, setProjectGoal] = useState("");
 
@@ -46,13 +46,6 @@ const NewProject = () => {
     },
   });
 
-  const handleChange = (event) => {
-    if (event.target.value.length <= 280) {
-      setText(event.target.value);
-      setCharacterCount(event.target.value.length);
-    }
-  };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -68,7 +61,6 @@ const NewProject = () => {
 
       setProjectTitle("");
       setProjectDescription("");
-      setProjectCategory("");
       setProjectGoal("");
       setCharacterCount(0);
     } catch (e) {
@@ -80,19 +72,35 @@ const NewProject = () => {
     <div>
       <form onSubmit={handleFormSubmit}>
         <input
+          required
+          type="text"
           placeholder="Title"
           value={projectTitle}
-          onChange={handleChange}
+          onChange={(e) => setProjectTitle(e.target.value)}
         ></input>
+        <select
+          value={projectCategory}
+          onChange={(e) => setProjectCategory(e.target.value)}
+        >
+          <option value="Education">Education</option>
+          <option value="Community Outreach">Community Outreach</option>
+          <option value="Health Care">Health Care</option>
+          <option value="Religious">Religious</option>
+          <option value="Family Services">Family Services</option>
+          <option value="Other">Other</option>
+        </select>
         <textarea
+          required
           placeholder="Description"
           value={projectDescription}
-          onChange={handleChange}
+          onChange={(e) => setProjectDescription(e.target.value)}
         ></textarea>
         <input
+          required
+          type="text"
           placeholder="Project Goal"
           value={projectGoal}
-          onChange={handleChange}
+          onChange={(e) => setProjectGoal(e.target.value)}
         ></input>
         <button type="submit">Submit</button>
       </form>
