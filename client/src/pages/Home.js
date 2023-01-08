@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import ProjectList from "../components/ProjectList";
-import { QUERY_PROJECTS } from "../graphql/queries";
+import { QUERY_CURRENT_USER } from "../graphql/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROJECTS);
+  const { loading, data } = useQuery(QUERY_CURRENT_USER);
   const projects = data?.projects || [];
 
   return (

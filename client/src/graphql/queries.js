@@ -8,6 +8,14 @@ export const QUERY_CURRENT_USER = gql`
       email
       firstName
       lastName
+      projects {
+        _id
+        projectTitle
+        organizationName
+        projectCategory
+        projectDescription
+        projectGoal
+      }
     }
   }
 `;
@@ -25,9 +33,9 @@ export const QUERY_PROJECT = gql`
   }
 `;
 
-export const QUERY_PROJECTS = gql`
-  query projects($username: String) {
-    getProjects(username: $username) {
+export const QUERY_PROJECT_CATEGORY = gql`
+  query getProjectByCategory($projectCategory: String!) {
+    getProjectByCategory(projectCategory: $projectCategory) {
       _id
       projectTitle
       organizationName

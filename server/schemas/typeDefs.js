@@ -33,13 +33,14 @@ const typeDefs = gql`
   }
 
   type Auth {
-    token: ID
+    token: ID!
     user: User
   }
 
   type Query {
     getCurrentUser: User
     getProjectById(_id: ID!): Project
+    getProjectByCategory(projectCategory: String!): Project
     getDonationById(userId: ID!, projectId: ID!): [Donation]
     getProjects(_id: ID): Project
   }

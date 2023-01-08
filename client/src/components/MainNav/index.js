@@ -18,7 +18,7 @@ function MainNav() {
           </Link>
           {Auth.loggedIn() ? (
             <div>
-              <Link to="/my-projects">My Projects</Link>
+              <Link to="/dashboard">Dashboard</Link>
               <Link to="/my-donations">My Donations</Link>
               <Link to="/favorites">Favorite</Link>
               <a href="/" onClick={logout}>

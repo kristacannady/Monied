@@ -10,7 +10,9 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_PROJECT } from "../graphql/mutations";
-import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
+import { QUERY_CURRENT_USER } from "../graphql/queries";
+
+import Auth from "../context/auth";
 
 const NewProject = () => {
   const [projectTitle, setProjectTitle] = useState("");
@@ -39,9 +41,9 @@ const NewProject = () => {
         console.warn("First project insertion by user!");
       }
 
-      const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+      const { projects } = cache.readQuery({ query: QUERY_CURRENT_USER });
       cache.writeQuery({
-        query: QUERY_PROJECTS,
+        query: QUERY_CURRENT_USER,
         data: { projects: [addProject, ...projects] },
       });
     },
@@ -73,48 +75,54 @@ const NewProject = () => {
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          required
-          type="text"
-          placeholder="Title"
-          value={projectTitle}
-          onChange={(e) => setProjectTitle(e.target.value)}
-        ></input>
-        <input
-          required
-          type="text"
-          placeholder="Organization"
-          value={projectOrganization}
-          onChange={(e) => setProjectOrganization(e.target.value)}
-        ></input>
-        <select
-          value={projectCategory}
-          onChange={(e) => setProjectCategory(e.target.value)}
-        >
-          <option value="Education">Education</option>
-          <option value="Community Outreach">Community Outreach</option>
-          <option value="Health Care">Health Care</option>
-          <option value="Religious">Religious</option>
-          <option value="Family Services">Family Services</option>
-          <option value="Other">Other</option>
-        </select>
-        <textarea
-          required
-          placeholder="Description"
-          value={projectDescription}
-          onChange={(e) => setProjectDescription(e.target.value)}
-        ></textarea>
-        <input
-          required
-          type="text"
-          placeholder="Project Goal"
-          value={projectGoal}
-          onChange={(e) => setProjectGoal(e.target.value)}
-        ></input>
-        <button type="submit">Submit</button>
-        {error && <div>Something went wrong!</div>}
-      </form>
+      {Auth.loggedIn() ? (
+        <div>
+          <form onSubmit={handleFormSubmit}>
+            <input
+              required
+              type="text"
+              placeholder="Title"
+              value={projectTitle}
+              onChange={(e) => setProjectTitle(e.target.value)}
+            ></input>
+            <input
+              required
+              type="text"
+              placeholder="Organization"
+              value={projectOrganization}
+              onChange={(e) => setProjectOrganization(e.target.value)}
+            ></input>
+            <select
+              value={projectCategory}
+              onChange={(e) => setProjectCategory(e.target.value)}
+            >
+              <option value="Education">Education</option>
+              <option value="Community Outreach">Community Outreach</option>
+              <option value="Health Care">Health Care</option>
+              <option value="Religious">Religious</option>
+              <option value="Family Services">Family Services</option>
+              <option value="Other">Other</option>
+            </select>
+            <textarea
+              required
+              placeholder="Description"
+              value={projectDescription}
+              onChange={(e) => setProjectDescription(e.target.value)}
+            ></textarea>
+            <input
+              required
+              type="text"
+              placeholder="Project Goal"
+              value={projectGoal}
+              onChange={(e) => setProjectGoal(e.target.value)}
+            ></input>
+            <button type="submit">Submit</button>
+            {error && <div>Something went wrong!</div>}
+          </form>
+        </div>
+      ) : (
+        <div>You need to be logged in to use this feature!</div>
+      )}
     </div>
   );
 };

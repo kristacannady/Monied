@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_PROJECT } from "../graphql/queries";
-import { CurrentUserContextProvider } from "../context";
 
 const SingleProject = (props) => {
   const { id: projectId } = useParams();
