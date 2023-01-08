@@ -29,7 +29,7 @@ const typeDefs = gql`
     isAnonymous: Boolean
     commentBody: String
     createdBy: String
-    project: ID
+    project: [Project]
   }
 
   type Auth {
@@ -39,8 +39,9 @@ const typeDefs = gql`
 
   type Query {
     getCurrentUser: User
-    getProjectById(_id: ID): Project
-    getDonationById(userId: ID, projectId: ID): [Donation]
+    getProjectById(_id: ID!): Project
+    getDonationById(userId: ID!, projectId: ID!): [Donation]
+    getProjects(_id: ID): Project
   }
 
   type Mutation {
@@ -58,11 +59,11 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     createProject(
-      projectTitle: String
-      organizationName: String
-      projectCategory: String
-      projectDescription: String
-      projectGoal: Int
+      projectTitle: String!
+      organizationName: String!
+      projectCategory: String!
+      projectDescription: String!
+      projectGoal: Int!
     ): Project
 
     createDonation(

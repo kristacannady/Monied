@@ -9,7 +9,7 @@
 
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-//import {ADD_PROJECT} from '../graphql/mutations';
+import { ADD_PROJECT } from "../graphql/mutations";
 import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
 
 const NewProject = () => {

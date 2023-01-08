@@ -1,40 +1,40 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link, useNavigate } from "react-router-dom";
 
-import { LOGIN } from '../graphql/mutations';
+import { LOGIN } from "../graphql/mutations";
 
-import { useCurrentUserContext } from '../context/currentUser';
+import { useCurrentUserContext } from "../context/currentUser";
 
 export default function Login() {
   const { loginUser } = useCurrentUserContext();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const [login, { error }] = useMutation(LOGIN);
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
         variables: {
           email: formState.email,
-          password: formState.password
+          password: formState.password,
         },
       });
       const { token, user } = mutationResponse.data.login;
       loginUser(user, token);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (e) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
@@ -68,13 +68,9 @@ export default function Login() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">
-          Login
-        </button>
+        <button type="submit">Login</button>
         <p>
-          Need an account? Sign up
-          {' '}
-          <Link to="/register">here</Link>
+          Need an account? Sign up <Link to="/register">here</Link>
         </p>
       </form>
     </div>
