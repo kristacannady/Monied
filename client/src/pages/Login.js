@@ -68,8 +68,8 @@ export default function Login() {
         <p>
           Need an account? Sign up <Link to="/register">here</Link>
         </p>
+        {error && <div>Login Failed</div>}
       </form>
-      {error && <div>Login Failed</div>}
     </div>
   );
 }

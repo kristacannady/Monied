@@ -18,6 +18,7 @@ const NewProject = () => {
   const [projectCategory, setProjectCategory] = useState("Education");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectGoal, setProjectGoal] = useState("");
+  const [projectOrganization, setProjectOrganization] = useState("");
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -56,12 +57,14 @@ const NewProject = () => {
           projectDescription,
           projectCategory,
           projectGoal,
+          projectOrganization,
         },
       });
 
       setProjectTitle("");
       setProjectDescription("");
       setProjectGoal("");
+      setProjectOrganization("");
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -77,6 +80,13 @@ const NewProject = () => {
           placeholder="Title"
           value={projectTitle}
           onChange={(e) => setProjectTitle(e.target.value)}
+        ></input>
+        <input
+          required
+          type="text"
+          placeholder="Organization"
+          value={projectOrganization}
+          onChange={(e) => setProjectOrganization(e.target.value)}
         ></input>
         <select
           value={projectCategory}
@@ -103,6 +113,7 @@ const NewProject = () => {
           onChange={(e) => setProjectGoal(e.target.value)}
         ></input>
         <button type="submit">Submit</button>
+        {error && <div>Something went wrong!</div>}
       </form>
     </div>
   );
