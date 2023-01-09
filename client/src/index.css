@@ -1,11 +1,12 @@
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Helvetica, Arial, Sans-Serif;
+  font-family: "Cinzel, serif";
 }
 
 body h2 {
@@ -17,8 +18,17 @@ header nav {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #32c04a;
+  background-color: grey;
   color: #fff;
+}
+
+.home-btn {
+  display: flex;
+  align-items: center;
+  background-color: grey;
+  color: #fff;
+  padding: 0;
+  margin: 0;
 }
 
 header nav h1 {
@@ -30,6 +40,7 @@ header nav a {
   color: rgb(0, 0, 0);
   text-decoration: none;
   margin-left: 1rem;
+  font-size: large;
 }
 
 header nav button {
@@ -40,17 +51,13 @@ header nav button {
   margin-left: 1rem;
   font: inherit;
   cursor: pointer;
-  outline: inherit
+  outline: inherit;
 }
 
 header nav a:hover {
-  text-decoration: underline;
-}
-
-.title {
-  display: flex;
-  font-size: 30px;
-  justify-content: space-between;
+  text-decoration: none;
+  background-color: rgb(8, 148, 27);
+  border-radius: 5px;
 }
 
 .category-nav {
@@ -64,8 +71,8 @@ header nav a:hover {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 20px;
-  background-color: #32c04a;
+  padding: 10px;
+  background-color: grey;
   color: #fff;
 }
 
@@ -111,5 +118,15 @@ footer h2 {
   width: 100%;
   text-align: left;
   font-size: medium;
+  padding-left: 15px;
+}
+
+.Logo {
+  width: 20%;
+}
+
+.new-project-link a {
+  text-decoration: none;
+  color: rgb(8, 148, 27);
   padding-left: 15px;
 }

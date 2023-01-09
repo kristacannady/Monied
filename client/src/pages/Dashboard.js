@@ -8,7 +8,7 @@ export default function Dashboard() {
   return (
     <div>
       {Auth.loggedIn() ? (
-        <div>
+        <div className="new-project-link">
           <h2>Dashboard</h2>
           <Link to="/NewProject">← Create a new project</Link>
         </div>

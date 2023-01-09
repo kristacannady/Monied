@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Logo from "../../assets/monied-logo.png";
+
 import Auth from "../../context/auth";
 
 function MainNav() {
@@ -13,14 +15,20 @@ function MainNav() {
     <header>
       <div>
         <nav>
-          <Link to="/">
-            <h1 className="title">Monied</h1>
-          </Link>
+          <div className="home-btn">
+            <img className="Logo" src={Logo} />
+            <div>
+              <Link to="/">
+                <h1 className="title">Monied</h1>
+              </Link>
+            </div>
+          </div>
           {Auth.loggedIn() ? (
             <div>
               <Link to="/dashboard">Dashboard</Link>
               <Link to="/my-donations">My Donations</Link>
               <Link to="/favorites">Favorite</Link>
+              <Link to="/NewProject">Create Project</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>

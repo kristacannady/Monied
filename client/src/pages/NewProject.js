@@ -12,6 +12,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_PROJECT } from "../graphql/mutations";
 import { QUERY_CURRENT_USER } from "../graphql/queries";
 
+import Logo from "../assets/monied-logo.png";
+
 import Auth from "../context/auth";
 
 const NewProject = () => {
@@ -22,8 +24,8 @@ const NewProject = () => {
   const [projectGoal, setProjectGoal] = useState("");
   const [projectOrganization, setProjectOrganization] = useState("");
 
-  const [addProject, { error }] = useMutation(ADD_PROJECT, {
-    update(cache, { data: { addProject } }) {
+  const [createProject, { error }] = useMutation(ADD_PROJECT, {
+    update(cache, { data: { createProject } }) {
       try {
         const { getCurrentUser } = cache.readQuery({
           query: QUERY_CURRENT_USER,
@@ -33,7 +35,7 @@ const NewProject = () => {
           data: {
             getCurrentUser: {
               ...getCurrentUser,
-              projects: [...getCurrentUser.projects, addProject],
+              projects: [...getCurrentUser.projects, createProject],
             },
           },
         });
@@ -44,7 +46,7 @@ const NewProject = () => {
       const { projects } = cache.readQuery({ query: QUERY_CURRENT_USER });
       cache.writeQuery({
         query: QUERY_CURRENT_USER,
-        data: { projects: [addProject, ...projects] },
+        data: { projects: [createProject, ...projects] },
       });
     },
   });
@@ -53,7 +55,7 @@ const NewProject = () => {
     event.preventDefault();
 
     try {
-      await addProject({
+      await createProject({
         variables: {
           projectTitle,
           projectDescription,
@@ -77,6 +79,8 @@ const NewProject = () => {
     <div>
       {Auth.loggedIn() ? (
         <div>
+          <img style={{ width: "250px" }} src={Logo} />
+          <h3>Create a new project!</h3>
           <form onSubmit={handleFormSubmit}>
             <input
               required
@@ -116,12 +120,16 @@ const NewProject = () => {
               value={projectGoal}
               onChange={(e) => setProjectGoal(e.target.value)}
             ></input>
-            <button type="submit">Submit</button>
+            <img style={{ width: "100px" }} src={Logo} />
+            <button type="submit">Monied!</button>
             {error && <div>Something went wrong!</div>}
           </form>
         </div>
       ) : (
-        <div>You need to be logged in to use this feature!</div>
+        <div>
+          <img src={Logo} />
+          <p>You need to be logged in to use this feature!</p>
+        </div>
       )}
     </div>
   );
