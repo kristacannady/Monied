@@ -14,9 +14,9 @@ const MyProjects = (props) => {
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
 
-  const user = data?.getCurrentUser || {};
+  // const user = data?.getCurrentUser || {};
 
-  const projects = data?.getCurrentUser.projects || {}; //may need to change to array
+  const projects = data?.getCurrentUser.projects || []; //may need to change to array
   if (loading) {
     return <div>Loading...</div>;
   }
