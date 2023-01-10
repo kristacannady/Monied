@@ -1,38 +1,39 @@
-import React from 'react';
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import MainNav from './components/MainNav';
-import CategoryNav from './components/CategoryNav';
-import NewProject from './pages/NewProject';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Registration from './pages/Registration';
-import Dashboard from './pages/Dashboard';
-import ProjectView from './pages/ProjectView';
-import NotFound from './pages/NotFound';
-import Footer from './components/Footer';
-import './App.css';
-import ProjectList from './components/ProjectList';
-import MyProjects from './pages/MyProjects';
+import MainNav from "./components/MainNav";
+import CategoryNav from "./components/CategoryNav";
+import NewProject from "./pages/NewProject";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import Dashboard from "./pages/Dashboard";
+import CategoryPage from "./components/CategoryPage";
+import ProjectView from "./pages/ProjectView";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
+import "./App.css";
+import ProjectList from "./components/ProjectList";
+import MyProjects from "./pages/MyProjects";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 //TODO: need to update route to multi project view?
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -54,30 +55,16 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/*" element={<NotFound />} />
-            <Route
-              path="education"
-              element={<ProjectList category="Education" />}
-            />
-            <Route
-              path="community-outreach"
-              element={<ProjectList category="Community Outreach" />}
-            />
-            <Route
-              path="health-care"
-              element={<ProjectList category="Health Care" />}
-            />
-            <Route
-              path="religious"
-              element={<ProjectList category="Religious" />}
-            />
-            <Route
-              path="family-services"
-              element={<ProjectList category="Family Services" />}
-            />
-            <Route path="other" element={<ProjectList category="Other" />} />
+            <Route path="/NewProject" element={<NewProject />} />
+            <Route path="/education" element={<CategoryPage />} />
+            <Route path="/community-outreach" element={<CategoryPage />} />
+            <Route path="/health-care" element={<CategoryPage />} />
+            <Route path="/religious" element={<CategoryPage />} />
+            <Route path="/family-services" element={<CategoryPage />} />
+            <Route path="/other" element={<CategoryPage />} />
             <Route path="NewProject" element={<NewProject />} />
             <Route path="my-projects" element={<MyProjects />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
         </Router>
