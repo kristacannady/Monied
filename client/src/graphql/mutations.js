@@ -85,3 +85,5 @@ export const ADD_PROJECT = gql`
     }
   }
 `;
+
+//TODO: Add mutation for Update Project, include Donations to it

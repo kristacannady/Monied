@@ -15,6 +15,13 @@ export const QUERY_CURRENT_USER = gql`
         projectCategory
         projectDescription
         projectGoal
+        donations {
+          _id
+          donationAmount
+          isAnonymous
+          commentBody
+          createdBy
+        }
       }
     }
   }
@@ -29,6 +36,13 @@ export const QUERY_PROJECT = gql`
       projectCategory
       projectDescription
       projectGoal
+      donations {
+        _id
+        donationAmount
+        isAnonymous
+        commentBody
+        createdBy
+      }
     }
   }
 `;

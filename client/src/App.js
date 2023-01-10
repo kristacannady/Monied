@@ -22,11 +22,12 @@ import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
 import ProjectList from './components/ProjectList';
+import MyProjects from './pages/MyProjects';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
+//TODO: need to update route to multi project view?
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -62,8 +63,7 @@ function App() {
             <Route path="/family-services" element={<CategoryPage />} />
             <Route path="/other" element={<CategoryPage />} />
             <Route path="NewProject" element={<NewProject />} />
-            <Route path="my-projects" element={<ProjectView />} />
-            <Route path="/*" element={<NotFound />} />
+            <Route path="my-projects" element={<MyProjects />} />
           </Routes>
           <Footer />
         </Router>

@@ -1,11 +1,4 @@
-//Project Title
-//UserName
-//Project Description
-//Project Goal
-//Goal Met
-//Donate button
-
-//Comments of Support
+//this will be for single project view
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,27 +11,31 @@ const ProjectView = (props) => {
   const { id: projectId } = useParams();
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
-  console.log(data);
-  const project = data?.project || {};
 
+  const user = data?.getCurrentUser || {};
+
+  const project = data?.getCurrentUser.projects || {};
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      {/* <div>
-        <h1>{project.title}</h1>
+      <div>
+        <h1>{project[0].projectTitle}</h1>
         <p>
-          <span>{project.username}</span>
+          <span>
+            {user.firstName} {user.lastName}
+          </span>
         </p>
         <div>
-          <p>{project.description}</p>
+          <p>{project[0].projectDescription}</p>
         </div>
         <div>
-          <p>{project.goal}</p>
-        </div> */}
-      {/* {CurrentUserContextProvider.isLoggedIn && } */}
+          <p>${project[0].projectGoal}</p>
+        </div>
+        {/* {CurrentUserContextProvider.isLoggedIn && } */}
+      </div>
     </div>
   );
 };
