@@ -17,7 +17,7 @@ const NewProject = () => {
   const [characterCount, setCharacterCount] = useState('');
   const [projectCategory, setProjectCategory] = useState('Education');
   const [projectDescription, setProjectDescription] = useState('');
-  const [projectGoal, setProjectGoal] = useState(1);
+  const [projectGoal, setProjectGoal] = useState(0);
   const [organizationName, setOrganizationName] = useState('');
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
