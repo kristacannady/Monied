@@ -1,40 +1,39 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../context/auth';
 
 import { LOGIN } from '../graphql/mutations';
 
-import { useCurrentUserContext } from '../context/currentUser';
-
 export default function Login() {
-  const { loginUser } = useCurrentUserContext();
+  const [login, { error }] = useMutation(LOGIN);
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
-  const [login, { error }] = useMutation(LOGIN);
-
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await login({
+      const { data } = await login({
         variables: {
           email: formState.email,
-          password: formState.password
+          password: formState.password,
         },
       });
-      const { token, user } = mutationResponse.data.login;
-      loginUser(user, token);
+
+      console.log(data.login);
+
+      Auth.login(data.login.token);
       navigate('/dashboard');
     } catch (e) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
@@ -68,14 +67,11 @@ export default function Login() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">
-          Login
-        </button>
+        <button type="submit">Login</button>
         <p>
-          Need an account? Sign up
-          {' '}
-          <Link to="/register">here</Link>
+          Need an account? Sign up <Link to="/register">here</Link>
         </p>
+        {error && <div>Login Failed</div>}
       </form>
     </div>
   );

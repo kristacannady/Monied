@@ -2,16 +2,26 @@
 import { gql } from '@apollo/client';
 
 export const REGISTER_USER = gql`
-mutation registerUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-  createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password ) {
-    token,
-    user {
-      firstName,
-      lastName,
-      email
+  mutation registerUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    createUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        firstName
+        lastName
+        email
+      }
     }
   }
-}
 `;
 
 export const LOGIN = gql`
@@ -19,9 +29,9 @@ export const LOGIN = gql`
     login(email: $email, password: $password) {
       token
       user {
-        _id,
-        firstName,
-        lastName,
+        _id
+        firstName
+        lastName
         email
       }
     }
@@ -29,21 +39,51 @@ export const LOGIN = gql`
 `;
 
 export const UPDATE_USER = gql`
-mutation updateUser($firstName: String!, $lastName: String!, $email: String!) {
-  updateUser(firstName: $firstName, lastName: $lastName, email: $email) {
-    firstName,
-    lastName,
-    email
+  mutation updateUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+  ) {
+    updateUser(firstName: $firstName, lastName: $lastName, email: $email) {
+      firstName
+      lastName
+      email
+    }
   }
-}
 `;
 
 export const DELETE_USER = gql`
-mutation deleteUser {
-  deleteUser {
-    firstName,
-    lastName,
-    email
+  mutation deleteUser {
+    deleteUser {
+      firstName
+      lastName
+      email
+    }
   }
-}
 `;
+
+export const ADD_PROJECT = gql`
+  mutation createProject(
+    $projectTitle: String!
+    $organizationName: String!
+    $projectCategory: String!
+    $projectDescription: String!
+    $projectGoal: Int!
+  ) {
+    createProject(
+      projectTitle: $projectTitle
+      organizationName: $organizationName
+      projectCategory: $projectCategory
+      projectDescription: $projectDescription
+      projectGoal: $projectGoal
+    ) {
+      projectTitle
+      organizationName
+      projectCategory
+      projectDescription
+      projectGoal
+    }
+  }
+`;
+
+//TODO: Add mutation for Update Project, include Donations to it

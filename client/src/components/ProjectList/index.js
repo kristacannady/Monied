@@ -1,14 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProjectList = ({ projects, title }) => {
+function ProjectList({ projects, category }) {
   if (!projects.length) {
-    return <h3>No Projects Yet!</h3>;
+    return <h3>No Projects Active!</h3>;
   }
 
   return (
     <div>
-      <h3>{title}</h3>
+      {projects &&
+        projects.map((project) => (
+          <div key={project._id}>
+            <h3>{project.projectCategory}</h3>
+            <p>
+              {project.firstName} {project.lastName}
+            </p>
+            <div>
+              <p>{project.projectDescription}</p>
+              <p>
+                Comments: {project.donations.commentBody} || Click to{" "}
+                {project.commentCount ? "see" : "start"} support!
+              </p>
+            </div>
+          </div>
+        ))}
     </div>
   );
-};
+}
+
+export default ProjectList;
