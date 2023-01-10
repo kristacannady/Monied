@@ -79,9 +79,8 @@ const NewProject = () => {
     <div>
       {Auth.loggedIn() ? (
         <div>
-          <img style={{ width: "250px" }} src={Logo} />
-          <h3>Create a new project!</h3>
           <form onSubmit={handleFormSubmit}>
+            <h3>Create a new project!</h3>
             <input
               required
               type="text"
@@ -96,7 +95,7 @@ const NewProject = () => {
               value={projectOrganization}
               onChange={(e) => setProjectOrganization(e.target.value)}
             ></input>
-            <select
+            <select className="dropdown"
               value={projectCategory}
               onChange={(e) => setProjectCategory(e.target.value)}
             >
@@ -120,14 +119,13 @@ const NewProject = () => {
               value={projectGoal}
               onChange={(e) => setProjectGoal(e.target.value)}
             ></input>
-            <img style={{ width: "100px" }} src={Logo} />
             <button type="submit">Monied!</button>
             {error && <div>Something went wrong!</div>}
           </form>
         </div>
       ) : (
         <div>
-          <img src={Logo} />
+          <img className="form-logo" src={Logo} />
           <p>You need to be logged in to use this feature!</p>
         </div>
       )}

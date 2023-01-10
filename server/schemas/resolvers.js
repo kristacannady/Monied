@@ -28,6 +28,14 @@ const resolvers = {
       }
       return project;
     },
+    getProjectByCategory: async (parent, { projectCategory }) => {
+      const projects = await Project.findOne({ projectCategory });
+
+      if (!project) {
+        throw new AuthenticationError("Project not found.");
+      }
+      return projects;
+    },
     //getDonations byUserId OR byProjectId
     getDonationById: async (parent, args) => {
       let donations = [];
@@ -41,7 +49,6 @@ const resolvers = {
         }
 
         donations = user.donations;
-
       } else {
         const project = await Project.findById({
           _id: args.projectId,

@@ -100,8 +100,8 @@ form button {
   padding: 0.625rem;
   margin: 1rem 0;
   border: none;
-  background-color: #006db0;
-  color: #fff;
+  background-color: #555555;
+  color: rgb(59, 231, 82);
   border-radius: 0.625rem;
   width: 100%;
 }
@@ -129,4 +129,9 @@ footer h2 {
   text-decoration: none;
   color: rgb(8, 148, 27);
   padding-left: 15px;
+}
+
+.dropdown {
+  padding: 10px;
+  margin: 5px;
 }
