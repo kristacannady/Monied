@@ -1,11 +1,4 @@
-//Project Title
-//UserName
-//Project Description
-//Project Goal
-//Goal Met
-//Donate button
-
-//Comments of Support
+//this will be for single project view
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,15 +9,12 @@ import { QUERY_CURRENT_USER } from '../graphql/queries';
 
 const ProjectView = (props) => {
   const { id: projectId } = useParams();
-  // TODO: need to work on map through .project data and displaying it on my-projects page.
-  // TODO: May need to create separate page for this
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
 
   const user = data?.getCurrentUser || {};
-  console.log(user);
+
   const project = data?.getCurrentUser.projects || {};
-  console.log(project);
   if (loading) {
     return <div>Loading...</div>;
   }

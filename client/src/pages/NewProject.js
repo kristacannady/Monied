@@ -27,8 +27,6 @@ const NewProject = () => {
           query: QUERY_CURRENT_USER,
         });
 
-        console.log(getCurrentUser);
-
         cache.writeQuery({
           query: QUERY_CURRENT_USER,
           data: {

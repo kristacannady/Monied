@@ -21,6 +21,7 @@ import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
 import ProjectList from './components/ProjectList';
+import MyProjects from './pages/MyProjects';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -76,7 +77,7 @@ function App() {
             />
             <Route path="other" element={<ProjectList category="Other" />} />
             <Route path="NewProject" element={<NewProject />} />
-            <Route path="my-projects" element={<ProjectView />} />
+            <Route path="my-projects" element={<MyProjects />} />
           </Routes>
           <Footer />
         </Router>
