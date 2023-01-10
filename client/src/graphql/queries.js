@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const QUERY_CURRENT_USER = gql`
   query currentUser {
@@ -33,6 +33,7 @@ export const QUERY_PROJECT = gql`
   }
 `;
 
+<<<<<<< HEAD
 export const QUERY_PROJECT_CATEGORY = gql`
   query getProjectByCategory($projectCategory: String!) {
     getProjectByCategory(projectCategory: $projectCategory) {
@@ -45,3 +46,17 @@ export const QUERY_PROJECT_CATEGORY = gql`
     }
   }
 `;
+=======
+// export const QUERY_PROJECTS = gql`
+//   query projects($username: String) {
+//     getProjects(username: $username) {
+//       _id
+//       projectTitle
+//       organizationName
+//       projectCategory
+//       projectDescription
+//       projectGoal
+//     }
+//   }
+// `;
+>>>>>>> origin/argent/TAhelp
