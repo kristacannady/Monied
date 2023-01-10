@@ -5,21 +5,21 @@ import { useQuery } from "@apollo/client";
 
 const Health = () => {
   //filter projects to get all education category
-  return <></>;
 
-  const { loading, error, data } = useQuery(QUERY_PROJECT_CATEGORY);
-  if (loading) return "Loading...";
-  if (error) return `error! ${error.message}`;
+  // const { loading, error, data } = useQuery(QUERY_PROJECT_CATEGORY);
+  // if (loading) return "Loading...";
+  // if (error) return `error! ${error.message}`;
 
   return (
     <div>
-      {data.filter((project) => {
+      {/* {data.filter((project) => {
         project.projectCategory === "Health Care";
       }) ? (
         <div>"Health Care Selected!</div>
       ) : (
         <div>Not Found</div>
-      )}
+      )} */}
+      You Chose Health
     </div>
   );
 };

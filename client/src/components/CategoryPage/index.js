@@ -21,8 +21,6 @@ const routeObj = {
 const CategoryPage = () => {
   const location = useLocation();
 
-  console.log(location);
-
   const renderPage = (location) => {
     switch (location.pathname) {
       case "/education":

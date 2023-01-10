@@ -11,6 +11,7 @@ import { CookiesProvider } from 'react-cookie';
 
 import MainNav from './components/MainNav';
 import CategoryNav from './components/CategoryNav';
+import CategoryPage from './components/CategoryPage';
 import NewProject from './pages/NewProject';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -60,30 +61,9 @@ function App() {
             <Route path="/religious" element={<CategoryPage />} />
             <Route path="/family-services" element={<CategoryPage />} />
             <Route path="/other" element={<CategoryPage />} />
-            <Route path="/*" element={<NotFound />} />
-            <Route
-              path="education"
-              element={<ProjectList category="Education" />}
-            />
-            <Route
-              path="community-outreach"
-              element={<ProjectList category="Community Outreach" />}
-            />
-            <Route
-              path="health-care"
-              element={<ProjectList category="Health Care" />}
-            />
-            <Route
-              path="religious"
-              element={<ProjectList category="Religious" />}
-            />
-            <Route
-              path="family-services"
-              element={<ProjectList category="Family Services" />}
-            />
-            <Route path="other" element={<ProjectList category="Other" />} />
             <Route path="NewProject" element={<NewProject />} />
             <Route path="my-projects" element={<ProjectView />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
         </Router>

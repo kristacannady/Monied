@@ -34,7 +34,7 @@ const NewProject = () => {
           data: {
             getCurrentUser: {
               ...getCurrentUser,
-              projects: [...getCurrentUser?.projects, addProject],
+              projects: [...getCurrentUser?.projects, createProject],
             },
           },
         });

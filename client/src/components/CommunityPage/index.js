@@ -6,7 +6,6 @@ import { useQuery } from "@apollo/client";
 const Community = () => {
   //filter projects to get all education category
 
-  return <></>;
 
   const { loading, error, data } = useQuery(QUERY_PROJECT_CATEGORY);
   if (loading) return "Loading...";

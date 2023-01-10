@@ -6,19 +6,26 @@ import { useQuery } from "@apollo/client";
 const Education = () => {
   //filter projects to get all education category
 
-  const { loading, error, data } = useQuery(QUERY_PROJECT_CATEGORY);
-  if (loading) return " ...";
-  if (error) return `error! ${error.message}`;
+  // const { loading, error, data } = useQuery(QUERY_PROJECT_CATEGORY);
+  // if (loading){
+  //   return(
+  //     <div>Loading...</div>
+  //   );
+  // }
+  // if (error){
+  //   return `error! ${error.message}`;
+  // } 
 
   return (
     <div>
-      {data.filter((project) => {
+      {/* {data.filter((project) => {
         project.projectCategory === "Education";
       }) ? (
         <div>"Education Selected!</div>
       ) : (
         <div>Not Found</div>
-      )}
+      )} */}
+      You chose Education
     </div>
   );
 };
