@@ -17,7 +17,7 @@ const NewProject = () => {
   const [characterCount, setCharacterCount] = useState('');
   const [projectCategory, setProjectCategory] = useState('Education');
   const [projectDescription, setProjectDescription] = useState('');
-  const [projectGoal, setProjectGoal] = useState(30);
+  const [projectGoal, setProjectGoal] = useState(1);
   const [organizationName, setOrganizationName] = useState('');
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
@@ -65,10 +65,10 @@ const NewProject = () => {
           organizationName,
         },
       });
-
+      // clear form value
       setProjectTitle('');
       setProjectDescription('');
-      setProjectGoal(30);
+      setProjectGoal(0);
       setOrganizationName('');
       setCharacterCount(0);
     } catch (e) {

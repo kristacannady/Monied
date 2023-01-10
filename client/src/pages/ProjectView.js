@@ -16,29 +16,36 @@ import { QUERY_CURRENT_USER } from '../graphql/queries';
 
 const ProjectView = (props) => {
   const { id: projectId } = useParams();
+  // TODO: need to work on map through .project data and displaying it on my-projects page.
+  // TODO: May need to create separate page for this
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
-  console.log(data);
-  const project = data?.project || {};
 
+  const user = data?.getCurrentUser || {};
+  console.log(user);
+  const project = data?.getCurrentUser.projects || {};
+  console.log(project);
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      {/* <div>
-        <h1>{project.title}</h1>
+      <div>
+        <h1>{project[0].projectTitle}</h1>
         <p>
-          <span>{project.username}</span>
+          <span>
+            {user.firstName} {user.lastName}
+          </span>
         </p>
         <div>
-          <p>{project.description}</p>
+          <p>{project[0].projectDescription}</p>
         </div>
         <div>
-          <p>{project.goal}</p>
-        </div> */}
-      {/* {CurrentUserContextProvider.isLoggedIn && } */}
+          <p>${project[0].projectGoal}</p>
+        </div>
+        {/* {CurrentUserContextProvider.isLoggedIn && } */}
+      </div>
     </div>
   );
 };

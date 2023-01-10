@@ -25,7 +25,7 @@ import ProjectList from './components/ProjectList';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
+//TODO: need to update route to multi project view?
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
