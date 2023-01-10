@@ -31,11 +31,11 @@ const Education = () => {
     )
   }
 
-  if(!projects){
+  if(projects.length === 0){
     return(
       <div>
       No Projects for this category consider making one
-      <Link to='/NewProject'>here!</Link>  
+      <Link to='/NewProject'> here!</Link>  
       </div>
     )
   }
