@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const REGISTER_USER = gql`
   mutation registerUser(
@@ -63,8 +63,20 @@ export const DELETE_USER = gql`
 `;
 
 export const ADD_PROJECT = gql`
-  mutation createProject {
-    createProject {
+  mutation createProject(
+    $projectTitle: String!
+    $organizationName: String!
+    $projectCategory: String!
+    $projectDescription: String!
+    $projectGoal: Int!
+  ) {
+    createProject(
+      projectTitle: $projectTitle
+      organizationName: $organizationName
+      projectCategory: $projectCategory
+      projectDescription: $projectDescription
+      projectGoal: $projectGoal
+    ) {
       projectTitle
       organizationName
       projectCategory
@@ -73,3 +85,5 @@ export const ADD_PROJECT = gql`
     }
   }
 `;
+
+//TODO: Add mutation for Update Project, include Donations to it
