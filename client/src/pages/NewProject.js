@@ -53,7 +53,11 @@ const NewProject = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(projectGoal, typeof projectGoal);
+    // console.log(projectGoal, typeof projectGoal);
+    // May need to add a handle change section that can parseInt.
+    //Having parseInt in form is causing some background issues. But it works.
+    // var parsedGoal = parseInt(projectGoal);
+    // console.log(parsedGoal, typeof parsedGoal);
 
     try {
       await addProject({
@@ -115,7 +119,7 @@ const NewProject = () => {
           type="number"
           placeholder="Project Goal"
           value={projectGoal}
-          onChange={(e) => setProjectGoal(e.target.value)}
+          onChange={(e) => setProjectGoal(parseInt(e.target.value))}
         ></input>
         <button type="submit">Submit</button>
         {error && <div>Something went wrong!</div>}
