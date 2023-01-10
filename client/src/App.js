@@ -16,6 +16,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
+import ProjectView from './pages/ProjectView';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
@@ -75,6 +76,7 @@ function App() {
             />
             <Route path="other" element={<ProjectList category="Other" />} />
             <Route path="NewProject" element={<NewProject />} />
+            <Route path="my-projects" element={<ProjectView />} />
           </Routes>
           <Footer />
         </Router>

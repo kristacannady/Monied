@@ -7,18 +7,18 @@
 //Submit button
 //</card>
 
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_PROJECT } from "../graphql/mutations";
-import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_PROJECT } from '../graphql/mutations';
+import { QUERY_CURRENT_USER } from '../graphql/queries';
 
 const NewProject = () => {
-  const [projectTitle, setProjectTitle] = useState("");
-  const [characterCount, setCharacterCount] = useState("");
-  const [projectCategory, setProjectCategory] = useState("Education");
-  const [projectDescription, setProjectDescription] = useState("");
-  const [projectGoal, setProjectGoal] = useState("");
-  const [projectOrganization, setProjectOrganization] = useState("");
+  const [projectTitle, setProjectTitle] = useState('');
+  const [characterCount, setCharacterCount] = useState('');
+  const [projectCategory, setProjectCategory] = useState('Education');
+  const [projectDescription, setProjectDescription] = useState('');
+  const [projectGoal, setProjectGoal] = useState(30);
+  const [organizationName, setOrganizationName] = useState('');
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -26,29 +26,34 @@ const NewProject = () => {
         const { getCurrentUser } = cache.readQuery({
           query: QUERY_CURRENT_USER,
         });
+
+        console.log(getCurrentUser);
+
         cache.writeQuery({
           query: QUERY_CURRENT_USER,
           data: {
             getCurrentUser: {
               ...getCurrentUser,
-              projects: [...getCurrentUser.projects, addProject],
+              projects: [...getCurrentUser?.projects, addProject],
             },
           },
         });
       } catch (e) {
-        console.warn("First project insertion by user!");
+        console.warn('First project insertion by user!');
       }
 
-      const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-      cache.writeQuery({
-        query: QUERY_PROJECTS,
-        data: { projects: [addProject, ...projects] },
-      });
+      // const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+      // cache.writeQuery({
+      //   query: QUERY_PROJECTS,
+      //   data: { projects: [addProject, ...projects] },
+      // });
     },
   });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    console.log(projectGoal, typeof projectGoal);
 
     try {
       await addProject({
@@ -57,14 +62,14 @@ const NewProject = () => {
           projectDescription,
           projectCategory,
           projectGoal,
-          projectOrganization,
+          organizationName,
         },
       });
 
-      setProjectTitle("");
-      setProjectDescription("");
-      setProjectGoal("");
-      setProjectOrganization("");
+      setProjectTitle('');
+      setProjectDescription('');
+      setProjectGoal(30);
+      setOrganizationName('');
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -85,8 +90,8 @@ const NewProject = () => {
           required
           type="text"
           placeholder="Organization"
-          value={projectOrganization}
-          onChange={(e) => setProjectOrganization(e.target.value)}
+          value={organizationName}
+          onChange={(e) => setOrganizationName(e.target.value)}
         ></input>
         <select
           value={projectCategory}
@@ -107,7 +112,7 @@ const NewProject = () => {
         ></textarea>
         <input
           required
-          type="text"
+          type="number"
           placeholder="Project Goal"
           value={projectGoal}
           onChange={(e) => setProjectGoal(e.target.value)}

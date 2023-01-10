@@ -11,16 +11,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-import { QUERY_PROJECT } from '../graphql/queries';
-import { CurrentUserContextProvider } from '../context';
+import { QUERY_CURRENT_USER } from '../graphql/queries';
+// import { CurrentUserContextProvider } from '../context';
 
-const SingleProject = (props) => {
+const ProjectView = (props) => {
   const { id: projectId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_PROJECT, {
-    variables: { id: projectId },
-  });
-
+  const { loading, data } = useQuery(QUERY_CURRENT_USER);
+  console.log(data);
   const project = data?.project || {};
 
   if (loading) {
@@ -29,7 +27,7 @@ const SingleProject = (props) => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <h1>{project.title}</h1>
         <p>
           <span>{project.username}</span>
@@ -39,11 +37,10 @@ const SingleProject = (props) => {
         </div>
         <div>
           <p>{project.goal}</p>
-        </div>
-        {/* {CurrentUserContextProvider.isLoggedIn && } */}
-      </div>
+        </div> */}
+      {/* {CurrentUserContextProvider.isLoggedIn && } */}
     </div>
   );
 };
 
-export default SingleProject;
+export default ProjectView;

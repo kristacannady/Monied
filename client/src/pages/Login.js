@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { Link, useNavigate } from "react-router-dom";
-import Auth from "../context/auth";
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../context/auth';
 
-import { LOGIN } from "../graphql/mutations";
+import { LOGIN } from '../graphql/mutations';
 
 export default function Login() {
   const [login, { error }] = useMutation(LOGIN);
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleFormSubmit = async (event) => {
@@ -22,8 +22,11 @@ export default function Login() {
           password: formState.password,
         },
       });
+
+      console.log(data.login);
+
       Auth.login(data.login.token);
-      navigate("/dashboard");
+      navigate('/dashboard');
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
