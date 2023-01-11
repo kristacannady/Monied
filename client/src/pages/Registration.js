@@ -28,6 +28,7 @@ export default function Registration() {
       });
       Auth.login(data.createUser.token);
       navigate("/my-projects");
+      window.location.reload();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
