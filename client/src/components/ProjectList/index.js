@@ -17,14 +17,11 @@ function ProjectList({ projects, category }) {
             <h3 className="card-title">{project.projectCategory}</h3>
             <p className="card-text">{project.firstName} {project.lastName}</p>
             <div>
-              <Link to={`/project/${project._id}`}>
-                <p className="card-text">{project.projectDescription}</p>
-              </Link>
+              <p className="card-text"><Link to={`/project/${project._id}`}>{project.projectTitle}</Link></p>
               <p className="card-text">
-                Project Goal: $ {project.projectGoal}
-                Click <Link to={`/donate/`}>HERE</Link> to donate!
+                Project Goal: ${project.projectGoal}</p>
+                <p>Click <Link to={`/donate/`}>HERE</Link> to donate!
               </p>
-
               <p className="card-text">
                 Comments: {project.donations.commentBody} || Click to{' '}
                 {project.commentCount ? 'see' : 'start'} support!
