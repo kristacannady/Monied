@@ -9,7 +9,7 @@ body {
   font-family: "Cinzel, serif";
 }
 
-body h2 {
+body h1 {
   text-align: center;
 }
 
@@ -119,6 +119,16 @@ footer h2 {
   text-align: left;
   font-size: medium;
   padding-left: 15px;
+}
+
+.card {
+  width: 18rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.home {
+  text-align: center;
 }
 
 .Logo {

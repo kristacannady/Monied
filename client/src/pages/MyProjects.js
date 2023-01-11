@@ -9,8 +9,6 @@ import { QUERY_CURRENT_USER } from '../graphql/queries';
 
 const MyProjects = (props) => {
   const { id: projectId } = useParams();
-  // TODO: need to work on map through .project data and displaying it on my-projects page.
-  // TODO: May need to create separate page for this
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
 
@@ -23,36 +21,27 @@ const MyProjects = (props) => {
 
   return (
     <div>
-      {projects &&
+      <h1>My Projects</h1>
+      <div className="row justify-content-md-center">
+        {projects &&
         projects.map((project) => (
-          <div key={project._id}>
-            <h3>{project.projectTitle}</h3>
-            <h4>Organization: {project.organizationName}</h4>
-            <p>Category: {project.projectCategory}</p>
-            <div>
-              <p>Description: {project.projectDescription}</p>
-              <p>Donations Raised: {project.donations.donationAmount}</p>
-              <p>Comments: {project.donations.commentBody}</p>
+          <div className="col-md-auto d-flex" key={project._id}>
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">{project.projectTitle}</h3>
+                <h4 className="card-subtitle mb-2 text-muted">Organization: {project.organizationName}</h4>
+                <p className="card-text">Category: {project.projectCategory}</p>
+                <div>
+                  <p className="card-text">Description: {project.projectDescription}</p>
+                  <p className="card-text">Donations Raised: {project.donations.donationAmount}</p>
+                  <p className="card-text">Comments: {project.donations.commentBody}</p>
+                </div>
+              </div>
             </div>
           </div>
         ))}
+      </div>
     </div>
-    // <div>
-
-    //     <h1>{project[0].projectTitle}</h1>
-    //     <p>
-    //       <span>
-    //         {user.firstName} {user.lastName}
-    //       </span>
-    //     </p>
-    //     <div>
-    //       <p>{project[0].projectDescription}</p>
-    //     </div>
-    //     <div>
-    //       <p>${project[0].projectGoal}</p>
-    //     </div>
-    //     {/* {CurrentUserContextProvider.isLoggedIn && } */}
-    //   </div>
   );
 };
 

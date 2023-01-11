@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
+//TODO: query users to pull firstname/lastname info or orgname info
 function ProjectList({ projects, category }) {
   if (!projects.length) {
     return (
@@ -11,25 +12,31 @@ function ProjectList({ projects, category }) {
   }
 
   return (
-    <div>
-      {projects &&
-        projects.map((project) => (
-          <div key={project._id}>
-            <h3>{project.projectCategory}</h3>
-            <p>
-              {project.firstName} {project.lastName}
-            </p>
+    <div className="row justify-content-md-center">
+    {projects &&
+    projects.map((project) => (
+      <div className="col-md-auto d-flex" key={project._id}>
+        <div className="card">
+          <div className="card-body">
+            <h3 className="card-title">{project.projectCategory}</h3>
+            <p className="card-text">{project.firstName} {project.lastName}</p>
             <div>
-              <p>{project.projectDescription}</p>
-              <p>
-                Comments: {project.donations.commentBody} || Click to{" "}
-                {project.commentCount ? "see" : "start"} support!
+              <p className="card-text"><Link to={`/project/${project._id}`}>{project.projectTitle}</Link></p>
+              <p className="card-text">
+                Project Goal: ${project.projectGoal}</p>
+                <p>Click <Link to={`/donate/`}>HERE</Link> to donate!
+              </p>
+              <p className="card-text">
+                Comments: {project.donations.commentBody} || Click to{' '}
+                {project.commentCount ? 'see' : 'start'} support!
               </p>
             </div>
           </div>
-        ))}
-    </div>
+        </div>
+      </div>
+    ))}
+  </div>
   );
-}
+};
 
 export default ProjectList;
