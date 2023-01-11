@@ -8,7 +8,7 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_USERS);
   const projects = data?.users.projects || [];
 
-  console.log(data.users[1].projects);
+  console.log(data);
 
   return (
     <main>

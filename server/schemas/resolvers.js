@@ -29,7 +29,7 @@ const resolvers = {
     },
     //getProjectById
     getProjectById: async (parent, { _id }) => {
-      const project = await Project.findOne({ _id });
+      const project = await Project.findById({ _id });
 
       if (!project) {
         throw new AuthenticationError('Project not found.');
