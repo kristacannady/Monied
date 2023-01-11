@@ -1,39 +1,39 @@
-import React from 'react';
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import MainNav from './components/MainNav';
-import CategoryNav from './components/CategoryNav';
-import NewProject from './pages/NewProject';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Registration from './pages/Registration';
-import Dashboard from './pages/Dashboard';
-import ProjectView from './pages/ProjectView';
-import Donate from './pages/Donate';
-import NotFound from './pages/NotFound';
-import Footer from './components/Footer';
-import './App.css';
-import CategoryPage from './components/CategoryPage';
-import MyProjects from './pages/MyProjects';
+import MainNav from "./components/MainNav";
+import CategoryNav from "./components/CategoryNav";
+import NewProject from "./pages/NewProject";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import Dashboard from "./pages/Dashboard";
+import ProjectView from "./pages/ProjectView";
+import Donate from "./pages/Donate";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
+import "./App.css";
+import CategoryPage from "./components/CategoryPage";
+import MyProjects from "./pages/MyProjects";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 //TODO: need to update route to multi project view?
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -56,7 +56,6 @@ function App() {
             <Route path="/donate" element={<Donate />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/NewProject" element={<NewProject />} />
             <Route path="/education" element={<CategoryPage />} />
             <Route path="/community-outreach" element={<CategoryPage />} />
             <Route path="/health-care" element={<CategoryPage />} />

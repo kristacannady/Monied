@@ -43,7 +43,7 @@ const CategoryPage = () => {
 
   return (
     <section>
-      <h2>{routeObj[location.pathname]}</h2>
+      <h2 className="section-title">{routeObj[location.pathname]}</h2>
       <PageContent>{renderPage(location)}</PageContent>
     </section>
   );

@@ -29,16 +29,24 @@ const Other = () => {
   }
 
   return (
-    <div>
+    <div className="row justify-content-md-center">
       {projects &&
         projects.map((project) => (
-          <div key={project._id}>
-            <h3>{project.projectTitle}</h3>
-            <p>Organization: {project.organizationName}</p>
-            <p>Category: {project.projectCategory}</p>
-            <div>
-              <p>Description: {project.projectDescription}</p>
-              <p>Donations Raised: {project.projectGoal}</p>
+          <div className="col-md-auto d-flex" key={project._id}>
+            <div className="card">
+              <div className="new-project-form card-body">
+                <h3 className="card-title">{project.projectTitle}</h3>
+                <p className="card-text">
+                  Organization: {project.organizationName}
+                </p>
+                <p className="card-text">Category: {project.projectCategory}</p>
+                <p className="card-text">
+                  Description: {project.projectDescription}
+                </p>
+                <p className="card-text">
+                  Donations Raised: {project.projectGoal}
+                </p>
+              </div>
             </div>
           </div>
         ))}

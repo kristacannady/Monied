@@ -7,18 +7,18 @@
 //Submit button
 //</card>
 
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_PROJECT } from '../graphql/mutations';
-import { QUERY_CURRENT_USER } from '../graphql/queries';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_PROJECT } from "../graphql/mutations";
+import { QUERY_CURRENT_USER } from "../graphql/queries";
 
 const NewProject = () => {
-  const [projectTitle, setProjectTitle] = useState('');
-  const [characterCount, setCharacterCount] = useState('');
-  const [projectCategory, setProjectCategory] = useState('Education');
-  const [projectDescription, setProjectDescription] = useState('');
+  const [projectTitle, setProjectTitle] = useState("");
+  const [characterCount, setCharacterCount] = useState("");
+  const [projectCategory, setProjectCategory] = useState("Education");
+  const [projectDescription, setProjectDescription] = useState("");
   const [projectGoal, setProjectGoal] = useState(0);
-  const [organizationName, setOrganizationName] = useState('');
+  const [organizationName, setOrganizationName] = useState("");
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -37,7 +37,7 @@ const NewProject = () => {
           },
         });
       } catch (e) {
-        console.warn('First project insertion by user!');
+        console.warn("First project insertion by user!");
       }
 
       // const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
@@ -68,10 +68,10 @@ const NewProject = () => {
         },
       });
       // clear form value
-      setProjectTitle('');
-      setProjectDescription('');
+      setProjectTitle("");
+      setProjectDescription("");
       setProjectGoal(0);
-      setOrganizationName('');
+      setOrganizationName("");
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -80,7 +80,8 @@ const NewProject = () => {
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
+      <h3 className="section-title">What will be your new project?</h3>
+      <form className="new-project-form" onSubmit={handleFormSubmit}>
         <input
           required
           type="text"
@@ -96,6 +97,7 @@ const NewProject = () => {
           onChange={(e) => setOrganizationName(e.target.value)}
         ></input>
         <select
+          style={{ marginBottom: "5px" }}
           value={projectCategory}
           onChange={(e) => setProjectCategory(e.target.value)}
         >

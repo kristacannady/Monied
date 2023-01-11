@@ -179,3 +179,29 @@ footer h2 {
   -webkit-text-stroke-width: 1px;
   letter-spacing: 2px;
 }
+
+.section-title {
+  display: flex;
+  justify-content: center;
+}
+
+.new-project-form {
+  background-color: rgb(59, 231, 82);
+  border-radius: 5px;
+}
+
+.checkbox label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.checkbox input {
+  vertical-align: middle;
+  padding: 0;
+}
+
+.checkbox label span {
+  vertical-align: middle;
+  padding-left: 0;
+  margin: 0;
+}

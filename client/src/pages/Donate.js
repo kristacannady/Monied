@@ -7,15 +7,15 @@
 //submit button
 //</card>
 
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_DONATION } from '../graphql/mutations';
-import { QUERY_CURRENT_USER, QUERY_PROJECT } from '../graphql/queries';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_DONATION } from "../graphql/mutations";
+import { QUERY_CURRENT_USER, QUERY_PROJECT } from "../graphql/queries";
 
 const Donation = (props) => {
-  const [donationAmount, setDonationAmount] = useState('');
-  const [characterCount, setCharacterCount] = useState('');
-  const [donationComment, setDonationComment] = useState('');
+  const [donationAmount, setDonationAmount] = useState("");
+  const [characterCount, setCharacterCount] = useState("");
+  const [donationComment, setDonationComment] = useState("");
 
   const [addDonation, { error }] = useMutation(ADD_DONATION, {
     update(cache, { data: { addDonation } }) {
@@ -33,7 +33,7 @@ const Donation = (props) => {
           },
         });
       } catch (e) {
-        console.warn('First project insertion by user!');
+        console.warn("First project insertion by user!");
       }
 
       const { projects } = cache.readQuery({ query: QUERY_PROJECT });
@@ -62,8 +62,8 @@ const Donation = (props) => {
         },
       });
 
-      setDonationAmount('');
-      setDonationComment('');
+      setDonationAmount("");
+      setDonationComment("");
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -72,14 +72,8 @@ const Donation = (props) => {
 
   return (
     <div>
-      <h2>Project Name</h2>
-      <div>
-        <label>
-          <input type="checkbox" />
-          Anonymous Donation
-        </label>
-      </div>
-      <form onSubmit={handleFormSubmit}>
+      <h2 className="section-title">Project Name</h2>
+      <form className="new-project-form" onSubmit={handleFormSubmit}>
         <input
           placeholder="Donation Amount"
           value={donationAmount}
@@ -90,6 +84,12 @@ const Donation = (props) => {
           value={donationComment}
           onChange={handleChange}
         ></textarea>
+        <div className="checkbox">
+          <label>
+            <input type="checkbox" />
+            <span>Anonymous Donation</span>
+          </label>
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>
