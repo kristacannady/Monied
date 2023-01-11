@@ -21,7 +21,7 @@ import Donate from './pages/Donate';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
-import ProjectList from './components/ProjectList';
+import CategoryPage from './components/CategoryPage';
 import MyProjects from './pages/MyProjects';
 
 const httpLink = createHttpLink({
