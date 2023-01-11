@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
@@ -39,6 +39,7 @@ const typeDefs = gql`
 
   type Query {
     getCurrentUser: User
+    users: [User]
     getProjectById(_id: ID!): Project
     getProjectByCategory(projectCategory: String!): [Project]
     getDonationById(userId: ID!, projectId: ID!): [Donation]

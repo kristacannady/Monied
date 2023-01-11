@@ -28,8 +28,8 @@ export const QUERY_CURRENT_USER = gql`
 `;
 
 export const QUERY_USERS = gql`
-  query users($_id: ID!) {
-    users(_id: $_id) {
+  query users {
+    users {
       _id
       email
       firstName
