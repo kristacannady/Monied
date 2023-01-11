@@ -9,6 +9,7 @@ import { ADD_FAVORITE } from "../../graphql/mutations";
 
 
 const Other = () => {
+  //favorite project in category
   const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
   const favoriteProject = async (projectId) => {
@@ -65,7 +66,7 @@ const Other = () => {
                 <p className="card-text">
                   Donations Raised: {project.projectGoal}
                 </p>
-                <button className="favoriteLink" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
+                <button className="btn btn-light" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
               </div>
             </div>
           </div>

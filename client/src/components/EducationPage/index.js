@@ -3,6 +3,8 @@ import React from "react";
 import { QUERY_PROJECT_CATEGORY } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_FAVORITE } from "../../graphql/mutations";
 
 const Education = () => {
   //filter projects to get all education category
@@ -16,6 +18,22 @@ const Education = () => {
   // if (error){
   //   return `error! ${error.message}`;
   // }
+
+  //favorite project in category
+  const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
+
+  const favoriteProject = async (projectId) => {
+    try {
+      await addFavorite({
+        variables: {
+          projectId
+        },
+      })
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
 
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
     variables: { projectCategory: "Education" },
@@ -56,6 +74,7 @@ const Education = () => {
                 <p className="card-text">
                   Donations Raised: {project.projectGoal}
                 </p>
+                <button className="btn btn-light" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
               </div>
             </div>
           </div>
