@@ -9,7 +9,7 @@ export default function Dashboard() {
     <div>
       {Auth.loggedIn() ? (
         <div>
-          <h2>Dashboard</h2>
+          <h1>Dashboard</h1>
           <Link to="/NewProject">← Create a new project</Link>
         </div>
       ) : (
