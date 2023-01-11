@@ -4,18 +4,18 @@
 //Donation amount - Input
 //Anonymous button
 //leave a comment - Input
-//submit button 
+//submit button
 //</card>
 
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-//import {ADD_PROJECT} from '../graphql/mutations';
-import { QUERY_CURRENT_USER, QUERY_PROJECTS } from "../graphql/queries";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_DONATION } from '../graphql/mutations';
+import { QUERY_CURRENT_USER, QUERY_PROJECT } from '../graphql/queries';
 
-const Donation = () => {
-  const [donationAmount, setDonationAmount] = useState("");
-  const [characterCount, setCharacterCount] = useState("");
-  const [donationComment, setDonationComment] = useState("");
+const Donation = (props) => {
+  const [donationAmount, setDonationAmount] = useState('');
+  const [characterCount, setCharacterCount] = useState('');
+  const [donationComment, setDonationComment] = useState('');
 
   const [addDonation, { error }] = useMutation(ADD_DONATION, {
     update(cache, { data: { addDonation } }) {
@@ -33,12 +33,12 @@ const Donation = () => {
           },
         });
       } catch (e) {
-        console.warn("First project insertion by user!");
+        console.warn('First project insertion by user!');
       }
 
-      const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+      const { projects } = cache.readQuery({ query: QUERY_PROJECT });
       cache.writeQuery({
-        query: QUERY_PROJECTS,
+        query: QUERY_PROJECT,
         data: { projects: [addDonation, ...projects] },
       });
     },
@@ -46,7 +46,7 @@ const Donation = () => {
 
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {
-      setText(event.target.value);
+      setDonationComment(event.target.value);
       setCharacterCount(event.target.value.length);
     }
   };
@@ -57,13 +57,13 @@ const Donation = () => {
     try {
       await addDonation({
         variables: {
-         donationAmount,
-        donationComment,
+          donationAmount,
+          donationComment,
         },
       });
 
-      setDonationAmount("");
-      setDonationComment("");
+      setDonationAmount('');
+      setDonationComment('');
       setCharacterCount(0);
     } catch (e) {
       console.error(e);
@@ -71,14 +71,14 @@ const Donation = () => {
   };
 
   return (
-    <Card>
-        <h2>Project Name</h2>
-        <div>
-            <label>
-                <input type="checkbox" />
-                Anonymous Donation
-            </label>
-        </div>
+    <div>
+      <h2>Project Name</h2>
+      <div>
+        <label>
+          <input type="checkbox" />
+          Anonymous Donation
+        </label>
+      </div>
       <form onSubmit={handleFormSubmit}>
         <input
           placeholder="Donation Amount"
@@ -92,7 +92,7 @@ const Donation = () => {
         ></textarea>
         <button type="submit">Submit</button>
       </form>
-    </Card>
+    </div>
   );
 };
 

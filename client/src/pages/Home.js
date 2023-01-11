@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/client';
-import React from 'react';
-import ProjectList from '../components/ProjectList';
-import { QUERY_CURRENT_USER, QUERY_PROJECT } from '../graphql/queries';
+import { useQuery } from "@apollo/client";
+import React from "react";
+import ProjectList from "../components/ProjectList";
+import { QUERY_CURRENT_USER } from "../graphql/queries";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_CURRENT_USER);

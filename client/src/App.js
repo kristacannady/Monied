@@ -17,10 +17,11 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import ProjectView from './pages/ProjectView';
+import Donate from './pages/Donate';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
-import ProjectList from './components/ProjectList';
+import CategoryPage from './components/CategoryPage';
 import MyProjects from './pages/MyProjects';
 
 const httpLink = createHttpLink({
@@ -52,32 +53,19 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/*" element={<NotFound />} />
-            <Route
-              path="education"
-              element={<ProjectList category="Education" />}
-            />
-            <Route
-              path="community-outreach"
-              element={<ProjectList category="Community Outreach" />}
-            />
-            <Route
-              path="health-care"
-              element={<ProjectList category="Health Care" />}
-            />
-            <Route
-              path="religious"
-              element={<ProjectList category="Religious" />}
-            />
-            <Route
-              path="family-services"
-              element={<ProjectList category="Family Services" />}
-            />
-            <Route path="other" element={<ProjectList category="Other" />} />
+            <Route path="/NewProject" element={<NewProject />} />
+            <Route path="/education" element={<CategoryPage />} />
+            <Route path="/community-outreach" element={<CategoryPage />} />
+            <Route path="/health-care" element={<CategoryPage />} />
+            <Route path="/religious" element={<CategoryPage />} />
+            <Route path="/family-services" element={<CategoryPage />} />
+            <Route path="/other" element={<CategoryPage />} />
             <Route path="NewProject" element={<NewProject />} />
             <Route path="my-projects" element={<MyProjects />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
         </Router>

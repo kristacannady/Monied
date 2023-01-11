@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../assests/monied-logo.png";
 
-import Auth from '../../context/auth';
+import Auth from "../../context/auth";
 
 function MainNav() {
   const logout = (event) => {
@@ -13,15 +14,21 @@ function MainNav() {
     <header>
       <div>
         <nav>
-          <Link to="/">
-            <h1 className="title">Monied</h1>
-          </Link>
+          <div className="home-btn">
+            <img alt="Monied Logo" className="Logo" src={Logo} />
+            <div>
+              <Link to="/">
+                <h1 className="title">Monied</h1>
+              </Link>
+            </div>
+          </div>
           {Auth.loggedIn() ? (
             <div>
               <Link to="/dashboard">Dashboard</Link>
               <Link to="/my-projects">My Projects</Link>
               <Link to="/my-donations">My Donations</Link>
               <Link to="/favorites">Favorite</Link>
+              <Link to="/NewProject">Create Project</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>
