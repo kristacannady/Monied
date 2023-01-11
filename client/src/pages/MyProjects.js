@@ -9,8 +9,6 @@ import { QUERY_CURRENT_USER } from '../graphql/queries';
 
 const MyProjects = (props) => {
   const { id: projectId } = useParams();
-  // TODO: need to work on map through .project data and displaying it on my-projects page.
-  // TODO: May need to create separate page for this
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
 
