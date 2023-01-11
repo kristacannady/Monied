@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//TODO: query users to pull firstname/lastname info or orgname info
 function ProjectList({ projects, category }) {
   if (!projects.length) {
     return <h3>No Projects Active!</h3>;
@@ -16,7 +17,14 @@ function ProjectList({ projects, category }) {
               {project.firstName} {project.lastName}
             </p>
             <div>
-              <p>{project.projectDescription}</p>
+              <Link to={`/project/${project._id}`}>
+                <p>{project.projectDescription}</p>
+              </Link>
+              <p>
+                Project Goal: $ {project.projectGoal}
+                Click <Link to={`/donate/`}>HERE</Link> to donate!
+              </p>
+
               <p>
                 Comments: {project.donations.commentBody} || Click to{' '}
                 {project.commentCount ? 'see' : 'start'} support!
@@ -42,6 +50,8 @@ function ProjectList({ projects, category }) {
                   {project.commentCount ? 'see' : 'start'} support!
                 </p>
               </Link>
+              Click{' '}
+                
             </div>
           </div>
         ))} */}

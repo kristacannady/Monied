@@ -17,6 +17,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import ProjectView from './pages/ProjectView';
+import Donate from './pages/Donate';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import './App.css';
@@ -52,6 +53,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/*" element={<NotFound />} />
