@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 function ProjectList({ projects, category }) {
   if (!projects.length) {
-    return <h3>No Projects Active!</h3>;
+    return (
+      <h3 className="no-projects-message" style={{ fontSize: "25px" }}>
+        No Projects Active!
+      </h3>
+    );
   }
 
   return (

@@ -13,10 +13,15 @@ const Home = () => {
   return (
     <main>
       <div>
-        <h1>Home</h1>
+        <h1
+          className="no-projects-message"
+          style={{ fontSize: "1.7em", fontWeight: "bold" }}
+        >
+          Home
+        </h1>
         <div>
           {loading ? (
-            <div>Loading...</div>
+            <div className="no-projects-message">Loading...</div>
           ) : (
             <ProjectList projects={projects} />
           )}

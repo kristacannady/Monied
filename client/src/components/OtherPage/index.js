@@ -16,7 +16,7 @@ const Other = () => {
   console.log();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="no-projects-message">Loading...</div>;
   }
 
   if (projects.length === 0) {
