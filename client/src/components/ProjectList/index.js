@@ -20,7 +20,7 @@ function ProjectList({ projects, category }) {
               <Link to={`/project/${project._id}`}>
                 <p className="card-text">{project.projectDescription}</p>
               </Link>
-              <p>
+              <p className="card-text">
                 Project Goal: $ {project.projectGoal}
                 Click <Link to={`/donate/`}>HERE</Link> to donate!
               </p>
