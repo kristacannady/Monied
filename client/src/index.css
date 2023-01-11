@@ -1,33 +1,49 @@
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Helvetica, Arial, Sans-Serif;
+  font-family: "Cinzel, serif";
 }
 
-body h2 {
+body h1 {
   text-align: center;
 }
 
-nav {
+header nav {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 20px;
-  background-color: #006db0;
+  background-color: grey;
   color: #fff;
 }
 
-nav a {
+.home-btn {
+  display: flex;
+  align-items: center;
+  background-color: grey;
   color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+header nav h1 {
+  padding: 0;
+  margin: 5px;
+}
+
+header nav a {
+  color: rgb(0, 0, 0);
   text-decoration: none;
   margin-left: 1rem;
+  font-size: large;
 }
 
-nav button {
+header nav button {
   background: none;
   color: inherit;
   border: none;
@@ -35,7 +51,29 @@ nav button {
   margin-left: 1rem;
   font: inherit;
   cursor: pointer;
-  outline: inherit
+  outline: inherit;
+}
+
+header nav a:hover {
+  text-decoration: none;
+  background-color: rgb(8, 148, 27);
+  border-radius: 5px;
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  background-color: #d8d8d8;
+  gap: 1rem;
+}
+
+.user-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: grey;
+  color: #fff;
 }
 
 form {
@@ -62,8 +100,8 @@ form button {
   padding: 0.625rem;
   margin: 1rem 0;
   border: none;
-  background-color: #006db0;
-  color: #fff;
+  background-color: #555555;
+  color: rgb(59, 231, 82);
   border-radius: 0.625rem;
   width: 100%;
 }
@@ -72,3 +110,104 @@ form p {
   margin: 0.5rem;
   text-align: center;
 }
+
+footer h2 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  font-size: medium;
+  padding-left: 15px;
+}
+
+.card {
+  width: 18rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.home {
+  text-align: center;
+}
+
+.Logo {
+  width: 20%;
+}
+
+.new-project-link a {
+  text-decoration: none;
+  color: rgb(8, 148, 27);
+  padding-left: 15px;
+}
+
+.dropdown {
+  padding: 10px;
+  margin: 5px;
+}
+
+.no-projects-message,
+.no-projects-message a {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: large;
+}
+
+.no-projects-message a {
+  color: rgb(59, 231, 82);
+  padding-left: 5px;
+}
+
+/*.dashboard,
+.dashboard a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+}*/
+
+.dashboard a {
+  background-color: rgb(78, 78, 78);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.outline {
+  -webkit-text-fill-color: rgb(58, 153, 70);
+  -webkit-text-stroke-width: 1px;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: center;
+}
+
+.new-project-form {
+  background-color: rgb(59, 231, 82);
+  border-radius: 5px;
+}
+
+.checkbox label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.checkbox input {
+  vertical-align: middle;
+  padding: 0;
+}
+
+.checkbox label span {
+  vertical-align: middle;
+  padding-left: 0;
+  margin: 0;
+}
+
+.favoriteLink {
+  font-size: small;
+
+}
+
