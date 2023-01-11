@@ -160,13 +160,13 @@ footer h2 {
   padding-left: 5px;
 }
 
-.dashboard,
+/*.dashboard,
 .dashboard a {
   display: flex;
   justify-content: center;
   text-decoration: none;
   font-weight: 600;
-}
+}*/
 
 .dashboard a {
   background-color: rgb(78, 78, 78);

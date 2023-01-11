@@ -26,9 +26,6 @@ function MainNav() {
           </div>
           {Auth.loggedIn() ? (
             <div>
-              <Link className="outline" to="/dashboard">
-                Dashboard
-              </Link>
               <Link className="outline" to="/my-projects">
                 My Projects
               </Link>

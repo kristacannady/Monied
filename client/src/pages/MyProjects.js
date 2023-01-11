@@ -1,7 +1,7 @@
 //This will be for multi project view
 
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_CURRENT_USER } from "../graphql/queries";
@@ -20,8 +20,16 @@ const MyProjects = (props) => {
   }
 
   return (
-    <div>
-      <h1>My Projects</h1>
+    <div className="dashboard">
+      <h1>My Projects</h1> 
+      <p>
+      <Link
+            to="/NewProject"
+            style={{ color: "rgb(59, 231, 82)", fontSize: "larger" }}
+          >
+            ← Create a new project
+          </Link>
+      </p>
       <div className="row justify-content-md-center">
         {projects &&
           projects.map((project) => (

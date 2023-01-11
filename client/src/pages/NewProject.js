@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_PROJECT } from "../graphql/mutations";
 import { QUERY_CURRENT_USER } from "../graphql/queries";
+import { useNavigate } from "react-router-dom";
+
 
 const NewProject = () => {
   const [projectTitle, setProjectTitle] = useState("");
@@ -19,6 +21,7 @@ const NewProject = () => {
   const [projectDescription, setProjectDescription] = useState("");
   const [projectGoal, setProjectGoal] = useState(0);
   const [organizationName, setOrganizationName] = useState("");
+  const navigate = useNavigate();
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -73,6 +76,10 @@ const NewProject = () => {
       setProjectGoal(0);
       setOrganizationName("");
       setCharacterCount(0);
+
+      navigate('/my-projects');
+      window.location.reload();
+
     } catch (e) {
       console.error(e);
     }
