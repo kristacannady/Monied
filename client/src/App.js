@@ -23,6 +23,7 @@ import Footer from "./components/Footer";
 import "./App.css";
 import CategoryPage from "./components/CategoryPage";
 import MyProjects from "./pages/MyProjects";
+import MyFavorites from "./pages/FavoriteProject";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -64,6 +65,7 @@ function App() {
             <Route path="/other" element={<CategoryPage />} />
             <Route path="NewProject" element={<NewProject />} />
             <Route path="my-projects" element={<MyProjects />} />
+            <Route path="/favorites" element={<MyFavorites />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />

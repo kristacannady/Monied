@@ -23,6 +23,21 @@ export const QUERY_CURRENT_USER = gql`
           createdBy
         }
       }
+      favorites {
+        _id
+        projectTitle
+        organizationName
+        projectCategory
+        projectDescription
+        projectGoal
+        donations {
+          _id
+          donationAmount
+          isAnonymous
+          commentBody
+          createdBy
+        }
+      }
     }
   }
 `;
