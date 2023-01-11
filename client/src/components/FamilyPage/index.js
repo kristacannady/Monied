@@ -21,7 +21,7 @@ const Family = () => {
 
   if (projects.length === 0) {
     return (
-      <div>
+      <div className="no-projects-message">
         No Projects for this category consider making one
         <Link to="/NewProject"> here!</Link>
       </div>

@@ -6,11 +6,16 @@ import Auth from "../context/auth";
 // link to create new projects
 export default function Dashboard() {
   return (
-    <div>
+    <div className="dashboard">
       {Auth.loggedIn() ? (
         <div>
           <h2>Dashboard</h2>
-          <Link to="/NewProject">← Create a new project</Link>
+          <Link
+            to="/NewProject"
+            style={{ color: "rgb(59, 231, 82)", fontSize: "larger" }}
+          >
+            ← Create a new project
+          </Link>
         </div>
       ) : (
         <div>
