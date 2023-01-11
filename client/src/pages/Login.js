@@ -27,6 +27,7 @@ export default function Login() {
 
       Auth.login(data.login.token);
       navigate('/my-projects');
+      window.location.reload();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
