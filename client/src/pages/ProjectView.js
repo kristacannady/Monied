@@ -8,38 +8,40 @@ import { QUERY_PROJECT } from '../graphql/queries';
 
 const ProjectView = (props) => {
   const location = useLocation();
-  const projectId = '63bcafb8b0132966c40533a3';
+
+  let getId = location.pathname.split('/');
+
   const { loading, data } = useQuery(QUERY_PROJECT, {
-    variables: { _id: projectId },
+    variables: { id: getId[2] },
   });
-  console.log(location.pathname);
+
   console.log(data);
   // const user = data?.getCurrentUser || {};
 
-  // const project = data?.getCurrentUser.projects || {};
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  const project = data?.getProjectById || {};
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  // return (
-  //   <div>
-  //     <div>
-  //       <h1>{project[0].projectTitle}</h1>
-  //       <p>
-  //         <span>
-  //           {user.firstName} {user.lastName}
-  //         </span>
-  //       </p>
-  //       <div>
-  //         <p>{project[0].projectDescription}</p>
-  //       </div>
-  //       <div>
-  //         <p>${project[0].projectGoal}</p>
-  //       </div>
-  //       {/* {CurrentUserContextProvider.isLoggedIn && } */}
-  //     </div>
-  //   </div>
-  // );
+  return (
+    <div>
+      <div>
+        <h1>{project.projectTitle}</h1>
+        <p>
+          <span>
+            {project.organizationName} {project.organizationName}
+          </span>
+        </p>
+        <div>
+          <p>{project.projectDescription}</p>
+        </div>
+        <div>
+          <p>${project.projectGoal}</p>
+        </div>
+        {/* {CurrentUserContextProvider.isLoggedIn && } */}
+      </div>
+    </div>
+  );
 };
 
 export default ProjectView;

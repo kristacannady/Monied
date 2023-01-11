@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY } from "../../graphql/queries";
-import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
+import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 const Family = () => {
   //filter projects to get all education category
 
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: "Family Services" },
+    variables: { projectCategory: 'Family Services' },
   });
 
   const projects = data?.getProjectByCategory || [];
@@ -33,7 +33,9 @@ const Family = () => {
       {projects &&
         projects.map((project) => (
           <div key={project._id}>
-            <h3>{project.projectTitle}</h3>
+            <Link to={`/project/${project._id}`}>
+              <h3>{project.projectTitle}</h3>
+            </Link>
             <p>Organization: {project.organizationName}</p>
             <p>Category: {project.projectCategory}</p>
             <div>
