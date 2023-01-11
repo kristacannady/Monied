@@ -18,18 +18,30 @@ function MainNav() {
             <img alt="Monied Logo" className="Logo" src={Logo} />
             <div>
               <Link to="/">
-                <h1 className="title">Monied</h1>
+                <h1 style={{ fontSize: "40px" }} className="title outline">
+                  Monied
+                </h1>
               </Link>
             </div>
           </div>
           {Auth.loggedIn() ? (
             <div>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/my-projects">My Projects</Link>
-              <Link to="/my-donations">My Donations</Link>
-              <Link to="/favorites">Favorite</Link>
-              <Link to="/NewProject">Create Project</Link>
-              <a href="/" onClick={logout}>
+              <Link className="outline" to="/dashboard">
+                Dashboard
+              </Link>
+              <Link className="outline" to="/my-projects">
+                My Projects
+              </Link>
+              <Link className="outline" to="/my-donations">
+                My Donations
+              </Link>
+              <Link className="outline" to="/favorites">
+                Favorite
+              </Link>
+              <Link className="outline" to="/NewProject">
+                Create Project
+              </Link>
+              <a className="outline" href="/" onClick={logout}>
                 Logout
               </a>
             </div>

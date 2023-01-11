@@ -163,3 +163,9 @@ footer h2 {
   border-radius: 5px;
   padding: 10px;
 }
+
+.outline {
+  -webkit-text-fill-color: rgb(58, 153, 70);
+  -webkit-text-stroke-width: 1px;
+  letter-spacing: 2px;
+}
