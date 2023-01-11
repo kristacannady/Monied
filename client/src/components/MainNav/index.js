@@ -33,7 +33,7 @@ function MainNav() {
                 My Donations
               </Link>
               <Link className="outline" to="/favorites">
-                Favorite
+                My Favorites
               </Link>
               <Link className="outline" to="/NewProject">
                 Create Project

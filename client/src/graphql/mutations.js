@@ -111,4 +111,14 @@ export const ADD_DONATION = gql`
   }
 `;
 
+export const ADD_FAVORITE = gql`
+mutation($projectId: ID) {
+  favoriteProject(projectId: $projectId) {
+    favorites {
+      _id
+    }
+  }
+}
+`;
+
 
