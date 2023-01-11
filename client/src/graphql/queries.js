@@ -1,9 +1,35 @@
 /* eslint-disable import/prefer-default-export */
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const QUERY_CURRENT_USER = gql`
   query currentUser {
     getCurrentUser {
+      _id
+      email
+      firstName
+      lastName
+      projects {
+        _id
+        projectTitle
+        organizationName
+        projectCategory
+        projectDescription
+        projectGoal
+        donations {
+          _id
+          donationAmount
+          isAnonymous
+          commentBody
+          createdBy
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+  query users($_id: ID!) {
+    users(_id: $_id) {
       _id
       email
       firstName
