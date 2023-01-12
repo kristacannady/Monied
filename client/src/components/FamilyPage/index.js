@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY } from "../../graphql/queries";
-import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_FAVORITE } from "../../graphql/mutations";
+import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
+import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_FAVORITE } from '../../graphql/mutations';
 
 const Family = () => {
   //favorite project in category
@@ -14,19 +14,19 @@ const Family = () => {
     try {
       await addFavorite({
         variables: {
-          projectId
+          projectId,
         },
-      })
+      });
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }
   };
 
-
   //filter projects to get all education category
 
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: "Family Services" },
+    variables: { projectCategory: 'Family Services' },
   });
 
   const projects = data?.getProjectByCategory || [];
@@ -53,7 +53,9 @@ const Family = () => {
           <div className="col-md-auto d-flex" key={project._id}>
             <div className="card">
               <div className="new-project-form card-body">
-                <h3 className="card-title">{project.projectTitle}</h3>
+                <Link to={`/project/${project._id}`}>
+                  <h3 className="card-title">{project.projectTitle}</h3>
+                </Link>
                 <p className="card-text">
                   Organization: {project.organizationName}
                 </p>
@@ -64,7 +66,12 @@ const Family = () => {
                 <p className="card-text">
                   Donations Raised: {project.projectGoal}
                 </p>
-                <button className="favoriteLink btn btn-light" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
+                <button
+                  className="favoriteLink btn btn-light"
+                  onClick={() => favoriteProject(project._id)}
+                >
+                  Add to Favorites
+                </button>
               </div>
             </div>
           </div>

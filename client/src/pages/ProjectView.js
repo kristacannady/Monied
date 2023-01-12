@@ -1,43 +1,49 @@
 //this will be for single project view
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
+import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_CURRENT_USER } from '../graphql/queries';
+import { QUERY_PROJECT } from '../graphql/queries';
 // import { CurrentUserContextProvider } from '../context';
 
 const ProjectView = (props) => {
-  const { id: projectId } = useParams();
+  const location = useLocation();
 
-  const { loading, data } = useQuery(QUERY_CURRENT_USER);
+  let getId = location.pathname.split('/');
 
-  const user = data?.getCurrentUser || {};
+  const { loading, data } = useQuery(QUERY_PROJECT, {
+    variables: { id: getId[2] },
+  });
 
-  const project = data?.getCurrentUser.projects || {};
+  console.log(data);
+  // const user = data?.getCurrentUser || {};
+
+  const project = data?.getProjectById || {};
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <div>
-        <h1>{project[0].projectTitle}</h1>
-        <p>
-          <span>
-            {user.firstName} {user.lastName}
-          </span>
-        </p>
-        <div>
-          <p>{project[0].projectDescription}</p>
+    <div className="row justify-content-md-center">
+      <div className="col-md-auto d-flex">
+        <div className="card">
+          <div className="new-project-form card-body">
+            <h1 className="card-title">{project.projectTitle}</h1>
+            <p className="card-text">{project.organizationName}</p>
+            <p className="card-text">Category: {project.projectCategory}</p>
+            <p className="card-text">
+              Description: {project.projectDescription}
+            </p>
+            <p className="card-text">Donations Raised: {project.projectGoal}</p>
+            <Link to={`/donate`}>
+              <button className="btn btn-light">Donate to this cause!</button>
+            </Link>
+            {/* {CurrentUserContextProvider.isLoggedIn && } */}
+          </div>
         </div>
-        <div>
-          <p>${project[0].projectGoal}</p>
-        </div>
-        {/* {CurrentUserContextProvider.isLoggedIn && } */}
       </div>
     </div>
   );
 };
-
 export default ProjectView;
