@@ -22,6 +22,7 @@ Motivation? Monied is a platform to help nonprofits get their footing with fundi
 
 ![image](https://user-images.githubusercontent.com/49098706/211964362-584e757c-ea43-4d84-84be-4f168030394d.png)
 
+Heroku-deployed app: (https://aqueous-scrubland-12058.herokuapp.com/)
 
 ____________
 
@@ -46,8 +47,6 @@ Created by:
 ____________
 
 Monied is deployed on Heroku. See links below:
-
-Heroku-deployed app: (https://aqueous-scrubland-12058.herokuapp.com/)
 
 GiHub repository: https://github.com/kristacannady/Monied
 
