@@ -221,3 +221,31 @@ footer h2 {
 
 }
 
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid yellow;
+
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.donate-pic {
+
+}
+
+.site-name-style {
+  color:rgb(12, 121, 88);
+  font-size: 75px;
+  font-weight: 500;
+}
+
+.mission-stmt {
+  font-size:larger;
+  font-weight: 400;
+}

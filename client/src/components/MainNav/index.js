@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assests/monied-logo.png";
+import Logo from "../../assets/monied-logo.png";
 
 import Auth from "../../context/auth";
 
