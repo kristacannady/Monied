@@ -14,16 +14,9 @@ function MainNav() {
     <header>
       <div>
         <nav>
-          <div className="home-btn">
+          <Link to="/">
             <img alt="Monied Logo" className="Logo" src={Logo} />
-            <div>
-              <Link to="/">
-                <h1 style={{ fontSize: "40px" }} className="title outline">
-                  Monied
-                </h1>
-              </Link>
-            </div>
-          </div>
+          </Link>
           {Auth.loggedIn() ? (
             <div>
               <Link className="outline" to="/my-projects">
@@ -44,14 +37,15 @@ function MainNav() {
             </div>
           ) : (
             <div>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Signup</Link>
+              <Link to="/login" className="nav-link-style">Login</Link>
+              <Link to="/register" className="nav-link-style">Signup</Link>
             </div>
           )}
         </nav>
       </div>
     </header>
-  );
+  )
+    ;
 }
 
 export default MainNav;

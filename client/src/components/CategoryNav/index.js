@@ -6,22 +6,22 @@ function categoryNav() {
     <header>
       <div>
         <nav className="category-nav">
-          <Link className="outline" to="/education">
+          <Link className="outline category-nav-text" to="/education">
             Education
           </Link>
-          <Link className="outline" to="/community-outreach">
+          <Link className="outline category-nav-text" to="/community-outreach">
             Community Outreach
           </Link>
-          <Link className="outline" to="/health-care">
+          <Link className="outline category-nav-text" to="/health-care">
             Health Care
           </Link>
-          <Link className="outline" to="/religious">
+          <Link className="outline category-nav-text" to="/religious">
             Religious
           </Link>
-          <Link className="outline" to="/family-services">
+          <Link className="outline category-nav-text" to="/family-services">
             Family Services
           </Link>
-          <Link className="outline" to="/other">
+          <Link className="outline category-nav-text" to="/other">
             Other
           </Link>
         </nav>

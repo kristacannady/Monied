@@ -17,15 +17,15 @@ header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  background-color: grey;
+  padding: 15px;
+  background-color: white;
   color: #fff;
 }
 
 .home-btn {
   display: flex;
   align-items: center;
-  background-color: grey;
+  background-color: white;
   color: #fff;
   padding: 0;
   margin: 0;
@@ -56,15 +56,25 @@ header nav button {
 
 header nav a:hover {
   text-decoration: none;
-  background-color: rgb(8, 148, 27);
+  background-color: rgb(12, 121, 88);
   border-radius: 5px;
+}
+
+.nav-link-style {
+  color: rgb(12, 121, 88);
+  font-size: 30px;
 }
 
 .category-nav {
   display: flex;
   justify-content: center;
-  background-color: #d8d8d8;
+  background-color: rgb(12, 121, 88);
   gap: 1rem;
+}
+
+.category-nav-text {
+  color: white;
+  font-size:large;
 }
 
 .user-nav {
@@ -132,7 +142,7 @@ footer h2 {
 }
 
 .Logo {
-  width: 20%;
+  width: 30%;
 }
 
 .new-project-link a {
