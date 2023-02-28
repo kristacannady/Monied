@@ -53,7 +53,7 @@ const Community = (props) => {
       {projects &&
         projects.map((project) => (
           <div className="col-md-auto d-flex" key={project._id}>
-            <div className="project-card card"   onClick={() => {
+            <div className="project-card card" onClick={() => {
               navigate(`/project/${project._id}`);
              }}>
               <div className="new-project-form card-body">
@@ -74,10 +74,8 @@ const Community = (props) => {
                       </button>
                     </div>
                   </div>
-                </div>
-              
+                </div>      
                   <h3 className="card-title">{project.projectTitle}</h3>
-               
                 <p className="card-text">
                   {project.projectDescription}
                 </p>
