@@ -1,33 +1,34 @@
-import React from "react";
+import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY } from "../../graphql/queries";
-import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_FAVORITE } from "../../graphql/mutations";
+import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
+import { useQuery } from '@apollo/client';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_FAVORITE } from '../../graphql/mutations';
 
-
-const Community = () => {
-
+const Community = (props) => {
   //favorite project in category
- const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
+  const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
   const favoriteProject = async (projectId) => {
     try {
       await addFavorite({
         variables: {
-          projectId
+          projectId,
         },
-      })
+      });
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }
   };
 
+  const navigate = useNavigate();
+
   //filter projects to get all education category
 
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: "Community Outreach" },
+    variables: { projectCategory: 'Community Outreach' },
   });
 
   const projects = data?.getProjectByCategory || [];
@@ -52,20 +53,41 @@ const Community = () => {
       {projects &&
         projects.map((project) => (
           <div className="col-md-auto d-flex" key={project._id}>
-            <div className="card">
+            <div className="project-card card"   onClick={() => {
+              navigate(`/project/${project._id}`);
+             }}>
               <div className="new-project-form card-body">
-                <h3 className="card-title">{project.projectTitle}</h3>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-sm">
+                      {project.organizationName}
+                    </div>
+                    <div className="col-sm">
+                      Comments
+                    </div>
+                    <div className="col-sm">
+                      <button
+                        className="fav-button"
+                        onClick={() => favoriteProject(project._id)}
+                      >
+                        Add to Favorites
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              
+                  <h3 className="card-title">{project.projectTitle}</h3>
+               
                 <p className="card-text">
-                  Organization: {project.organizationName}
-                </p>
-                <p className="card-text">Category: {project.projectCategory}</p>
-                <p className="card-text">
-                  Description: {project.projectDescription}
+                  {project.projectDescription}
                 </p>
                 <p className="card-text">
-                  Donations Raised: {project.projectGoal}
+                  Goal: ${project.projectGoal}
                 </p>
-                <button className="btn btn-light" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
+                <div className="progress">
+                  <div className="progress-bar bg-custom w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">65%</div>
+                </div>
+
               </div>
             </div>
           </div>

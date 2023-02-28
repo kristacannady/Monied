@@ -33,7 +33,7 @@ const Home = () => {
     <div className="flex-container">
 
       <div className="flex-child magenta">
-        <img src={require("../../src/assets/Donate2.jpg")} alt="donate pic"/>
+        <img src={require("../../src/assets/Donate1.png")} alt="donate pic"/>
       </div>
 
       <div className="flex-child green">

@@ -25,9 +25,9 @@ const MyProjects = (props) => {
       <p>
       <Link
             to="/NewProject"
-            style={{ color: "rgb(59, 231, 82)", fontSize: "larger" }}
+            style={{ color: "white", fontSize: "larger", fontWeight: "bold" }}
           >
-            ← Create a new project
+            ← Create a New Project
           </Link>
       </p>
       <div className="row justify-content-md-center">

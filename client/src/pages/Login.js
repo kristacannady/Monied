@@ -43,15 +43,15 @@ export default function Login() {
     <div>
       {error ? (
         <div>
-          <p className="error-text">The provided credentials are incorrect</p>
+          <p className="error-text error">The provided credentials are incorrect! Please try again.</p>
         </div>
       ) : null}
       <form onSubmit={handleFormSubmit}>
-        <h2>Login</h2>
+        <h2 className='login'>Login</h2>
         <label htmlFor="email">
           Email:
           <input
-            placeholder="youremail@test.com"
+            placeholder="email"
             name="email"
             type="email"
             value={formState.email}
@@ -61,7 +61,7 @@ export default function Login() {
         <label htmlFor="password">
           Password
           <input
-            placeholder="******"
+            placeholder="password"
             name="password"
             type="password"
             value={formState.password}
@@ -72,7 +72,7 @@ export default function Login() {
         <p>
           Need an account? Sign up <Link to="/register">here</Link>
         </p>
-        {error && <div>Login Failed</div>}
+       
       </form>
     </div>
   );

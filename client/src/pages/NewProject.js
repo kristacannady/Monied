@@ -128,10 +128,12 @@ const NewProject = () => {
           value={projectGoal}
           onChange={(e) => setProjectGoal(parseInt(e.target.value))}
         ></input>
-        <button type="submit">Submit</button>
+        <button className="project-submit-btn" type="submit" >Submit</button>
         {error && <div>Something went wrong!</div>}
       </form>
     </div>
+
+
   );
 };
 

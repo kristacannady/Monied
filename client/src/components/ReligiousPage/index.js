@@ -1,30 +1,31 @@
-import React from "react";
+import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY } from "../../graphql/queries";
-import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_FAVORITE } from "../../graphql/mutations";
+import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
+import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_FAVORITE } from '../../graphql/mutations';
 
 const Religious = () => {
-//favorite project in category
-const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
+  //favorite project in category
+  const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
-const favoriteProject = async (projectId) => {
-  try {
-    await addFavorite({
-      variables: {
-        projectId
-      },
-    })
-  } catch (e) {
-    console.error(e);
-  }
-};
+  const favoriteProject = async (projectId) => {
+    try {
+      await addFavorite({
+        variables: {
+          projectId,
+        },
+      });
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   //filter projects to get all education category
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: "Religious" },
+    variables: { projectCategory: 'Religious' },
   });
 
   const projects = data?.getProjectByCategory || [];
@@ -51,7 +52,9 @@ const favoriteProject = async (projectId) => {
           <div className="col-md-auto d-flex" key={project._id}>
             <div className="card">
               <div className="new-project-form card-body">
-                <h3 className="card-title">{project.projectTitle}</h3>
+                <Link to={`/project/${project._id}`}>
+                  <h3 className="card-title">{project.projectTitle}</h3>
+                </Link>
                 <p className="card-text">
                   Organization: {project.organizationName}
                 </p>
@@ -62,7 +65,12 @@ const favoriteProject = async (projectId) => {
                 <p className="card-text">
                   Donations Raised: {project.projectGoal}
                 </p>
-                <button className="btn btn-light" onClick={() => favoriteProject(project._id)}>Add to Favorites</button>
+                <button
+                  className="btn btn-light"
+                  onClick={() => favoriteProject(project._id)}
+                >
+                  Add to Favorites
+                </button>
               </div>
             </div>
           </div>

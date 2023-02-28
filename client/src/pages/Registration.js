@@ -44,13 +44,13 @@ export default function Registration() {
     <div>
       {error ? (
         <div>
-          <p className="error-text">The provided credentials are incorrect</p>
+          <p className="error-text error">The provided credentials are incorrect! Please try again.</p>
         </div>
       ) : null}
       <form onSubmit={handleFormSubmit}>
-        <h2>Register</h2>
+        <h2 className="login">Register</h2>
         <label htmlFor="firstName">
-          First name:
+          First Name:
           <input
             type="text"
             id="firstName"
@@ -60,7 +60,7 @@ export default function Registration() {
           />
         </label>
         <label htmlFor="lastName">
-          Last name:
+          Last Name:
           <input
             type="text"
             id="lastName"
@@ -72,7 +72,6 @@ export default function Registration() {
         <label htmlFor="email">
           Email:
           <input
-            placeholder="youremail@test.com"
             name="email"
             type="email"
             value={formState.email}
@@ -82,14 +81,13 @@ export default function Registration() {
         <label htmlFor="password">
           Password
           <input
-            placeholder="******"
             name="password"
             type="password"
             value={formState.password}
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign Up!</button>
         <p>
           Already have an account? Login <Link to="/register">here</Link>
         </p>
