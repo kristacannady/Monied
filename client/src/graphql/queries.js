@@ -87,3 +87,28 @@ export const QUERY_PROJECT_CATEGORY = gql`
     }
   }
 `;
+
+export const QUERY_DONATIONS = gql`
+  query donations($projectId: ID!) {
+    getDonationById(_id: $id) {
+      _id
+      donationAmount
+      isAnonymous
+      commentBody
+      createdBy
+      project {
+        _id
+        projectTitle
+        organizationName
+        projectCategory
+        projectDescription
+        projectGoal
+      }
+
+    }
+  }
+
+
+`;
+
+
