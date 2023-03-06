@@ -2,11 +2,12 @@ import React from 'react';
 //figure out how to import projects from database
 import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_FAVORITE } from '../../graphql/mutations';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-const Community = (props) => {
+const Community = () => {
   //favorite project in category
   const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
@@ -22,8 +23,6 @@ const Community = (props) => {
       console.error(e);
     }
   };
-
-  const navigate = useNavigate();
 
   //filter projects to get all education category
 
@@ -53,9 +52,7 @@ const Community = (props) => {
       {projects &&
         projects.map((project) => (
           <div className="col-md-auto d-flex" key={project._id}>
-            <div className="project-card card" onClick={() => {
-              navigate(`/project/${project._id}`);
-             }}>
+            <div className="project-card card">
               <div className="new-project-form card-body">
                 <div className="container">
                   <div className="row">
@@ -65,17 +62,14 @@ const Community = (props) => {
                     <div className="col-sm">
                       Comments
                     </div>
-                    <div className="col-sm">
-                      <button
-                        className="fav-button"
-                        onClick={() => favoriteProject(project._id)}
-                      >
-                        Add to Favorites
-                      </button>
+                    <div className="col-sm" onClick={() => favoriteProject(project._id)}>
+                      <FaRegHeart className="fav-btn fav-btn:hover"size={40}  />
                     </div>
                   </div>
-                </div>      
+                </div>
+                <Link className='project-link' to={`/project/${project._id}`}>
                   <h3 className="card-title">{project.projectTitle}</h3>
+                </Link>
                 <p className="card-text">
                   {project.projectDescription}
                 </p>
@@ -83,7 +77,7 @@ const Community = (props) => {
                   Goal: ${project.projectGoal}
                 </p>
                 <div className="progress">
-                  <div className="progress-bar bg-custom w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">65%</div>
+                  <div className="progress-bar bg-custom w-50" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">50%</div>
                 </div>
 
               </div>

@@ -143,9 +143,6 @@ footer h2 {
   padding-left: 15px;
 }
 
-.card {
-}
-
 .project-card {
   width: 35rem;
   margin-top: 2rem;
@@ -156,9 +153,12 @@ footer h2 {
   cursor: pointer;
 }
 
-.fav-button {
- background-color:rgb(12, 121, 88);
- color: white;
+.fav-btn {
+ color: rgb(12, 121, 88);
+}
+
+.fav-btn:hover {
+  background-color: rgb(12,121,88);
 }
 
 .bg-custom {

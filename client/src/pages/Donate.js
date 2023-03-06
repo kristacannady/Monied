@@ -75,7 +75,7 @@ const Donation = (props) => {
       <h2 className="section-title">Project Name</h2>
       <form className="new-project-form" onSubmit={handleFormSubmit}>
         <input
-          placeholder="Donation Amount"
+          placeholder="$ Donation Amount"
           value={donationAmount}
           onChange={handleChange}
         ></input>
