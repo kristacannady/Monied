@@ -166,16 +166,24 @@ const resolvers = {
           { new: true }
         );
 
-        await Project.findByIdAndUpdate(
-          { _id: args.projectId },
-          { $addToSet: { donations: donation._id } },
-          { new: true }
-        );
+        let projectFromDb = await Project.findById(args.projectId);
+
+        if (projectFromDb) {
+          await Project.findByIdAndUpdate(
+            { _id: args.projectId },
+            { $addToSet: { donations: donation._id } },
+            { new: true }
+          );
+        } else {
+          throw new AuthenticationError("Project not found!");
+        };
+
         return donation;
       }
+
       throw new AuthenticationError("You need to be logged in!");
-    },
-  },
+    }
+  }
 };
 
 module.exports = resolvers;

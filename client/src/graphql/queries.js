@@ -104,11 +104,8 @@ export const QUERY_DONATIONS = gql`
         projectDescription
         projectGoal
       }
-
     }
   }
-
-
 `;
 
 
