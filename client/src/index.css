@@ -87,10 +87,8 @@ header nav button {
   color: #fff;
 }
 
-form {
+.monied-form {
   margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
   height: 100%;
   max-width: 80rem;
   padding: 2rem;
@@ -102,7 +100,6 @@ form input {
   line-height: 1.15rem;
   width: 100%;
   margin: 1.5rem 0;
-  padding: 1rem;
   border-radius: 0.625rem;
 }
 
@@ -158,7 +155,7 @@ footer h2 {
 }
 
 .fav-btn:hover {
-  background-color: rgb(12,121,88);
+  color: red;
 }
 
 .bg-custom {

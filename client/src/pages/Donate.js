@@ -8,14 +8,21 @@
 //</card>
 
 import React, { useState } from "react";
+import { useLocation } from 'react-router-dom'
 import { useMutation } from "@apollo/client";
 import { ADD_DONATION } from "../graphql/mutations";
 import { QUERY_CURRENT_USER, QUERY_PROJECT } from "../graphql/queries";
 
 const Donation = (props) => {
-  const [donationAmount, setDonationAmount] = useState("");
-  const [characterCount, setCharacterCount] = useState("");
-  const [donationComment, setDonationComment] = useState("");
+  const [formState, setFormState] = useState({
+    donatorName: '',
+    donationAmount: '',
+    isAnonymous: false,
+    donationComment: ''
+  });
+
+  const location = useLocation()
+  const { projectTitle } = location.state || {};
 
   const [addDonation, { error }] = useMutation(ADD_DONATION, {
     update(cache, { data: { addDonation } }) {
@@ -44,11 +51,23 @@ const Donation = (props) => {
     },
   });
 
-  const handleChange = (event) => {
-    if (event.target.value.length <= 280) {
-      setDonationComment(event.target.value);
-      setCharacterCount(event.target.value.length);
+  const handleIsAnonymousChanged = () => {
+    let newIsAnonymousValue = !formState.isAnonymous;
+    
+    if (newIsAnonymousValue === true) {
+      setFormState({ ...formState, 
+        isAnonymous: newIsAnonymousValue,
+        donatorName: "Anonymous" });
+    } else {
+      setFormState({ ...formState,
+        isAnonymous: newIsAnonymousValue,
+        donatorName: "" });
     }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({ ...formState, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
@@ -57,14 +76,12 @@ const Donation = (props) => {
     try {
       await addDonation({
         variables: {
-          donationAmount,
-          donationComment,
+          donatorName: formState.donatorName,
+          donationAmount: formState.donationAmount,
+          donationComment: formState.donationComment,
         },
       });
 
-      setDonationAmount("");
-      setDonationComment("");
-      setCharacterCount(0);
     } catch (e) {
       console.error(e);
     }
@@ -72,23 +89,23 @@ const Donation = (props) => {
 
   return (
     <div>
-      <h2 className="section-title">Project Name</h2>
-      <form className="new-project-form" onSubmit={handleFormSubmit}>
-        <input
-          placeholder="$ Donation Amount"
-          value={donationAmount}
-          onChange={handleChange}
-        ></input>
-        <textarea
-          placeholder="Comment"
-          value={donationComment}
-          onChange={handleChange}
-        ></textarea>
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" />
-            <span>Anonymous Donation</span>
-          </label>
+      <h2 className="section-title">{projectTitle}</h2>
+      <form className="monied-form new-project-form" onSubmit={handleFormSubmit}>
+        <div className="form-floating mb-3">
+          <input className="form-control" name="donatorName" placeholder="Name" value={formState.donatorName} onChange={handleChange} disabled={formState.isAnonymous} />
+          <label className="form-label" htmlFor="donatorName">Name</label>
+        </div>
+        <div className="form-check mb-3">
+          <input type="checkbox" className="form-check-input" name="isAnonymous" checked={formState.isAnonymous} onChange={handleIsAnonymousChanged}/>
+          <label className="form-check-label" htmlFor="isAnonymous">Anonymous Donation</label>
+        </div>
+        <div className="form-floating mb-3">
+          <input type="number" className="form-control" name="donationAmount" placeholder="Donation Amount" value={formState.donationAmount} onChange={handleChange} />
+          <label className="form-label" htmlFor="donationAmount">Donation Amount</label>
+        </div>
+        <div className="form-floating mb-3">
+          <textarea className="form-control" rows="4" name="donationComment" placeholder="Comment" value={formState.donationComment} onChange={handleChange} />
+          <label className="form-label" htmlFor="donationComment">Comment</label>
         </div>
         <button type="submit">Submit</button>
       </form>

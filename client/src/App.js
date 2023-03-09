@@ -17,7 +17,7 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import ProjectView from './pages/ProjectView';
 import Donate from './pages/Donate';
-import NotFound from './pages/NotFound';
+import MyDonations from './pages/MyDonations';
 import Footer from './components/Footer';
 import './App.css';
 import CategoryPage from './components/CategoryPage';
@@ -67,7 +67,8 @@ function App() {
             <Route path="NewProject" element={<NewProject />} />
             <Route path="my-projects" element={<MyProjects />} />
             <Route path="/favorites" element={<MyFavorites />} />
-            <Route path="/*" element={<NotFound />} />
+            <Route path="my-donations" element={<MyDonations />} />
+            
           </Routes>
           <Footer />
         </Router>

@@ -36,7 +36,7 @@ const ProjectView = (props) => {
               Description: {project.projectDescription}
             </p>
             <p className="card-text">Donations Raised: {project.projectGoal}</p>
-            <Link to={`/donate`}>
+            <Link to={`/donate`} state={{ projectTitle: project.projectTitle }}>
               <button className="btn btn-light">Donate to this cause!</button>
             </Link>
             {/* {CurrentUserContextProvider.isLoggedIn && } */}

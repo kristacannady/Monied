@@ -47,46 +47,56 @@ export default function Registration() {
           <p className="error-text error">The provided credentials are incorrect! Please try again.</p>
         </div>
       ) : null}
-      <form onSubmit={handleFormSubmit}>
+      <form className="monied-form" onSubmit={handleFormSubmit}>
         <h2 className="login">Register</h2>
-        <label htmlFor="firstName">
-          First Name:
-          <input
-            type="text"
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
             id="firstName"
-            name="firstName"
+            name="firstName" 
+            type="text"
+            placeholder="firstName"
             value={formState.firstName}
             onChange={handleChange}
           />
-        </label>
-        <label htmlFor="lastName">
-          Last Name:
-          <input
-            type="text"
+          <label className="form-label" htmlFor="firstName">First Name</label>
+        </div>
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
             id="lastName"
-            name="lastName"
+            name="lastName" 
+            type="text"
+            placeholder="lastName"
             value={formState.lastName}
             onChange={handleChange}
           />
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            name="email"
+          <label className="form-label" htmlFor="lastName">Last Name</label>
+        </div>
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
+            id="email"
+            name="email" 
             type="email"
+            placeholder="email"
             value={formState.email}
             onChange={handleChange}
           />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            name="password"
+          <label className="form-label" htmlFor="email">Email</label>
+        </div>
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
+            id="password"
+            name="password" 
             type="password"
+            placeholder="password"
             value={formState.password}
             onChange={handleChange}
           />
-        </label>
+          <label className="form-label" htmlFor="password">Password</label>
+        </div>
         <button type="submit">Sign Up!</button>
         <p>
           Already have an account? Login <Link to="/register">here</Link>

@@ -46,28 +46,30 @@ export default function Login() {
           <p className="error-text error">The provided credentials are incorrect! Please try again.</p>
         </div>
       ) : null}
-      <form onSubmit={handleFormSubmit}>
+      <form className="monied-form" onSubmit={handleFormSubmit}>
         <h2 className='login'>Login</h2>
-        <label htmlFor="email">
-          Email:
-          <input
-            placeholder="email"
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
             name="email"
             type="email"
+            placeholder="email"
             value={formState.email}
             onChange={handleChange}
           />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            placeholder="password"
-            name="password"
+          <label className="form-label" htmlFor="email">Email</label>
+        </div>
+        <div className="form-floating mb-3">
+          <input 
+            className="form-control"
+            name="password" 
             type="password"
+            placeholder="password"
             value={formState.password}
             onChange={handleChange}
           />
-        </label>
+          <label className="form-label" htmlFor="password">Password</label>
+        </div>
         <button type="submit">Login</button>
         <p>
           Need an account? Sign up <Link to="/register">here</Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY } from '../../graphql/queries';
+import { QUERY_PROJECT_CATEGORY, QUERY_CURRENT_USER } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -23,6 +23,8 @@ const Community = () => {
       console.error(e);
     }
   };
+
+  //make current user call
 
   //filter projects to get all education category
 
@@ -47,6 +49,14 @@ const Community = () => {
     );
   }
 
+  let favIcon = null;
+  if (true) {
+    favIcon = <FaRegHeart className="fav-btn"size={40}  />
+  }
+  else {
+    favIcon = <FaHeart className="fav-btn"size={40}  />
+  }
+
   return (
     <div className="row justify-content-md-center">
       {projects &&
@@ -63,7 +73,7 @@ const Community = () => {
                       Comments
                     </div>
                     <div className="col-sm" onClick={() => favoriteProject(project._id)}>
-                      <FaRegHeart className="fav-btn fav-btn:hover"size={40}  />
+                      {favIcon}
                     </div>
                   </div>
                 </div>
