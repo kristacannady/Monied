@@ -130,14 +130,15 @@ form p {
   text-align: center;
 }
 
-footer h2 {
+footer h2{
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: left;
-  font-size: medium;
+  text-align: center;
+  font-size: largest;
   padding-left: 15px;
+  
 }
 
 .project-card {
@@ -281,8 +282,13 @@ footer h2 {
 }
 
 .mission-stmt {
-  font-size:larger;
+  font-size:x-large;
   font-weight: 400;
 }
 
+.slogan {
+  font-weight: bold;
+  font-size:x-large;
+  padding-left: 300px;
+}
 

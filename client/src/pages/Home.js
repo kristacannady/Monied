@@ -44,7 +44,7 @@ const Home = () => {
           We believe that every donation, no matter how small, can make a difference in the lives of those who need it most.</p>
         <p className="mission-stmt">We invite you to explore our campaigns and join us in supporting non-profit organizations that are making a difference in the world. Whether you're looking to donate, volunteer, or spread the word, your support can help create a better future for us all.
           Thank you for choosing Monied as your partner in giving back.</p>
-        <div className="mission-stmt">
+        <div className="slogan">
         "Small Donations, Big Impact - Monied"
         </div>
       </div>
