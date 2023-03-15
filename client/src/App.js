@@ -51,25 +51,27 @@ function App() {
         <Router>
           <MainNav />
           <CategoryNav />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/project/*" element={<ProjectView />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/register" element={<Registration />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/education" element={<CategoryPage />} />
-            <Route path="/community-outreach" element={<CategoryPage />} />
-            <Route path="/health-care" element={<CategoryPage />} />
-            <Route path="/religious" element={<CategoryPage />} />
-            <Route path="/family-services" element={<CategoryPage />} />
-            <Route path="/other" element={<CategoryPage />} />
-            <Route path="NewProject" element={<NewProject />} />
-            <Route path="my-projects" element={<MyProjects />} />
-            <Route path="/favorites" element={<MyFavorites />} />
-            <Route path="my-donations" element={<MyDonations />} />
-            
-          </Routes>
+          <div className='main-content'>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/project/*" element={<ProjectView />} />
+              <Route path="/donate" element={<Donate />} />
+              <Route path="/register" element={<Registration />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/education" element={<CategoryPage />} />
+              <Route path="/community-outreach" element={<CategoryPage />} />
+              <Route path="/health-care" element={<CategoryPage />} />
+              <Route path="/religious" element={<CategoryPage />} />
+              <Route path="/family-services" element={<CategoryPage />} />
+              <Route path="/other" element={<CategoryPage />} />
+              <Route path="NewProject" element={<NewProject />} />
+              <Route path="my-projects" element={<MyProjects />} />
+              <Route path="/favorites" element={<MyFavorites />} />
+              <Route path="my-donations" element={<MyDonations />} />
+
+            </Routes>
+          </div>
           <Footer />
         </Router>
       </CookiesProvider>

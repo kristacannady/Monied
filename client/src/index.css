@@ -23,6 +23,10 @@ header nav {
   color: #fff;
 }
 
+.main-content {
+  min-height: 1000px;
+}
+
 .home-btn {
   display: flex;
   align-items: center;
@@ -131,14 +135,12 @@ form p {
 }
 
 footer h2{
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  font-size: largest;
-  padding-left: 15px;
-  
+  font-size: large;
+  padding-left: 15px;  
 }
 
 .project-card {
@@ -292,3 +294,6 @@ footer h2{
   padding-left: 300px;
 }
 
+.main-nav-icon {
+  padding-bottom: 3px;
+}

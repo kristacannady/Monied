@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/monied-logo.png";
+import { BiLogIn } from "react-icons/bi"; 
+import {GoPerson} from "react-icons/go";
 
 import Auth from "../../context/auth";
 
@@ -37,8 +39,8 @@ function MainNav() {
             </div>
           ) : (
             <div>
-              <Link to="/login" className="nav-link-style">Login</Link>
-              <Link to="/register" className="nav-link-style">Signup</Link>
+              <Link to="/login" className="nav-link-style"><span id="login"><BiLogIn size={25} color="black" className="main-nav-icon"/></span>Login</Link>
+              <Link to="/register" className="nav-link-style"><span id="signup"><GoPerson size={25} color="black" className="main-nav-icon"/></span>Sign Up</Link>
             </div>
           )}
         </nav>
