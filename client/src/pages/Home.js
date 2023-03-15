@@ -38,17 +38,12 @@ const Home = () => {
 
       <div className="flex-child green">
         <p className="site-name-style">MONIED</p>
-        <p className="mission-stmt">Nulla non qui sunt sit sint dolor consectetur dolor veniam. Occaecat eu ipsum adipisicing 
-        laborum eu voluptate incididunt exercitation. Nostrud proident ea anim aliquip est consectetur proident. 
-        Do nostrud irure ea ad elit ut id incididunt ad irure ex.</p>
-        <p className="mission-stmt">Nulla non qui sunt sit sint dolor consectetur dolor veniam. Occaecat eu ipsum adipisicing 
-        laborum eu voluptate incididunt exercitation. Nostrud proident ea anim aliquip est consectetur proident. 
-        Do nostrud irure ea ad elit ut id incididunt ad irure ex. Nulla non qui sunt sit sint dolor consectetur dolor veniam. Occaecat eu ipsum adipisicing 
-        laborum eu voluptate incididunt exercitation. Nostrud proident ea anim aliquip est consectetur proident. 
-        Do nostrud irure ea ad elit ut id incididunt ad irure ex.</p>
-        <p className="mission-stmt">Nulla non qui sunt sit sint dolor consectetur dolor veniam. Occaecat eu ipsum adipisicing 
-        laborum eu voluptate incididunt exercitation. Nostrud proident ea anim aliquip est consectetur proident. 
-        Do nostrud irure ea ad elit ut id incididunt ad irure ex.</p>
+        <p className="mission-stmt">Welcome to Monied, the fundraising website that is committed to helping non-profit organizations achieve their missions.
+         We provide a platform that enables non-profits to raise funds and connect with donors who share their vision.</p>
+        <p className="mission-stmt">Our website offers a range of features to help non-profits create successful campaigns, including customizable campaign pages, social media integration, and donation tracking. At Monied, we strive to create a community of giving that brings together people who are passionate about making a positive impact on the world.
+         We believe that every donation, no matter how small, can make a difference in the lives of those who need it most.</p>
+        <p className="mission-stmt">We invite you to explore our campaigns and join us in supporting non-profit organizations that are making a difference in the world. Whether you're looking to donate, volunteer, or spread the word, your support can help create a better future for us all. 
+        Thank you for choosing Monied as your partner in giving back.</p>
       </div>
 
     </div>
