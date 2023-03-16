@@ -23,6 +23,10 @@ header nav {
   color: #fff;
 }
 
+.main-content {
+  min-height: 1000px;
+}
+
 .home-btn {
   display: flex;
   align-items: center;
@@ -62,14 +66,14 @@ header nav button {
 }*/
 
 .nav-link-style {
-  color: rgb(12, 121, 88);
+  color: #547844;
   font-size: 30px;
 }
 
 .category-nav {
   display: flex;
   justify-content: center;
-  background-color: rgb(12, 121, 88);
+  background-color: #547844;
   gap: 1rem;
 }
 
@@ -130,14 +134,13 @@ form p {
   text-align: center;
 }
 
-footer h2 {
-  position: fixed;
+footer h2{
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: left;
-  font-size: medium;
-  padding-left: 15px;
+  text-align: center;
+  font-size: large;
+  padding-left: 15px;  
 }
 
 .project-card {
@@ -270,19 +273,31 @@ footer h2 {
   margin-right: 20px;
 }
 
-.donate-pic {
+.monied-div {
+ padding-top: 175px;
+}
 
+.donate-pic {
+  padding-top: 50px;
 }
 
 .site-name-style {
-  color:rgb(12, 121, 88);
+  color:#547844  ;
   font-size: 75px;
   font-weight: 500;
 }
 
 .mission-stmt {
-  font-size:larger;
+  font-size:x-large;
   font-weight: 400;
 }
 
+.slogan {
+  font-weight: bold;
+  font-size:x-large;
+  padding-left: 300px;
+}
 
+.main-nav-icon {
+  padding-bottom: 3px;
+}
