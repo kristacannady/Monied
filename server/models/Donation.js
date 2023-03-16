@@ -5,6 +5,9 @@ const donationSchema = new Schema({
     type: Number,
     required: true,
   },
+  donatorName: {
+    type: String,
+  },
   isAnonymous: {
     type: Boolean,
   },

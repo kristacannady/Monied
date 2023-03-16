@@ -152,6 +152,7 @@ const resolvers = {
     createDonation: async (parent, args, context) => {
       if (context.user) {
         const donationToCreate = {
+          donatorName: args.donatorName,
           donationAmount: args.donationAmount,
           isAnonymous: args.isAnonymous,
           commentBody: args.commentBody,

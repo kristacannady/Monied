@@ -89,24 +89,27 @@ export const ADD_PROJECT = gql`
 //TODO: Add mutation for Update Project, include Donations to it
 export const ADD_DONATION = gql`
   mutation createDonation(
+    $donatorName: String
     $donationAmount: Int!
     $isAnonymous: Boolean!
     $commentBody: String
     $projectId: ID!
-    $createdBy: String
+    
   ) {
     createDonation(
+      donatorName: $donatorName
       donationAmount: $donationAmount
       isAnonymous: $isAnonymous
       commentBody: $commentBody
       projectId: $projectId
-      createdBy: $createdBy
+      
     ) {
+      donatorName
       donationAmount
       isAnonymous
       commentBody
-      projectId
-      createdBy
+      _id
+     
     }
   }
 `;
