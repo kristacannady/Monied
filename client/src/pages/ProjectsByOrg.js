@@ -1,16 +1,12 @@
 import React from 'react';
-//figure out how to import projects from database
-import {
-  QUERY_PROJECT_CATEGORY,
-  QUERY_CURRENT_USER,
-} from '../../graphql/queries';
+import { QUERY_PROJECT_ORGANIZATION } from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_FAVORITE } from '../../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-const Community = () => {
+const ProjectsByOrg = (organizationName) => {
   //favorite project in category
   const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
@@ -27,15 +23,13 @@ const Community = () => {
     }
   };
 
-  //make current user call
+  //filter projects by organization name
 
-  //filter projects to get all education category
-
-  const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: 'Community Outreach' },
+  const { loading, data } = useQuery(QUERY_PROJECT_ORGANIZATION, {
+    variables: { organizationName: organizationName },
   });
 
-  const projects = data?.getProjectByCategory || [];
+  const projects = data?.getProjectByOrganization || [];
 
   console.log();
 
@@ -46,7 +40,7 @@ const Community = () => {
   if (projects.length === 0) {
     return (
       <div className="no-projects-message">
-        No Projects for this category consider making one
+        No Projects for this organization consider making one
         <Link to="/NewProject"> here!</Link>
       </div>
     );
@@ -69,7 +63,7 @@ const Community = () => {
                 <div className="container">
                   <div className="row">
                     <div className="col-sm">
-                      {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
+                      {/* Add link to ProjectsByOrg */}
                       {project.organizationName}
                     </div>
                     <div className="col-sm">Comments</div>
@@ -104,5 +98,3 @@ const Community = () => {
     </div>
   );
 };
-
-export default Community;
