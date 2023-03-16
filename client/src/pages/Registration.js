@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { REGISTER_USER } from "../graphql/mutations";
+import { REGISTER_USER } from '../graphql/mutations';
 
-import Auth from "../context/auth";
+import Auth from '../context/auth';
 
 export default function Registration() {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [registerUser, { error }] = useMutation(REGISTER_USER);
@@ -27,7 +27,7 @@ export default function Registration() {
         },
       });
       Auth.login(data.createUser.token);
-      navigate("/my-projects");
+      navigate('/my-projects');
       window.location.reload();
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -44,60 +44,72 @@ export default function Registration() {
     <div>
       {error ? (
         <div>
-          <p className="error-text error">The provided credentials are incorrect! Please try again.</p>
+          <p className="error-text error">
+            The provided credentials are incorrect! Please try again.
+          </p>
         </div>
       ) : null}
       <form className="monied-form" onSubmit={handleFormSubmit}>
         <h2 className="login">Register</h2>
         <div className="form-floating mb-3">
-          <input 
+          <input
             className="form-control"
             id="firstName"
-            name="firstName" 
+            name="firstName"
             type="text"
             placeholder="firstName"
             value={formState.firstName}
             onChange={handleChange}
           />
-          <label className="form-label" htmlFor="firstName">First Name</label>
+          <label className="form-label" htmlFor="firstName">
+            First Name
+          </label>
         </div>
         <div className="form-floating mb-3">
-          <input 
+          <input
             className="form-control"
             id="lastName"
-            name="lastName" 
+            name="lastName"
             type="text"
             placeholder="lastName"
             value={formState.lastName}
             onChange={handleChange}
           />
-          <label className="form-label" htmlFor="lastName">Last Name</label>
+          <label className="form-label" htmlFor="lastName">
+            Last Name
+          </label>
         </div>
         <div className="form-floating mb-3">
-          <input 
+          <input
             className="form-control"
             id="email"
-            name="email" 
+            name="email"
             type="email"
             placeholder="email"
             value={formState.email}
             onChange={handleChange}
           />
-          <label className="form-label" htmlFor="email">Email</label>
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
         </div>
         <div className="form-floating mb-3">
-          <input 
+          <input
             className="form-control"
             id="password"
-            name="password" 
+            name="password"
             type="password"
             placeholder="password"
             value={formState.password}
             onChange={handleChange}
           />
-          <label className="form-label" htmlFor="password">Password</label>
+          <label className="form-label" htmlFor="password">
+            Password
+          </label>
         </div>
-        <button type="submit">Sign Up!</button>
+        <button className="btn btn-light btn-outline-success" type="submit">
+          <strong>Sign Up!</strong>
+        </button>
         <p>
           Already have an account? Login <Link to="/register">here</Link>
         </p>
