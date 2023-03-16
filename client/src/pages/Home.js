@@ -33,10 +33,10 @@ const Home = () => {
     <div className="flex-container">
 
       <div className="flex-child magenta">
-        <img src={require("../../src/assets/Donate1.png")} alt="donate pic" />
+        <img className= "donate-pic"src={require("../../src/assets/TestPic.png")} alt="donate pic" />
       </div>
 
-      <div className="flex-child green">
+      <div className="flex-child green monied-div">
         <p className="site-name-style">MONIED</p>
         <p className="mission-stmt">Welcome to Monied, the fundraising website that is committed to helping non-profit organizations achieve their missions.
           We provide a platform that enables non-profits to raise funds and connect with donors who share their vision.</p>

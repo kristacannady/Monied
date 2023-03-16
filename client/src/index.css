@@ -66,14 +66,14 @@ header nav button {
 }*/
 
 .nav-link-style {
-  color: rgb(12, 121, 88);
+  color: #547844;
   font-size: 30px;
 }
 
 .category-nav {
   display: flex;
   justify-content: center;
-  background-color: rgb(12, 121, 88);
+  background-color: #547844;
   gap: 1rem;
 }
 
@@ -273,12 +273,16 @@ footer h2{
   margin-right: 20px;
 }
 
-.donate-pic {
+.monied-div {
+ padding-top: 175px;
+}
 
+.donate-pic {
+  padding-top: 50px;
 }
 
 .site-name-style {
-  color:rgb(12, 121, 88);
+  color:#547844  ;
   font-size: 75px;
   font-weight: 500;
 }
