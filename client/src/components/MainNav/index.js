@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/monied-logo.png";
+import Logo from "../../assets/Monied-1 (1).png";
 import { BiLogIn } from "react-icons/bi"; 
 import {GoPerson} from "react-icons/go";
 

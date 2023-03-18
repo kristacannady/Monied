@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_FAVORITE } from '../../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import {MdOutlineComment} from 'react-icons/md';
+
 
 const Community = () => {
   //favorite project in category
@@ -51,7 +53,7 @@ const Community = () => {
 
   let favIcon = null;
   if (true) {
-    favIcon = <FaRegHeart className="fav-btn"size={40}  />
+    favIcon = <FaRegHeart className="fav-btn"size={35}  />
   }
   else {
     favIcon = <FaHeart className="fav-btn"size={40}  />
@@ -70,7 +72,7 @@ const Community = () => {
                       {project.organizationName}
                     </div>
                     <div className="col-sm">
-                      Comments
+                      <MdOutlineComment size={35}></MdOutlineComment><span>35</span>
                     </div>
                     <div className="col-sm" onClick={() => favoriteProject(project._id)}>
                       {favIcon}
