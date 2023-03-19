@@ -1,12 +1,12 @@
 import React from 'react';
-import { QUERY_PROJECT_ORGANIZATION } from '../../graphql/queries';
+import { QUERY_PROJECT_ORGANIZATION } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_FAVORITE } from '../../graphql/mutations';
+import { ADD_FAVORITE } from '../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-const ProjectsByOrg = (organizationName) => {
+const ProjectsByOrg = (props) => {
   //favorite project in category
   const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
@@ -24,14 +24,23 @@ const ProjectsByOrg = (organizationName) => {
   };
 
   //filter projects by organization name
+  const location = useLocation();
+
+  let getOrgName = location.pathname.split('/');
+
+  /*
+ const { loading, data } = useQuery(QUERY_PROJECT, {
+    variables: { id: getId[2] },
+  });
+  */
 
   const { loading, data } = useQuery(QUERY_PROJECT_ORGANIZATION, {
-    variables: { organizationName: organizationName },
+    variables: { organizationName: getOrgName[2] },
   });
 
   const projects = data?.getProjectByOrganization || [];
 
-  console.log();
+  console.log(data);
 
   if (loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -98,3 +107,5 @@ const ProjectsByOrg = (organizationName) => {
     </div>
   );
 };
+
+export default ProjectsByOrg;

@@ -70,7 +70,13 @@ const Community = () => {
                   <div className="row">
                     <div className="col-sm">
                       {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
-                      {project.organizationName}
+
+                      <Link
+                        className="org-name"
+                        to={`/ProjectsByOrg/${project.organizationName}`}
+                      >
+                        {project.organizationName}
+                      </Link>
                     </div>
                     <div className="col-sm">Comments</div>
                     <div
