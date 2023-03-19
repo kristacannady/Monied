@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const QUERY_CURRENT_USER = gql`
   query currentUser {
@@ -88,6 +88,19 @@ export const QUERY_PROJECT_CATEGORY = gql`
   }
 `;
 
+export const QUERY_PROJECT_ORGANIZATION = gql`
+  query projects($organizationName: String!) {
+    getProjectByOrganization(organizationName: $organizationName) {
+      _id
+      projectTitle
+      organizationName
+      projectCategory
+      projectDescription
+      projectGoal
+    }
+  }
+`;
+
 export const QUERY_DONATIONS = gql`
   query donations($projectId: ID!) {
     getDonationById(_id: $id) {
@@ -107,5 +120,3 @@ export const QUERY_DONATIONS = gql`
     }
   }
 `;
-
-

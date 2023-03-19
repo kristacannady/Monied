@@ -23,6 +23,7 @@ import './App.css';
 import CategoryPage from './components/CategoryPage';
 import MyProjects from './pages/MyProjects';
 import MyFavorites from './pages/FavoriteProject';
+import ProjectsByOrg from './pages/ProjectsByOrg';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -44,14 +45,13 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <ApolloProvider client={client}>
       <CookiesProvider>
         <Router>
           <MainNav />
           <CategoryNav />
-          <div className='main-content'>
+          <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -69,7 +69,7 @@ function App() {
               <Route path="my-projects" element={<MyProjects />} />
               <Route path="/favorites" element={<MyFavorites />} />
               <Route path="my-donations" element={<MyDonations />} />
-
+              <Route path="/ProjectsByOrg/*" element={<ProjectsByOrg />} />
             </Routes>
           </div>
           <Footer />

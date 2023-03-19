@@ -1,16 +1,12 @@
 import React from 'react';
-//figure out how to import projects from database
-import {
-  QUERY_PROJECT_CATEGORY,
-  QUERY_CURRENT_USER,
-} from '../../graphql/queries';
+import { QUERY_PROJECT_ORGANIZATION } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_FAVORITE } from '../../graphql/mutations';
+import { ADD_FAVORITE } from '../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-const Community = () => {
+const ProjectsByOrg = (props) => {
   //favorite project in category
   const [addFavorite, { error }] = useMutation(ADD_FAVORITE);
 
@@ -27,17 +23,24 @@ const Community = () => {
     }
   };
 
-  //make current user call
+  //filter projects by organization name
+  const location = useLocation();
 
-  //filter projects to get all education category
+  let getOrgName = location.pathname.split('/');
 
-  const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
-    variables: { projectCategory: 'Community Outreach' },
+  /*
+ const { loading, data } = useQuery(QUERY_PROJECT, {
+    variables: { id: getId[2] },
+  });
+  */
+
+  const { loading, data } = useQuery(QUERY_PROJECT_ORGANIZATION, {
+    variables: { organizationName: getOrgName[2] },
   });
 
-  const projects = data?.getProjectByCategory || [];
+  const projects = data?.getProjectByOrganization || [];
 
-  console.log();
+  console.log(data);
 
   if (loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -46,7 +49,7 @@ const Community = () => {
   if (projects.length === 0) {
     return (
       <div className="no-projects-message">
-        No Projects for this category consider making one
+        No Projects for this organization consider making one
         <Link to="/NewProject"> here!</Link>
       </div>
     );
@@ -69,14 +72,8 @@ const Community = () => {
                 <div className="container">
                   <div className="row">
                     <div className="col-sm">
-                      {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
-
-                      <Link
-                        className="org-name"
-                        to={`/ProjectsByOrg/${project.organizationName}`}
-                      >
-                        {project.organizationName}
-                      </Link>
+                      {/* Add link to ProjectsByOrg */}
+                      {project.organizationName}
                     </div>
                     <div className="col-sm">Comments</div>
                     <div
@@ -111,4 +108,4 @@ const Community = () => {
   );
 };
 
-export default Community;
+export default ProjectsByOrg;
