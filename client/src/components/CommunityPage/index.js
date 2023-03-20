@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_FAVORITE } from '../../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import {MdOutlineComment} from 'react-icons/md';
+import { MdOutlineComment } from 'react-icons/md';
 
 
 const Community = () => {
@@ -26,17 +26,32 @@ const Community = () => {
     }
   };
 
-  //make current user call
+  //get currentUser info from DB
+  const currentUserRes = useQuery(QUERY_CURRENT_USER);
+  const userFavs = currentUserRes.data.getCurrentUser.favorites;
+
+
+  console.log(userFavs);
+
+  const userFavProjectsId = userFavs.map((userFavs) => userFavs._id);
+  console.log(userFavProjectsId);
+
+
+
 
   //filter projects to get all education category
-
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
     variables: { projectCategory: 'Community Outreach' },
   });
 
   const projects = data?.getProjectByCategory || [];
 
-  console.log();
+  //const projectInfo = data?.getProjectByCategory;
+
+  const projectIds = projects.map((projects) => projects._id);
+
+
+  console.log(projectIds);
 
   if (loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -51,19 +66,35 @@ const Community = () => {
     );
   }
 
+  const matchProjectIds = userFavProjectsId.filter(idData => projectIds.includes(idData));
+  console.log(matchProjectIds);
+
   let favIcon = null;
-  if (true) {
-    favIcon = <FaRegHeart className="fav-btn"size={35}  />
-  }
-  else {
-    favIcon = <FaHeart className="fav-btn"size={40}  />
-  }
+
+  //projects and userFavProjectsId
+
+  //userFavProjectsId.forEach((id) => {
+  // if (id === projects) {
+  //   favIcon = <FaHeart className="fav-btn" size={35} />
+  // } else {
+  //   favIcon = <FaRegHeart className="fav-btn" size={35} />
+  // }
+
+  //  });
 
   return (
     <div className="row justify-content-md-center">
       {projects &&
-        projects.map((project) => (
-          <div className="col-md-auto d-flex" key={project._id}>
+        projects.map((project) => {
+
+          if (matchProjectIds.includes(project._id)) {
+            favIcon = <FaHeart className="fav-btn" size={35} />
+          }
+          else {
+            favIcon = <FaRegHeart className="fav-btn" size={35} />
+          }
+          
+          return (<div className="col-md-auto d-flex" key={project._id}>
             <div className="project-card card">
               <div className="new-project-form card-body">
                 <div className="container">
@@ -94,8 +125,8 @@ const Community = () => {
 
               </div>
             </div>
-          </div>
-        ))}
+          </div>)
+        })}
     </div>
   );
 };

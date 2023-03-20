@@ -18,7 +18,7 @@ header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 0px;
   background-color: white;
   color: #fff;
 }
@@ -75,6 +75,8 @@ header nav button {
   justify-content: center;
   background-color: #547844;
   gap: 1rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .category-nav-text {
@@ -179,7 +181,7 @@ footer h2{
 }
 
 .Logo {
-  width: 30%;
+  width: 22%;
 }
 
 .new-project-link a {
