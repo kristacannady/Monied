@@ -49,8 +49,6 @@ const Community = () => {
 
   console.log(comments);
 
-
-
   if (loading) {
     return <div className="no-projects-message">Loading...</div>;
   }
@@ -68,7 +66,6 @@ const Community = () => {
   console.log(matchProjectIds);
 
   let favIcon = null;
-
 
 
   return (
