@@ -11,18 +11,18 @@ import React, { useState } from "react";
 import { useLocation } from 'react-router-dom'
 import { useMutation } from "@apollo/client";
 import { ADD_DONATION } from "../graphql/mutations";
-import { QUERY_CURRENT_USER, QUERY_PROJECT } from "../graphql/queries";
+import { QUERY_CURRENT_USER, QUERY_PROJECT, QUERY_PROJECT_CATEGORY } from "../graphql/queries";
 
 const Donation = (props) => {
   const [formState, setFormState] = useState({
     donatorName: '',
     donationAmount: '',
     isAnonymous: false,
-    donationComment: ''
+    commentBody: ''
   });
 
   const location = useLocation()
-  const { projectTitle } = location.state || {};
+  const { projectTitle, projectId } = location.state || {};
 
   const [addDonation, { error }] = useMutation(ADD_DONATION, {
     update(cache, { data: { addDonation } }) {
@@ -67,6 +67,7 @@ const Donation = (props) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormState({ ...formState, [name]: value });
   };
 
@@ -77,8 +78,10 @@ const Donation = (props) => {
       await addDonation({
         variables: {
           donatorName: formState.donatorName,
-          donationAmount: formState.donationAmount,
-          donationComment: formState.donationComment,
+          donationAmount: parseInt(formState.donationAmount),
+          commentBody: formState.commentBody,
+          isAnonymous: formState.isAnonymous,
+          projectId: projectId      
         },
       });
 
@@ -104,8 +107,8 @@ const Donation = (props) => {
           <label className="form-label" htmlFor="donationAmount">Donation Amount</label>
         </div>
         <div className="form-floating mb-3">
-          <textarea className="form-control" rows="4" name="donationComment" placeholder="Comment" value={formState.donationComment} onChange={handleChange} />
-          <label className="form-label" htmlFor="donationComment">Comment</label>
+          <textarea className="form-control" rows="4" name="commentBody" placeholder="Comment" value={formState.commentBody} onChange={handleChange} />
+          <label className="form-label" htmlFor="commentBody">Comment</label>
         </div>
         <button type="submit">Submit</button>
       </form>

@@ -29,7 +29,7 @@ const resolvers = {
       return project;
     },
     getProjectByCategory: async (parent, { projectCategory }) => {
-      const projects = await Project.find({ projectCategory });
+      const projects = await Project.find({ projectCategory }).populate("donations");
 
       if (!projects) {
         throw new AuthenticationError('Project not found.');
@@ -160,6 +160,7 @@ const resolvers = {
     createDonation: async (parent, args, context) => {
       if (context.user) {
         const donationToCreate = {
+          donatorName: args.donatorName,
           donationAmount: args.donationAmount,
           isAnonymous: args.isAnonymous,
           commentBody: args.commentBody,

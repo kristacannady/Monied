@@ -25,6 +25,7 @@ const typeDefs = gql`
 
   type Donation {
     _id: ID
+    donatorName: String
     donationAmount: Int
     isAnonymous: Boolean
     commentBody: String
@@ -68,6 +69,7 @@ const typeDefs = gql`
     ): Project
 
     createDonation(
+      donatorName: String
       donationAmount: Int
       isAnonymous: Boolean
       commentBody: String

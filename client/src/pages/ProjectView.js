@@ -5,6 +5,7 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROJECT } from '../graphql/queries';
+
 // import { CurrentUserContextProvider } from '../context';
 
 const ProjectView = (props) => {
@@ -36,10 +37,15 @@ const ProjectView = (props) => {
               Description: {project.projectDescription}
             </p>
             <p className="card-text">Donations Raised: {project.projectGoal}</p>
-            <Link to={`/donate`} state={{ projectTitle: project.projectTitle }}>
+            <Link to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
               <button className="btn btn-light">Donate to this cause!</button>
             </Link>
             {/* {CurrentUserContextProvider.isLoggedIn && } */}
+          </div>
+          <div>Comments
+          </div>
+          <div className="row">
+          <span className='col-sm'>Name</span> <span className='col-sm'>Comment</span>
           </div>
         </div>
       </div>
