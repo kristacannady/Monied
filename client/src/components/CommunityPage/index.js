@@ -1,6 +1,9 @@
 import React from 'react';
 //figure out how to import projects from database
-import { QUERY_PROJECT_CATEGORY, QUERY_CURRENT_USER } from '../../graphql/queries';
+import {
+  QUERY_PROJECT_CATEGORY,
+  QUERY_CURRENT_USER,
+} from '../../graphql/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -89,7 +92,14 @@ const Community = () => {
                 <div className="container">
                   <div className="row">
                     <div className="col-sm">
-                      {project.organizationName}
+                      {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
+
+                      <Link
+                        className="org-name"
+                        to={`/ProjectsByOrg/${project.organizationName}`}
+                      >
+                        {project.organizationName}
+                      </Link>
                     </div>
                     <div className="col-sm">
                       <MdOutlineComment size={35}></MdOutlineComment><span>{comments.length}</span>
@@ -99,19 +109,22 @@ const Community = () => {
                     </div>
                   </div>
                 </div>
-                <Link className='project-link' to={`/project/${project._id}`}>
+                <Link className="project-link" to={`/project/${project._id}`}>
                   <h3 className="card-title">{project.projectTitle}</h3>
                 </Link>
-                <p className="card-text">
-                  {project.projectDescription}
-                </p>
-                <p className="card-text">
-                  Goal: ${project.projectGoal}
-                </p>
+                <p className="card-text">{project.projectDescription}</p>
+                <p className="card-text">Goal: ${project.projectGoal}</p>
                 <div className="progress">
-                  <div className="progress-bar bg-custom w-50" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">50%</div>
+                  <div
+                    className="progress-bar bg-custom w-50"
+                    role="progressbar"
+                    aria-valuenow="75"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    50%
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>)

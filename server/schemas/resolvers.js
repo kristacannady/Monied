@@ -1,30 +1,30 @@
-const { AuthenticationError } = require("apollo-server-express");
-const omit = require("lodash.omit");
+const { AuthenticationError } = require('apollo-server-express');
+const omit = require('lodash.omit');
 
-const { User, Project, Donation } = require("../models");
+const { User, Project, Donation } = require('../models');
 
-const { signToken } = require("../utils/auth");
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
-          .select("-__v -password")
-          .populate("projects")
-          .populate("donations")
-          .populate("favorites");
+          .select('-__v -password')
+          .populate('projects')
+          .populate('donations')
+          .populate('favorites');
 
         return user;
       }
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError('Not logged in');
     },
     //getProjectById
     getProjectById: async (parent, { _id }) => {
       const project = await Project.findOne({ _id });
 
       if (!project) {
-        throw new AuthenticationError("Project not found.");
+        throw new AuthenticationError('Project not found.');
       }
       return project;
     },
@@ -32,30 +32,38 @@ const resolvers = {
       const projects = await Project.find({ projectCategory }).populate("donations");
 
       if (!projects) {
-        throw new AuthenticationError("Project not found.");
+        throw new AuthenticationError('Project not found.');
       }
       return projects;
+    },
+    getProjectByOrganization: async (parent, { organizationName }) => {
+      const projectOrg = await Project.find({ organizationName });
+
+      if (!projectOrg) {
+        throw new AuthenticationError('Project not found.');
+      }
+      return projectOrg;
     },
     //getDonations byUserId OR byProjectId
     getDonationById: async (parent, args) => {
       let donations = [];
       if (args.userId) {
         const user = await User.findById({ _id: args.userId }).populate(
-          "donations"
+          'donations'
         );
 
         if (!user) {
-          throw new AuthenticationError("User not found");
+          throw new AuthenticationError('User not found');
         }
 
         donations = user.donations;
       } else {
         const project = await Project.findById({
           _id: args.projectId,
-        }).populate("donations");
+        }).populate('donations');
 
         if (!project) {
-          throw new AuthenticationError("Project not found");
+          throw new AuthenticationError('Project not found');
         }
 
         donations = project.donations;
@@ -76,7 +84,7 @@ const resolvers = {
         return User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError('Not logged in');
     },
     deleteUser: async (parent, args, context) => {
       if (context.user) {
@@ -84,18 +92,18 @@ const resolvers = {
         return user;
       }
 
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError('Not logged in');
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      if (!user) throw new AuthenticationError("Incorrect credentials");
+      if (!user) throw new AuthenticationError('Incorrect credentials');
 
       const correctPw = await user.isCorrectPassword(password);
 
-      if (!correctPw) throw new AuthenticationError("Incorrect credentials");
+      if (!correctPw) throw new AuthenticationError('Incorrect credentials');
 
-      omit(user._doc, "password");
+      omit(user._doc, 'password');
 
       const token = signToken(user);
 
@@ -114,7 +122,7 @@ const resolvers = {
 
         return project;
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
     //updateProject
     updateProject: async (parent, args, context) => {
@@ -132,7 +140,7 @@ const resolvers = {
 
         return updatedProject;
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     //favoriteProject
@@ -145,7 +153,7 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     //createDonation
@@ -157,7 +165,7 @@ const resolvers = {
           isAnonymous: args.isAnonymous,
           commentBody: args.commentBody,
           project: args.projectId,
-          createdBy: context.user.firstName + " " + context.user.lastName,
+          createdBy: context.user.firstName + ' ' + context.user.lastName,
         };
         const donation = await Donation.create(donationToCreate);
 
@@ -176,15 +184,15 @@ const resolvers = {
             { new: true }
           );
         } else {
-          throw new AuthenticationError("Project not found!");
-        };
+          throw new AuthenticationError('Project not found!');
+        }
 
         return donation;
       }
 
-      throw new AuthenticationError("You need to be logged in!");
-    }
-  }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  },
 };
 
 module.exports = resolvers;

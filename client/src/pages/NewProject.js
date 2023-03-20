@@ -6,18 +6,18 @@
 //Project Goal - Input
 //Submit button
 //</card>
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_PROJECT } from "../graphql/mutations";
-import { QUERY_CURRENT_USER } from "../graphql/queries";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_PROJECT } from '../graphql/mutations';
+import { QUERY_CURRENT_USER } from '../graphql/queries';
+import { useNavigate } from 'react-router-dom';
 const NewProject = () => {
-  const [projectTitle, setProjectTitle] = useState("");
-  const [characterCount, setCharacterCount] = useState("");
-  const [projectCategory, setProjectCategory] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
+  const [projectTitle, setProjectTitle] = useState('');
+  const [characterCount, setCharacterCount] = useState('');
+  const [projectCategory, setProjectCategory] = useState('');
+  const [projectDescription, setProjectDescription] = useState('');
   const [projectGoal, setProjectGoal] = useState();
-  const [organizationName, setOrganizationName] = useState("");
+  const [organizationName, setOrganizationName] = useState('');
   const navigate = useNavigate();
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -35,7 +35,7 @@ const NewProject = () => {
           },
         });
       } catch (e) {
-        console.warn("First project insertion by user!");
+        console.warn('First project insertion by user!');
       }
       // const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
       // cache.writeQuery({
@@ -62,10 +62,10 @@ const NewProject = () => {
         },
       });
       // clear form value
-      setProjectTitle("");
-      setProjectDescription("");
+      setProjectTitle('');
+      setProjectDescription('');
       setProjectGoal(0);
-      setOrganizationName("");
+      setOrganizationName('');
       setCharacterCount(0);
       navigate('/my-projects');
       window.location.reload();
@@ -76,7 +76,10 @@ const NewProject = () => {
   return (
     <div>
       <h3 className="section-title">What will be your new project?</h3>
-      <form className="monied-form new-project-form" onSubmit={handleFormSubmit}>
+      <form
+        className="monied-form new-project-form"
+        onSubmit={handleFormSubmit}
+      >
         <div className="form-floating mb-3">
           <input
             className="form-control"
@@ -87,7 +90,9 @@ const NewProject = () => {
             value={projectTitle}
             onChange={(e) => setProjectTitle(e.target.value)}
           />
-          <label className="form-label" htmlFor="projectTitle">Title</label>
+          <label className="form-label" htmlFor="projectTitle">
+            Title
+          </label>
         </div>
         <div className="form-floating mb-3">
           <input
@@ -99,14 +104,16 @@ const NewProject = () => {
             value={organizationName}
             onChange={(e) => setOrganizationName(e.target.value)}
           />
-          <label className="form-label" htmlFor="organizationName">Organization</label>
+          <label className="form-label" htmlFor="organizationName">
+            Organization
+          </label>
         </div>
         <select
           className="form-select form-select-lg mb-3"
           value={projectCategory}
           onChange={(e) => setProjectCategory(e.target.value)}
         >
-          <option value="" >Select a Category</option>
+          <option value="">Select a Category</option>
           <option value="Education">Education</option>
           <option value="Community Outreach">Community Outreach</option>
           <option value="Health Care">Health Care</option>
@@ -124,7 +131,9 @@ const NewProject = () => {
             value={projectDescription}
             onChange={(e) => setProjectDescription(e.target.value)}
           />
-          <label className="form-label" htmlFor="projectDescription">Description</label>
+          <label className="form-label" htmlFor="projectDescription">
+            Description
+          </label>
         </div>
         <div className="form-floating mb-3">
           <input
@@ -136,9 +145,16 @@ const NewProject = () => {
             value={projectGoal}
             onChange={(e) => setProjectGoal(parseInt(e.target.value))}
           />
-          <label className="form-label" htmlFor="projectGoal">$ Project Goal</label>
+          <label className="form-label" htmlFor="projectGoal">
+            $ Project Goal
+          </label>
         </div>
-        <button className="project-submit-btn" type="submit" >Submit</button>
+        <button
+          className="project-submit-btn btn btn-light btn-outline-success"
+          type="submit"
+        >
+          Submit
+        </button>
         {error && <div>Something went wrong!</div>}
       </form>
     </div>
