@@ -30,13 +30,9 @@ const Community = () => {
   const currentUserRes = useQuery(QUERY_CURRENT_USER);
   const userFavs = currentUserRes.data.getCurrentUser.favorites;
 
-
-  console.log(userFavs);
-
+  //get current user favorite projects
   const userFavProjectsId = userFavs.map((userFavs) => userFavs._id);
   console.log(userFavProjectsId);
-
-
 
 
   //filter projects to get all education category
@@ -46,12 +42,14 @@ const Community = () => {
 
   const projects = data?.getProjectByCategory || [];
 
-  //const projectInfo = data?.getProjectByCategory;
-
-  const projectIds = projects.map((projects) => projects._id);
+  const projectIds = projects.map((project) => project._id);
 
 
-  console.log(projectIds);
+  const comments = projects.map((project) => project.donations[0]?.commentBody);
+
+  console.log(comments);
+
+
 
   if (loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -71,16 +69,7 @@ const Community = () => {
 
   let favIcon = null;
 
-  //projects and userFavProjectsId
 
-  //userFavProjectsId.forEach((id) => {
-  // if (id === projects) {
-  //   favIcon = <FaHeart className="fav-btn" size={35} />
-  // } else {
-  //   favIcon = <FaRegHeart className="fav-btn" size={35} />
-  // }
-
-  //  });
 
   return (
     <div className="row justify-content-md-center">
@@ -93,7 +82,10 @@ const Community = () => {
           else {
             favIcon = <FaRegHeart className="fav-btn" size={35} />
           }
-          
+
+          const comments = project.donations.filter(donation => donation.commentBody != null);
+          console.log(comments.length);
+
           return (<div className="col-md-auto d-flex" key={project._id}>
             <div className="project-card card">
               <div className="new-project-form card-body">
@@ -103,7 +95,7 @@ const Community = () => {
                       {project.organizationName}
                     </div>
                     <div className="col-sm">
-                      <MdOutlineComment size={35}></MdOutlineComment><span>35</span>
+                      <MdOutlineComment size={35}></MdOutlineComment><span>{comments.length}</span>
                     </div>
                     <div className="col-sm" onClick={() => favoriteProject(project._id)}>
                       {favIcon}

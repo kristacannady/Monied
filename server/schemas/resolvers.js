@@ -29,7 +29,7 @@ const resolvers = {
       return project;
     },
     getProjectByCategory: async (parent, { projectCategory }) => {
-      const projects = await Project.find({ projectCategory });
+      const projects = await Project.find({ projectCategory }).populate("donations");
 
       if (!projects) {
         throw new AuthenticationError("Project not found.");
