@@ -20,6 +20,9 @@ const typeDefs = gql`
     projectCategory: String
     projectDescription: String
     projectGoal: Int
+    twitterAccount: String
+    facebookAccount: String
+    email: String
     donations: [Donation]
   }
 
@@ -65,7 +68,10 @@ const typeDefs = gql`
       organizationName: String!
       projectCategory: String!
       projectDescription: String!
-      projectGoal: Int!
+      projectGoal: Int! 
+      twitterAccount: String
+      facebookAccount: String
+      email: String
     ): Project
 
     createDonation(
@@ -81,6 +87,9 @@ const typeDefs = gql`
       projectTitle: String
       projectCategory: String
       projectDescription: String
+      twitterAccount: String
+      facebookAccount: String
+      email: String
     ): Project
 
     favoriteProject(projectId: ID): User

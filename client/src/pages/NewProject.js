@@ -18,6 +18,9 @@ const NewProject = () => {
   const [projectDescription, setProjectDescription] = useState('');
   const [projectGoal, setProjectGoal] = useState();
   const [organizationName, setOrganizationName] = useState('');
+  const [twitterAccount, setTwitterAccount] = useState('');
+  const [facebookAccount, setFacebookAccount] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -59,6 +62,9 @@ const NewProject = () => {
           projectCategory,
           projectGoal,
           organizationName,
+          twitterAccount,
+          facebookAccount,
+          email
         },
       });
       // clear form value
@@ -67,6 +73,9 @@ const NewProject = () => {
       setProjectGoal(0);
       setOrganizationName('');
       setCharacterCount(0);
+      setTwitterAccount('');
+      setFacebookAccount('');
+      setEmail('');
       navigate('/my-projects');
       window.location.reload();
     } catch (e) {
@@ -136,19 +145,48 @@ const NewProject = () => {
           </label>
         </div>
         <div className="form-floating mb-3">
-          <input
+          <textarea
             className="form-control"
             required
-            name="projectGoal"
-            type="number"
-            placeholder="Project Goal"
-            value={projectGoal}
-            onChange={(e) => setProjectGoal(parseInt(e.target.value))}
+            name="twitterAccount"
+            type="text"
+            placeholder="Twitter"
+            value={twitterAccount}
+            onChange={(e) => setTwitterAccount(e.target.value)}
           />
-          <label className="form-label" htmlFor="projectGoal">
-            $ Project Goal
+          <label className="form-label" htmlFor="twitterAccount">
+            Add Twitter Account
           </label>
         </div>
+        <div className="form-floating mb-3">
+          <textarea
+            className="form-control"
+            required
+            name="facebookAccount"
+            type="text"
+            placeholder="Facebook"
+            value={facebookAccount}
+            onChange={(e) => setFacebookAccount(e.target.value)}
+          />
+          <label className="form-label" htmlFor="facebookAccount">
+            Add Facebook Account
+          </label>
+        </div>
+        <div className="form-floating mb-3">
+          <textarea
+            className="form-control"
+            required
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="form-label" htmlFor="email">
+            Add Email Account
+          </label>
+        </div>
+
         <button
           className="project-submit-btn btn btn-light btn-outline-success"
           type="submit"

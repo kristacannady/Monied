@@ -36,12 +36,21 @@ const projectSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  twitterAccount: {
+    type: String
+  },
+  facebookAccount: {
+    type: String
+  },
+  email: {
+    type: String
+  },
   donations: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Donation'
     }
-  ], 
+  ],
 
 });
 
