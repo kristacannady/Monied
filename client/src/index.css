@@ -155,12 +155,35 @@ footer h2{
   cursor: pointer;
 }
 
+.project-view {
+  width: 1500px;
+  height: 1500px;
+}
+
+.project-div {
+  height: 150px;
+}
+
+.donate-btn {
+ margin-left: 150px;
+ font-size: 35px;
+ font-weight:bold;
+ padding-left: 500px;
+ background-color: #547844;
+}
+
+
+.user-image {
+  width: 500px;
+  height: 500px;
+}
+
 .fav-btn {
  color: rgb(12, 121, 88);
 }
 
 .fav-btn:hover {
-  color: red;
+  color: grey;
 }
 
 .bg-custom {

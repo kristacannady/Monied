@@ -145,6 +145,36 @@ const NewProject = () => {
           </label>
         </div>
         <div className="form-floating mb-3">
+          <input
+            className="form-control"
+            required
+            name="projectGoal"
+            type="number"
+            placeholder="ProjectGoal"
+            value={projectGoal}
+            onChange={(e) => setProjectGoal(parseInt(e.target.value))}
+          />
+          <label className="form-label" htmlFor="projectGoal">
+            $ Project Goal
+          </label>
+        </div>
+
+        <div className="form-floating mb-3">
+          <input
+            className="form-control"
+            required
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="form-label" htmlFor="email">
+           Add Email 
+          </label>
+        </div>
+
+        <div className="form-floating mb-3">
           <textarea
             className="form-control"
             required
@@ -158,8 +188,9 @@ const NewProject = () => {
             Add Twitter Account
           </label>
         </div>
+
         <div className="form-floating mb-3">
-          <textarea
+          <input
             className="form-control"
             required
             name="facebookAccount"
@@ -169,21 +200,7 @@ const NewProject = () => {
             onChange={(e) => setFacebookAccount(e.target.value)}
           />
           <label className="form-label" htmlFor="facebookAccount">
-            Add Facebook Account
-          </label>
-        </div>
-        <div className="form-floating mb-3">
-          <textarea
-            className="form-control"
-            required
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className="form-label" htmlFor="email">
-            Add Email Account
+           Add Facebook Account
           </label>
         </div>
 
