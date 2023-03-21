@@ -56,6 +56,7 @@ export const QUERY_PROJECT = gql`
       email
       donations {
         _id
+        donatorName
         donationAmount
         isAnonymous
         commentBody

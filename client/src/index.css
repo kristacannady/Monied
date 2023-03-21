@@ -172,6 +172,15 @@ footer h2{
  background-color: #547844;
 }
 
+.social-icon {
+  margin-right: 5px;
+
+}
+
+.border {
+  border-color: black;
+}
+
 
 .user-image {
   width: 500px;
