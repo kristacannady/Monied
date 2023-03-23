@@ -1,4 +1,7 @@
 //this will be for single project view
+//Get total amount of donations
+//Progress Bar
+//Image upload
 
 import React from 'react';
 
@@ -6,7 +9,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROJECT } from '../graphql/queries';
 import Logo from "../assets/Monied-1 (1).png";
-import { FaTwitter, FaFacebookSquare, FaEnvelope } from 'react-icons/fa';
+import { FaTwitter, FaFacebookSquare, FaEnvelope, FaRegUserCircle } from 'react-icons/fa';
 
 // import { CurrentUserContextProvider } from '../context';
 
@@ -21,11 +24,10 @@ const ProjectView = (props) => {
 
   console.log(data);
 
-  const comments = data.getProjectById.donations.map((donation) => { 
+  const comments = data?.getProjectById.donations.map((donation) => { 
     return (<div>
-    
-       <span className='col-sm'>{donation.donatorName}</span><span> </span> <span className='col-sm'>{donation.commentBody}</span>
-       
+       <div className='col-sm comment-name'><FaRegUserCircle className='user-icon'></FaRegUserCircle>{donation.donatorName}</div>
+       <div className='col-sm comment-quote'>"{donation.commentBody}"</div>   
     </div>);
   });
 
@@ -55,7 +57,7 @@ const ProjectView = (props) => {
                 </div>
                 <div className="col">
                   <div className='row project-div'>
-                    <p className="card-text">Goal: {project.projectGoal}</p>
+                    <p className="goal-text">Goal: {project.projectGoal}</p>
                   </div>
                   <div className='row project-div'>
                     <div className="progress">
@@ -80,22 +82,23 @@ const ProjectView = (props) => {
                 
               </div>
               <div>
-                <p className="card-text">{project.organizationName} is the origanizer of this project.
-                  <FaTwitter className="social-icon" size={35} onClick={() => window.location.href = project.twitterAccount}></FaTwitter>
-                  <FaFacebookSquare size={35} onClick={() => window.location.href = project.facebookAccount}></FaFacebookSquare>
-                  <FaEnvelope size={35} onClick={() => window.open('mailto:project.email')}></FaEnvelope></p>
+                <p className="organizer-text">{project.organizationName} is the organizer of this project.
+                  <FaTwitter className="social-icon" size={35} color={'#1DA1F2'} onClick={() => window.location.href = project.twitterAccount}></FaTwitter>
+                  <FaFacebookSquare className="social-icon" size={35} color={'#3B5998'}onClick={() => window.location.href = project.facebookAccount}></FaFacebookSquare>
+                  <FaEnvelope className="social-icon" size={35} color={'grey'} onClick={() => window.open('mailto:project.email')}></FaEnvelope></p>
 
               </div>
               <div>
-                <p className="card-text">
-                  Description: {project.projectDescription}
+                <p className="description-text">
+                  {project.projectDescription}
                 </p>
               </div>
 
               {/* {CurrentUserContextProvider.isLoggedIn && } */}
             </div>
-            <div>Comments
+            <div className='comment-header '>Comments
             </div>
+            <div>Please donate to leave a comment.</div>
             <div className="row">
               {comments}
             </div>

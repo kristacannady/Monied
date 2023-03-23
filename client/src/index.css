@@ -174,11 +174,49 @@ footer h2{
 
 .social-icon {
   margin-right: 5px;
+  margin-left: 5px;
+}
 
+.comment-header {
+  font-size: 40px;
+  padding-left: 565px;
+  font-weight: bold;
+}
+
+.comment-name {
+font-weight: bold;
+font-size: 20px;
+margin-right: 50px;
+margin-left: 10px;
+}
+
+.comment-quote {
+font-weight: larger;
+font-style: italic;
+margin-left: 35px;
+margin-bottom: 40px;
+font-size: 20px;
+}
+
+.user-icon {
+  margin-bottom: 3px;
+  margin-right: 5px;
+}
+
+.organizer-text {
+  font-size: 25px;
+}
+
+.goal-text {
+  font-weight: bolder;
+}
+
+.description-text {
+  font-size: 20px;
 }
 
 .border {
-  border-color: black;
+  border-color: ;
 }
 
 
