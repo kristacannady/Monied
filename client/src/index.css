@@ -162,13 +162,14 @@ footer h2{
 
 .project-div {
   height: 150px;
+  padding-top: 20px;
 }
 
-.donate-btn {
- margin-left: 150px;
+#donate-btn {
+ margin-left: 225px;
  font-size: 35px;
  font-weight:bold;
- padding-left: 500px;
+
  background-color: #547844;
 }
 
@@ -179,7 +180,7 @@ footer h2{
 
 .comment-header {
   font-size: 40px;
-  padding-left: 565px;
+  padding-left: 525px;
   font-weight: bold;
 }
 
@@ -209,20 +210,41 @@ font-size: 20px;
 
 .goal-text {
   font-weight: bolder;
+  padding-top: 70px;
+  margin-left:  60px;;
+  font-size: 40px;
+}
+
+#progress-styling {
+  width: 500px;
+  height: 25px;
+  padding-left:0%;
+  padding-right:0%;
+  margin-left: 60px;
 }
 
 .description-text {
   font-size: 20px;
 }
 
-.border {
-  border-color: ;
+#border {
+  border-color: black;
+  border-style: solid;
 }
 
+.goal-div {
+  border-style: solid;
+  box-shadow:5px 10px #547844;
+}
+
+.note-styling {
+  margin-left: 505px;
+}
 
 .user-image {
-  width: 500px;
+  width: 575px;
   height: 500px;
+  border-style: solid;
 }
 
 .fav-btn {

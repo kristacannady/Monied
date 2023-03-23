@@ -24,15 +24,15 @@ const ProjectView = (props) => {
 
   console.log(data);
 
-  const comments = data?.getProjectById.donations.map((donation) => { 
+  const comments = data?.getProjectById.donations.map((donation) => {
     return (<div>
-       <div className='col-sm comment-name'><FaRegUserCircle className='user-icon'></FaRegUserCircle>{donation.donatorName}</div>
-       <div className='col-sm comment-quote'>"{donation.commentBody}"</div>   
+      <div className='col-sm comment-name'><FaRegUserCircle className='user-icon'></FaRegUserCircle>{donation.donatorName}</div>
+      <div className='col-sm comment-quote'>"{donation.commentBody}"</div>
     </div>);
   });
 
- // const test = data.getProjectById.donations.map((donation) => { 
-    //return (<div>{donation.commentBody}</div>)
+  // const test = data.getProjectById.donations.map((donation) => { 
+  //return (<div>{donation.commentBody}</div>)
   //});
 
   console.log(comments);
@@ -55,12 +55,12 @@ const ProjectView = (props) => {
                 <div className="col">
                   <img src={Logo} className="rounded float-left user-image" alt="..."></img>
                 </div>
-                <div className="col">
+                <div className="col goal-div rounded">
                   <div className='row project-div'>
-                    <p className="goal-text">Goal: {project.projectGoal}</p>
+                    <p className="goal-text">Goal: ${project.projectGoal}</p>
                   </div>
-                  <div className='row project-div'>
-                    <div className="progress">
+                  <div className='row ' >
+                    <div className="progress" id="progress-styling">
                       <div
                         className="progress-bar bg-custom w-50"
                         role="progressbar"
@@ -74,33 +74,35 @@ const ProjectView = (props) => {
                   </div>
                   <div className='row project-div'>
                     <Link to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
-                      <button className="btn btn-light donate-btn">Donate</button>
+                      <button className="btn btn-light" id="donate-btn">Donate</button>
                     </Link>
                   </div>
-                 
                 </div>
-                
               </div>
+
+              <hr id="border"></hr>
+
               <div>
                 <p className="organizer-text">{project.organizationName} is the organizer of this project.
                   <FaTwitter className="social-icon" size={35} color={'#1DA1F2'} onClick={() => window.location.href = project.twitterAccount}></FaTwitter>
-                  <FaFacebookSquare className="social-icon" size={35} color={'#3B5998'}onClick={() => window.location.href = project.facebookAccount}></FaFacebookSquare>
+                  <FaFacebookSquare className="social-icon" size={35} color={'#3B5998'} onClick={() => window.location.href = project.facebookAccount}></FaFacebookSquare>
                   <FaEnvelope className="social-icon" size={35} color={'grey'} onClick={() => window.open('mailto:project.email')}></FaEnvelope></p>
-
               </div>
               <div>
+                <hr id="border"></hr>
                 <p className="description-text">
                   {project.projectDescription}
                 </p>
               </div>
-
               {/* {CurrentUserContextProvider.isLoggedIn && } */}
-            </div>
-            <div className='comment-header '>Comments
-            </div>
-            <div>Please donate to leave a comment.</div>
-            <div className="row">
-              {comments}
+
+              <hr id="border"></hr>
+              <div className='comment-header '>Comments
+              </div>
+              <div className="note-styling">Please donate to leave a comment.</div>
+              <div className="row">
+                {comments}
+              </div>
             </div>
           </div>
         </div>
