@@ -53,10 +53,17 @@ const Community = () => {
 
   const projectIds = projects.map((project) => project._id);
 
-
   const comments = projects.map((project) => project.donations[0]?.commentBody);
 
   console.log(comments);
+
+  //const trimmedDescription =  ({description}) => {
+  //   const MAX_LENGTH = 100;
+  // const descriptionSnippet = description.length > MAX_LENGTH ? description.slice(0, MAX_LENGTH) + '...': description;
+  // return <div>{descriptionSnippet}</div>;
+  //};
+
+  // console.log(descriptionSnippet);
 
 
   if (projects.length === 0) {
@@ -78,10 +85,10 @@ const Community = () => {
       {projects &&
         projects.map((project) => {
 
-          if (notLoggedIn){
+          if (notLoggedIn) {
             favIcon = null;
           }
-         else if (matchProjectIds?.includes(project._id)) {
+          else if (matchProjectIds?.includes(project._id)) {
             favIcon = <FaHeart className="fav-btn" size={35} />
           }
           else {
