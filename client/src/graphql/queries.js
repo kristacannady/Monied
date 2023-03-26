@@ -51,8 +51,12 @@ export const QUERY_PROJECT = gql`
       projectCategory
       projectDescription
       projectGoal
+      twitterAccount
+      facebookAccount
+      email
       donations {
         _id
+        donatorName
         donationAmount
         isAnonymous
         commentBody

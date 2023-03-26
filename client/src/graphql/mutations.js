@@ -69,6 +69,9 @@ export const ADD_PROJECT = gql`
     $projectCategory: String!
     $projectDescription: String!
     $projectGoal: Int!
+    $twitterAccount: String
+    $facebookAccount: String
+    $email: String
   ) {
     createProject(
       projectTitle: $projectTitle
@@ -76,12 +79,18 @@ export const ADD_PROJECT = gql`
       projectCategory: $projectCategory
       projectDescription: $projectDescription
       projectGoal: $projectGoal
+      twitterAccount: $twitterAccount
+      facebookAccount: $facebookAccount
+      email: $email
     ) {
       projectTitle
       organizationName
       projectCategory
       projectDescription
       projectGoal
+      twitterAccount
+      facebookAccount
+      email
     }
   }
 `;
