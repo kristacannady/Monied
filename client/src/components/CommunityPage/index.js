@@ -29,21 +29,27 @@ const Community = () => {
     }
   };
 
-  //get currentUser info from DB
-  const currentUserRes = useQuery(QUERY_CURRENT_USER);
-  const userFavs = currentUserRes.data.getCurrentUser.favorites;
-
-  //get current user favorite projects
-  const userFavProjectsId = userFavs.map((userFavs) => userFavs._id);
-  console.log(userFavProjectsId);
-
-
   //filter projects to get all education category
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
     variables: { projectCategory: 'Community Outreach' },
   });
 
-  const projects = data?.getProjectByCategory || [];
+  //get currentUser info from DB
+  const currentUserRes = useQuery(QUERY_CURRENT_USER);
+
+  if (loading || currentUserRes.loading) {
+    return <div className="no-projects-message">Loading...</div>;
+  }
+
+  const notLoggedIn = currentUserRes.data?.getCurrentUser == null;
+
+  const userFavs = currentUserRes.data?.getCurrentUser?.favorites;
+
+  //get current user favorite projects
+  const userFavProjectsId = userFavs?.map((userFavs) => userFavs._id);
+  console.log(userFavProjectsId);
+
+  const projects = data.getProjectByCategory || [];
 
   const projectIds = projects.map((project) => project._id);
 
@@ -52,9 +58,6 @@ const Community = () => {
 
   console.log(comments);
 
-  if (loading) {
-    return <div className="no-projects-message">Loading...</div>;
-  }
 
   if (projects.length === 0) {
     return (
@@ -65,18 +68,20 @@ const Community = () => {
     );
   }
 
-  const matchProjectIds = userFavProjectsId.filter(idData => projectIds.includes(idData));
+  const matchProjectIds = userFavProjectsId?.filter(idData => projectIds.includes(idData));
   console.log(matchProjectIds);
 
   let favIcon = null;
-
 
   return (
     <div className="row justify-content-md-center">
       {projects &&
         projects.map((project) => {
 
-          if (matchProjectIds.includes(project._id)) {
+          if (notLoggedIn){
+            favIcon = null;
+          }
+         else if (matchProjectIds?.includes(project._id)) {
             favIcon = <FaHeart className="fav-btn" size={35} />
           }
           else {
@@ -95,7 +100,7 @@ const Community = () => {
                       {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
 
                       <Link
-                        className="org-name"
+                        className="org-name org-name-style hover"
                         to={`/ProjectsByOrg/${project.organizationName}`}
                       >
                         {project.organizationName}
