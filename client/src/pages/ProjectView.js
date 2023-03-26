@@ -1,7 +1,3 @@
-//this will be for single project view
-//Get total amount of donations
-//Progress Bar
-//Image upload
 
 import React from 'react';
 
@@ -22,6 +18,10 @@ const ProjectView = (props) => {
     variables: { id: getId[2] },
   });
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   console.log(data);
 
   const comments = data?.getProjectById.donations.map((donation) => {
@@ -31,23 +31,28 @@ const ProjectView = (props) => {
     </div>);
   });
 
-  // const test = data.getProjectById.donations.map((donation) => { 
-  //return (<div>{donation.commentBody}</div>)
-  //});
+  const donationValues = data?.getProjectById.donations.map((donation) => donation.donationAmount);
+  console.log(donationValues);
+
+  const totalDonations = donationValues.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
+
+  //calculate percentage of donations and add to progress bar
+
+  console.log(totalDonations);
 
   console.log(comments);
   // const user = data?.getCurrentUser || {};
 
   const project = data?.getProjectById || {};
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <div className='container'>
+    <div className='container page-style'>
       <div className="row justify-content-md-center ">
         <div className="col-md-auto d-flex">
           <div className="card project-view">
+            <div>Back</div>
             <div className="new-project-form card-body ">
               <h1 className="card-title">{project.projectTitle}</h1>
 
@@ -55,11 +60,11 @@ const ProjectView = (props) => {
                 <div className="col">
                   <img src={Logo} className="rounded float-left user-image" alt="..."></img>
                 </div>
-                <div className="col goal-div rounded">
+                <div className="col main-goal-div rounded">
                   <div className='row project-div'>
-                    <p className="goal-text">Goal: ${project.projectGoal}</p>
+                    <p className="goal-text">${totalDonations} raised of ${project.projectGoal} goal</p>
                   </div>
-                  <div className='row ' >
+                  <div className='row' id="goal-div" >
                     <div className="progress" id="progress-styling">
                       <div
                         className="progress-bar bg-custom w-50"
@@ -72,10 +77,13 @@ const ProjectView = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className='row project-div'>
-                    <Link to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
+                  <div className='row project-div' id="donate-btn-div">
+                    <Link className="col-md-6" to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
                       <button className="btn btn-light" id="donate-btn">Donate</button>
                     </Link>
+                    <span className="col-md-6">
+                      <button className="btn btn-light" id="share-btn">Share</button>
+                    </span>
                   </div>
                 </div>
               </div>
