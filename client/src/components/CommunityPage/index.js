@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_FAVORITE } from '../../graphql/mutations';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { MdOutlineComment } from 'react-icons/md';
+import Logo from "../../assets/Monied-1 (1).png";
 
 
 const Community = () => {
@@ -53,7 +54,7 @@ const Community = () => {
 
   const projectIds = projects.map((project) => project._id);
 
-  const comments = projects.map((project) => project.donations[0]?.commentBody);
+  const comments = projects.map((project) => project.donations?.commentBody);
 
   const MAX_LENGTH = 60;
 
@@ -95,11 +96,22 @@ const Community = () => {
 
           const comments = project.donations.filter(donation => donation.commentBody != null);
 
+          const donationValues = project.donations.map((donation) => donation.donationAmount);
+          console.log(donationValues);
+
+          //const comments = projects.map((project) => project.donations?.commentBody);
+
+          const totalDonations = donationValues.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+          }, 0);
+
+          console.log(donationValues);
+
           return (<div className="col-md-auto d-flex" key={project._id}>
             <div className="project-card card">
               <div className="new-project-form card-body">
                 <div className="container">
-                  <div className="row">
+                  <div className="row" id="card-icon">
                     <div className="col-sm">
                       {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
 
@@ -118,22 +130,41 @@ const Community = () => {
                     </div>
                   </div>
                 </div>
-                <Link className="project-link" to={`/project/${project._id}`}>
-                  <h3 className="card-title">{project.projectTitle}</h3>
-                </Link>
-                <p className="card-text">{trimmedDescription}</p>
-                <p className="card-text">Goal: ${project.projectGoal}</p>
-                <div className="progress">
-                  <div
-                    className="progress-bar bg-custom w-50"
-                    role="progressbar"
-                    aria-valuenow="75"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  >
-                    50%
+
+                <div className='row .card-row'>
+
+                  <div className="col-md">
+                    <img src={Logo} className="rounded float-left user-image-card" alt="..."></img>
                   </div>
+
+
+                  <div className="col-md">
+                    <Link className="project-link" to={`/project/${project._id}`}>
+                      <h3 className="card-title">{project.projectTitle}</h3>
+                    </Link>
+                    <p className="card-text">{trimmedDescription}</p>
+                  
+                    <p className="card-text goal-card-text">${totalDonations} raised of ${project.projectGoal} goal</p>
+                    <div className="progress">
+                      <div
+                        className="progress-bar bg-custom w-50"
+                        role="progressbar"
+                        aria-valuenow="75"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        50%
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
                 </div>
+
+
+
               </div>
             </div>
           </div>)

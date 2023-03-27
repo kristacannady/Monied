@@ -273,6 +273,24 @@ font-size: 20px;
   box-shadow:5px 10px #547844;
 }
 
+.user-image-card {
+  width: 200px;
+  height: 175px;
+  border-style: solid;
+}
+
+#card-icon {
+  margin-left: 50px;
+  margin-right: 0px;
+}
+
+.goal-card-text {
+  font-weight: bold;
+}
+
+.card-row {
+  padding-top: 5px;
+}
 .fav-btn {
  color: rgb(12, 121, 88);
 }

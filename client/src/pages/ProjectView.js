@@ -40,9 +40,7 @@ const ProjectView = (props) => {
 
   //calculate percentage of donations and add to progress bar
 
-  console.log(totalDonations);
-
-  console.log(comments);
+;
   // const user = data?.getCurrentUser || {};
 
   const project = data?.getProjectById || {};
