@@ -55,16 +55,7 @@ const Community = () => {
 
   const comments = projects.map((project) => project.donations[0]?.commentBody);
 
-  console.log(comments);
-
-  //const trimmedDescription =  ({description}) => {
-  //   const MAX_LENGTH = 100;
-  // const descriptionSnippet = description.length > MAX_LENGTH ? description.slice(0, MAX_LENGTH) + '...': description;
-  // return <div>{descriptionSnippet}</div>;
-  //};
-
-  // console.log(descriptionSnippet);
-
+  const MAX_LENGTH = 60;
 
   if (projects.length === 0) {
     return (
@@ -95,8 +86,14 @@ const Community = () => {
             favIcon = <FaRegHeart className="fav-btn" size={35} />
           }
 
+          //Truncate description length 
+          let trimmedDescription = project.projectDescription;
+
+          if (trimmedDescription.length > MAX_LENGTH) {
+            trimmedDescription = project.projectDescription.slice(0, MAX_LENGTH) + '...';
+          }
+
           const comments = project.donations.filter(donation => donation.commentBody != null);
-          console.log(comments.length);
 
           return (<div className="col-md-auto d-flex" key={project._id}>
             <div className="project-card card">
@@ -124,7 +121,7 @@ const Community = () => {
                 <Link className="project-link" to={`/project/${project._id}`}>
                   <h3 className="card-title">{project.projectTitle}</h3>
                 </Link>
-                <p className="card-text">{project.projectDescription}</p>
+                <p className="card-text">{trimmedDescription}</p>
                 <p className="card-text">Goal: ${project.projectGoal}</p>
                 <div className="progress">
                   <div
