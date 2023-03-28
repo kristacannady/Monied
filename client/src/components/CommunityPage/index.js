@@ -110,7 +110,7 @@ const Community = () => {
             },
             0
           );
-
+          //logic for progress bar %
           const goalPercent = (totalDonations / project.projectGoal) * 100;
           const barWidth = goalPercent + '%';
 
