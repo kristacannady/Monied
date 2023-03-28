@@ -72,6 +72,7 @@ export const ADD_PROJECT = gql`
     $twitterAccount: String
     $facebookAccount: String
     $email: String
+
   ) {
     createProject(
       projectTitle: $projectTitle
@@ -82,6 +83,7 @@ export const ADD_PROJECT = gql`
       twitterAccount: $twitterAccount
       facebookAccount: $facebookAccount
       email: $email
+     
     ) {
       projectTitle
       organizationName
@@ -91,6 +93,7 @@ export const ADD_PROJECT = gql`
       twitterAccount
       facebookAccount
       email
+     
     }
   }
 `;
