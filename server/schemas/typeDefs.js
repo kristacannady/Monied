@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
   type User {
     _id: ID
     firstName: String
@@ -40,6 +41,7 @@ const typeDefs = gql`
     token: ID
     user: User
   }
+
 
   type Query {
     getCurrentUser: User
@@ -93,6 +95,8 @@ const typeDefs = gql`
     ): Project
 
     favoriteProject(projectId: ID): User
+
+
   }
 `;
 

@@ -45,6 +45,7 @@ const projectSchema = new Schema({
   email: {
     type: String
   },
+
   donations: [
     {
       type: Schema.Types.ObjectId,

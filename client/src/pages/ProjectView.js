@@ -40,9 +40,7 @@ const ProjectView = (props) => {
 
   //calculate percentage of donations and add to progress bar
 
-  console.log(totalDonations);
-
-  console.log(comments);
+;
   // const user = data?.getCurrentUser || {};
 
   const project = data?.getProjectById || {};
@@ -55,16 +53,15 @@ const ProjectView = (props) => {
             <div>Back</div>
             <div className="new-project-form card-body ">
               <h1 className="card-title">{project.projectTitle}</h1>
-
               <div className="row">
-                <div className="col">
+                <div className="col-md-auto">
                   <img src={Logo} className="rounded float-left user-image" alt="..."></img>
                 </div>
-                <div className="col main-goal-div rounded">
+                <div className="col-md-auto main-goal-div rounded">
                   <div className='row project-div'>
                     <p className="goal-text">${totalDonations} raised of ${project.projectGoal} goal</p>
                   </div>
-                  <div className='row' id="goal-div" >
+                  <div className='' id="goal-div" >
                     <div className="progress" id="progress-styling">
                       <div
                         className="progress-bar bg-custom w-50"
@@ -78,18 +75,17 @@ const ProjectView = (props) => {
                     </div>
                   </div>
                   <div className='row project-div' id="donate-btn-div">
-                    <Link className="col-md-6" to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
+                    <Link className="col" to={`/donate`} state={{ projectTitle: project.projectTitle, projectId: project._id }}>
                       <button className="btn btn-light" id="donate-btn">Donate</button>
                     </Link>
-                    <span className="col-md-6">
+                    <span className="col">
                       <button className="btn btn-light" id="share-btn">Share</button>
                     </span>
                   </div>
+
                 </div>
               </div>
-
               <hr id="border"></hr>
-
               <div>
                 <p className="organizer-text">{project.organizationName} is the organizer of this project.
                   <FaTwitter className="social-icon" size={35} color={'#1DA1F2'} onClick={() => window.location.href = project.twitterAccount}></FaTwitter>
@@ -105,9 +101,9 @@ const ProjectView = (props) => {
               {/* {CurrentUserContextProvider.isLoggedIn && } */}
 
               <hr id="border"></hr>
-              <div className='comment-header '>Comments
-              </div>
-              <div className="note-styling">Please donate to leave a comment.</div>
+              <div className='comment-header  '>Comments</div>
+              <div className="note-styling ">Please donate to leave a comment.</div>
+              <hr id="border"></hr>
               <div className="row">
                 {comments}
               </div>
