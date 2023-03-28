@@ -114,7 +114,6 @@ const Community = () => {
                   <div className="row" id="card-icon">
                     <div className="col-sm">
                       {/* Add link to ProjectsByOrg, need to take link that is clicked and prop into projectsbyorg*/}
-
                       <Link
                         className="org-name org-name-style hover"
                         to={`/ProjectsByOrg/${project.organizationName}`}
@@ -130,20 +129,15 @@ const Community = () => {
                     </div>
                   </div>
                 </div>
-
                 <div className='row .card-row'>
-
                   <div className="col-md">
                     <img src={Logo} className="rounded float-left user-image-card" alt="..."></img>
                   </div>
-
-
                   <div className="col-md">
                     <Link className="project-link" to={`/project/${project._id}`}>
                       <h3 className="card-title">{project.projectTitle}</h3>
                     </Link>
-                    <p className="card-text">{trimmedDescription}</p>
-                  
+                    <p className="card-text">{trimmedDescription}</p> 
                     <p className="card-text goal-card-text">${totalDonations} raised of ${project.projectGoal} goal</p>
                     <div className="progress">
                       <div
@@ -157,14 +151,7 @@ const Community = () => {
                       </div>
                     </div>
                   </div>
-
-
-
-
                 </div>
-
-
-
               </div>
             </div>
           </div>)
