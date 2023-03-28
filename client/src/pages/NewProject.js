@@ -81,6 +81,8 @@ const NewProject = () => {
     } catch (e) {
       console.error(e);
     }
+
+    //await uploadProjectImage({})
   };
   return (
     <div>
