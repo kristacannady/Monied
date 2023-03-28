@@ -93,14 +93,6 @@ const Community = () => {
               project.projectDescription.slice(0, MAX_LENGTH) + '...';
           }
 
-          //Truncate description length
-          let trimmedDescription = project.projectDescription;
-
-          if (trimmedDescription.length > MAX_LENGTH) {
-            trimmedDescription =
-              project.projectDescription.slice(0, MAX_LENGTH) + '...';
-          }
-
           const comments = project.donations.filter(
             (donation) => donation.commentBody != null
           );
@@ -119,7 +111,8 @@ const Community = () => {
             0
           );
 
-          console.log(donationValues);
+          const goalPercent = (totalDonations / project.projectGoal) * 100;
+          const barWidth = goalPercent + '%';
 
           return (
             <div className="col-md-auto d-flex" key={project._id}>
@@ -173,13 +166,14 @@ const Community = () => {
                       </p>
                       <div className="progress">
                         <div
-                          className="progress-bar bg-custom w-50"
+                          className="progress-bar bg-custom"
                           role="progressbar"
-                          aria-valuenow="75"
+                          style={{ width: barWidth }}
+                          aria-valuenow={goalPercent}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         >
-                          50%
+                          {goalPercent}%
                         </div>
                       </div>
                     </div>
