@@ -108,6 +108,13 @@ export const QUERY_PROJECT_ORGANIZATION = gql`
       projectCategory
       projectDescription
       projectGoal
+      donations {
+        _id
+        donationAmount
+        isAnonymous
+        commentBody
+        createdBy
+      }
     }
   }
 `;

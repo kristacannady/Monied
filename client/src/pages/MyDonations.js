@@ -1,8 +1,12 @@
 import React from 'react';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-import { QUERY_CURRENT_USER, QUERY_PROJECT } from '../graphql/queries';
+import {
+  QUERY_CURRENT_USER,
+  QUERY_PROJECT,
+  QUERY_DONATIONS,
+} from '../graphql/queries';
 
 //generate all user donations
 const MyDonations = () => {
@@ -18,15 +22,13 @@ const MyDonations = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(user);
 
   return (
     <div className="dashboard">
       <h1>My Donations</h1>
       <div>Total Donations: {donation.donationAmount}</div>
-
-
     </div>
-
   );
 };
 
