@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_PROJECT } from '../graphql/queries';
+import { QUERY_PROJECT, QUERY_CURRENT_USER } from '../graphql/queries';
 import Logo from '../assets/Monied-1 (1).png';
 import {
   FaTwitter,
@@ -18,6 +18,9 @@ const ProjectView = (props) => {
 
   let getId = location.pathname.split('/');
 
+  const getUser = useQuery(QUERY_CURRENT_USER);
+  const userId = getUser.data?.getCurrentUser._id || {};
+
   const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { id: getId[2] },
   });
@@ -27,7 +30,6 @@ const ProjectView = (props) => {
   }
 
   const project = data?.getProjectById || {};
-  console.log(data);
 
   const comments = data?.getProjectById.donations.map((donation) => {
     return (
@@ -44,7 +46,6 @@ const ProjectView = (props) => {
   const donationValues = data?.getProjectById.donations.map(
     (donation) => donation.donationAmount
   );
-  console.log(donationValues);
 
   const totalDonations = donationValues.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
@@ -53,8 +54,6 @@ const ProjectView = (props) => {
   //logic for progress bar %
   const goalPercent = (totalDonations / project.projectGoal) * 100;
   const barWidth = goalPercent + '%';
-
-  // const user = data?.getCurrentUser || {};
 
   return (
     <div className="container page-style">
@@ -99,6 +98,7 @@ const ProjectView = (props) => {
                       state={{
                         projectTitle: project.projectTitle,
                         projectId: project._id,
+                        userId: userId,
                       }}
                     >
                       <button className="btn btn-light" id="donate-btn">
