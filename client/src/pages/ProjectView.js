@@ -55,7 +55,7 @@ const ProjectView = (props) => {
   }, 0);
 
   //logic for progress bar %
-  const goalPercent = (totalDonations / project.projectGoal) * 100;
+  const goalPercent = Math.round((totalDonations / project.projectGoal) * 100);
   const barWidth = goalPercent + '%';
 
   // const user = data?.getCurrentUser || {};

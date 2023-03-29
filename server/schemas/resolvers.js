@@ -11,9 +11,16 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
-          .populate('projects')
           .populate('donations')
-          .populate('favorites');
+          .populate('projects')
+          .populate({
+            path: 'projects',
+            populate: {
+              path: 'donations',
+              model: 'Donation'
+            }
+          })
+          .populate('favorites')
 
         return user;
       }
@@ -37,7 +44,7 @@ const resolvers = {
       return projects;
     },
     getProjectByOrganization: async (parent, { organizationName }) => {
-      const projectOrg = await Project.find({ organizationName });
+      const projectOrg = await Project.find({ organizationName }).populate("donations");
 
       if (!projectOrg) {
         throw new AuthenticationError('Project not found.');
@@ -191,6 +198,14 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+
+    uploadImage: async (_, { file }) => {
+      const t = await file;
+      const stream = createReadStream();
+      const path = `./uploads/${filename}`;
+
+      return { url: `http://localhost:4000/uploads/${filename}` };
     },
   },
 };

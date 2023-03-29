@@ -94,15 +94,13 @@ const Other = () => {
           }
 
           const comments = project.donations.filter(
-            (donation) => donation.commentBody != null
+            (donation) => donation.commentBody != null && donation.commentBody != ""
           );
 
           const donationValues = project.donations.map(
             (donation) => donation.donationAmount
           );
           console.log(donationValues);
-
-          //const comments = projects.map((project) => project.donations?.commentBody);
 
           const totalDonations = donationValues.reduce(
             (accumulator, currentValue) => {
@@ -112,7 +110,7 @@ const Other = () => {
           );
 
           //logic for progress bar %
-          const goalPercent = (totalDonations / project.projectGoal) * 100;
+          const goalPercent = Math.round((totalDonations / project.projectGoal) * 100);
           const barWidth = goalPercent + '%';
 
           return (

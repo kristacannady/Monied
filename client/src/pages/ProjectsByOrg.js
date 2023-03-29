@@ -119,7 +119,7 @@ const ProjectsByOrg = (props) => {
           );
 
           //logic for progress bar %
-          const goalPercent = (totalDonations / project.projectGoal) * 100;
+          const goalPercent = Math.round((totalDonations / project.projectGoal) * 100);
           const barWidth = goalPercent + '%';
 
           return (

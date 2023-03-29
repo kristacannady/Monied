@@ -1,7 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
+  scalar Upload
+  
   type User {
     _id: ID
     firstName: String
@@ -40,6 +41,10 @@ const typeDefs = gql`
   type Auth {
     token: ID
     user: User
+  }
+
+  type Image {
+    url: String
   }
 
 
@@ -96,7 +101,7 @@ const typeDefs = gql`
 
     favoriteProject(projectId: ID): User
 
-
+    uploadImage(file: Upload!): Image!
   }
 `;
 

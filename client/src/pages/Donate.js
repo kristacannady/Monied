@@ -27,32 +27,7 @@ const Donation = (props) => {
   const location = useLocation()
   const { projectTitle, projectId } = location.state || {};
 
-  const [addDonation, { error }] = useMutation(ADD_DONATION, {
-    update(cache, { data: { addDonation } }) {
-      try {
-        const { getCurrentUser } = cache.readQuery({
-          query: QUERY_CURRENT_USER,
-        });
-        cache.writeQuery({
-          query: QUERY_CURRENT_USER,
-          data: {
-            getCurrentUser: {
-              ...getCurrentUser,
-              projects: [...getCurrentUser.projects, addDonation],
-            },
-          },
-        });
-      } catch (e) {
-        console.warn("First project insertion by user!");
-      }
-
-      const { projects } = cache.readQuery({ query: QUERY_PROJECT });
-      cache.writeQuery({
-        query: QUERY_PROJECT,
-        data: { projects: [addDonation, ...projects] },
-      });
-    },
-  });
+  const [addDonation, { error }] = useMutation(ADD_DONATION);
 
   const handleIsAnonymousChanged = () => {
     let newIsAnonymousValue = !formState.isAnonymous;
@@ -91,10 +66,11 @@ const Donation = (props) => {
           projectId: projectId
         },
       });
-    } catch (e) {
 
-      //TODO: Fix this
-      navigate(`/project/${projectId}`);
+       navigate(`/project/${projectId}`);
+       window.location.reload();
+
+    } catch (e) {
       console.error(e);
     }
   };
@@ -119,7 +95,7 @@ const Donation = (props) => {
           <textarea className="form-control" rows="4" name="commentBody" placeholder="Comment" value={formState.commentBody} onChange={handleChange} />
           <label className="form-label" htmlFor="commentBody">Comment</label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" >Submit</button>
       </form>
     </div>
   );
