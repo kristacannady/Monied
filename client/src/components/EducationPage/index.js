@@ -95,7 +95,7 @@ const Education = () => {
 
           const comments = project.donations.filter(
             (donation) => donation.commentBody != null
-          );
+         );
 
           const donationValues = project.donations.map(
             (donation) => donation.donationAmount

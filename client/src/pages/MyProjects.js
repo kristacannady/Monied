@@ -16,12 +16,13 @@ const MyProjects = (props) => {
 
   const user = data?.getCurrentUser || {};
 
-  const MAX_LENGTH = 60;
-
   const projects = data?.getCurrentUser.projects || {}; //may need to change to array
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const MAX_LENGTH = 60;
+
 
   return (
     <div className="">

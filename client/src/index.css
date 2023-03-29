@@ -113,12 +113,13 @@ form button {
   font-size: 1.25rem;
   padding: 0.625rem;
   margin: 1rem 0;
-  font-weight: bold;
+  
   border: none;
-  background-color: grey;
+  background-color: lightgrey;
   color:#547844;
   border-radius: 0.625rem;
   width: 100%;
+  
 }
 
 .login {

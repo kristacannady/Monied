@@ -10,6 +10,7 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom'
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import { ADD_DONATION } from "../graphql/mutations";
 import { QUERY_CURRENT_USER, QUERY_PROJECT, QUERY_PROJECT_CATEGORY } from "../graphql/queries";
 
@@ -20,6 +21,8 @@ const Donation = (props) => {
     isAnonymous: false,
     commentBody: ''
   });
+
+  const navigate = useNavigate();
 
   const location = useLocation()
   const { projectTitle, projectId } = location.state || {};
@@ -53,15 +56,19 @@ const Donation = (props) => {
 
   const handleIsAnonymousChanged = () => {
     let newIsAnonymousValue = !formState.isAnonymous;
-    
+
     if (newIsAnonymousValue === true) {
-      setFormState({ ...formState, 
+      setFormState({
+        ...formState,
         isAnonymous: newIsAnonymousValue,
-        donatorName: "Anonymous" });
+        donatorName: "Anonymous"
+      });
     } else {
-      setFormState({ ...formState,
+      setFormState({
+        ...formState,
         isAnonymous: newIsAnonymousValue,
-        donatorName: "" });
+        donatorName: ""
+      });
     }
   };
 
@@ -81,11 +88,13 @@ const Donation = (props) => {
           donationAmount: parseInt(formState.donationAmount),
           commentBody: formState.commentBody,
           isAnonymous: formState.isAnonymous,
-          projectId: projectId      
+          projectId: projectId
         },
       });
-
     } catch (e) {
+
+      //TODO: Fix this
+      navigate(`/project/${projectId}`);
       console.error(e);
     }
   };
@@ -99,7 +108,7 @@ const Donation = (props) => {
           <label className="form-label" htmlFor="donatorName">Name</label>
         </div>
         <div className="form-check mb-3">
-          <input type="checkbox" className="form-check-input" name="isAnonymous" checked={formState.isAnonymous} onChange={handleIsAnonymousChanged}/>
+          <input type="checkbox" className="form-check-input" name="isAnonymous" checked={formState.isAnonymous} onChange={handleIsAnonymousChanged} />
           <label className="form-check-label" htmlFor="isAnonymous">Anonymous Donation</label>
         </div>
         <div className="form-floating mb-3">
