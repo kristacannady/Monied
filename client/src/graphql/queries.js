@@ -61,6 +61,7 @@ export const QUERY_PROJECT = gql`
         isAnonymous
         commentBody
         createdBy
+        createdByID
       }
     }
   }

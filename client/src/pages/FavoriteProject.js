@@ -38,7 +38,7 @@ const MyFavorites = (props) => {
             }
 
             const comments = project.donations.filter(
-              (donation) => donation.commentBody != null
+              (donation) => donation.commentBody != null && donation.commentBody != ""
             );
 
             const donationValues = project.donations.map(

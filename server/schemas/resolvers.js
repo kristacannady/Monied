@@ -21,24 +21,21 @@ const resolvers = {
             }
           })
           .populate('favorites')
+          .populate({
+            path: 'favorites',
+            populate: {
+              path: 'donations',
+              model: 'Donation'
+            }
+          })
 
         return user;
       }
       throw new AuthenticationError('Not logged in');
     },
-
-    // getAllProjects
-    // getAllProjects: async (parent) => {
-    //   const allProjects = await Project.find().populate('donations');
-
-    //   if (!allProjects) {
-    //     throw new AuthenticationError('Project not found.');
-    //   }
-    //   return allProjects;
-    // },
     //getProjectById
     getProjectById: async (parent, { _id }) => {
-      const project = await Project.findOne({ _id }).populate('donations');
+      const project = await Project.findOne({ _id }).populate("donations");
 
       if (!project) {
         throw new AuthenticationError('Project not found.');
@@ -46,9 +43,7 @@ const resolvers = {
       return project;
     },
     getProjectByCategory: async (parent, { projectCategory }) => {
-      const projects = await Project.find({ projectCategory }).populate(
-        'donations'
-      );
+      const projects = await Project.find({ projectCategory }).populate("donations");
 
       if (!projects) {
         throw new AuthenticationError('Project not found.');
@@ -185,7 +180,7 @@ const resolvers = {
           commentBody: args.commentBody,
           project: args.projectId,
           createdBy: context.user.firstName + ' ' + context.user.lastName,
-          createdByID: args.userId,
+          createdByID: context.user._id
         };
         const donation = await Donation.create(donationToCreate);
 
