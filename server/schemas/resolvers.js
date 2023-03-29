@@ -178,7 +178,7 @@ const resolvers = {
           commentBody: args.commentBody,
           project: args.projectId,
           createdBy: context.user.firstName + ' ' + context.user.lastName,
-          createdByID: context.user._id,
+          createdByID: args.userId,
         };
         const donation = await Donation.create(donationToCreate);
 
