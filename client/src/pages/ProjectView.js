@@ -29,16 +29,20 @@ const ProjectView = (props) => {
   const project = data?.getProjectById || {};
   console.log(data);
 
+  const anonymous = data?.getProjectById.donations.commentBody
+
   const comments = data?.getProjectById.donations.map((donation) => {
-    return (
-      <div>
-        <div className="col-sm comment-name">
-          <FaRegUserCircle className="user-icon"></FaRegUserCircle>
-          {donation.donatorName}
+    if (donation.commentBody != null && donation.commentBody != "") {
+      return (
+        <div>
+          <div className="col-sm comment-name">
+            <FaRegUserCircle className="user-icon"></FaRegUserCircle>
+            {donation.donatorName}
+          </div>
+          <div className="col-sm comment-quote">"{donation.commentBody}"</div>
         </div>
-        <div className="col-sm comment-quote">"{donation.commentBody}"</div>
-      </div>
-    );
+      );
+    }
   });
 
   const donationValues = data?.getProjectById.donations.map(
@@ -61,7 +65,6 @@ const ProjectView = (props) => {
       <div className="row justify-content-md-center ">
         <div className="col-md-auto d-flex">
           <div className="card project-view">
-            <div>Back</div>
             <div className="new-project-form card-body ">
               <h1 className="card-title">{project.projectTitle}</h1>
               <div className="row">

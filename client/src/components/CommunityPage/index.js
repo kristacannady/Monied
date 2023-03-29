@@ -92,15 +92,13 @@ const Community = () => {
           }
 
           const comments = project.donations.filter(
-          (donation) => donation.commentBody != null
+          (donation) => donation.commentBody != null && donation.commentBody != ""
           );
 
           const donationValues = project.donations.map(
             (donation) => donation.donationAmount
           );
           console.log(donationValues);
-
-          //const comments = projects.map((project) => project.donations?.commentBody);
 
           const totalDonations = donationValues.reduce(
             (accumulator, currentValue) => {
