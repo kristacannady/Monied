@@ -29,13 +29,14 @@ const Education = () => {
     }
   };
 
+  //get currentUser info from DB
+  const currentUserRes = useQuery(QUERY_CURRENT_USER);
+
+
   //filter projects to get all education category
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
     variables: { projectCategory: 'Education' },
   });
-
-  //get currentUser info from DB
-  const currentUserRes = useQuery(QUERY_CURRENT_USER);
 
   if (loading || currentUserRes.loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -95,7 +96,7 @@ const Education = () => {
 
           const comments = project.donations.filter(
             (donation) => donation.commentBody != null
-         );
+          );
 
           const donationValues = project.donations.map(
             (donation) => donation.donationAmount

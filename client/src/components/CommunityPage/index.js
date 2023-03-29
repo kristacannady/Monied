@@ -29,13 +29,13 @@ const Community = () => {
     }
   };
 
+    //get currentUser info from DB
+    const currentUserRes = useQuery(QUERY_CURRENT_USER);
+
   //filter projects to get all education category
   const { loading, data } = useQuery(QUERY_PROJECT_CATEGORY, {
     variables: { projectCategory: 'Community Outreach' },
   });
-
-  //get currentUser info from DB
-  const currentUserRes = useQuery(QUERY_CURRENT_USER);
 
   if (loading || currentUserRes.loading) {
     return <div className="no-projects-message">Loading...</div>;
@@ -52,8 +52,6 @@ const Community = () => {
   const projects = data.getProjectByCategory || [];
 
   const projectIds = projects.map((project) => project._id);
-
-  const comments = projects.map((project) => project.donations?.commentBody);
 
   const MAX_LENGTH = 60;
 

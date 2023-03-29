@@ -14,12 +14,13 @@ const MyProjects = (props) => {
 
   const { loading, data } = useQuery(QUERY_CURRENT_USER);
 
-  const user = data?.getCurrentUser || {};
-
-  const projects = data?.getCurrentUser.projects || {}; //may need to change to array
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const user = data?.getCurrentUser || {};
+
+  const projects = data?.getCurrentUser.projects || {}; //may need to change to array
 
   const MAX_LENGTH = 60;
 
@@ -47,7 +48,7 @@ const MyProjects = (props) => {
             }
 
             const comments = project.donations.filter(
-              (donation) => donation.commentBody != null
+              (donation) => donation.commentBody != null && donation.commentBody != ""
             );
 
             const donationValues = project.donations.map(
